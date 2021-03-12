@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="utf-8">
-    <title>Stroyka</title>
+    <title>Electro Cloud</title>
     <base href="/">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="">
 
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
@@ -16,6 +17,7 @@
     <!-- font - stroyka -->
     <link rel="stylesheet" href="assets/fonts/stroyka/stroyka.css">
 </head>
+
 <body>
     <div class="site-preloader">
         <style>
@@ -27,19 +29,19 @@
                     transform: rotateZ(360deg);
                 }
             }
-
+            
             app-root *,
             app-root *:before,
             app-root *:after {
                 transition-duration: 0s !important;
             }
-
+            
             body {
                 overflow: hidden !important;
                 overflow-y: scroll !important;
                 height: 100% !important;
             }
-
+            
             .site-preloader {
                 position: fixed;
                 left: 0;
@@ -50,6 +52,7 @@
                 z-index: 99999;
                 opacity: 1;
             }
+            
             .site-preloader::before {
                 box-sizing: border-box;
                 content: '';
@@ -62,12 +65,12 @@
                 border-radius: 50px;
                 border: 3px solid rgba(0, 0, 0, .2);
                 border-top-color: rgba(0, 0, 0, .6);
-
                 animation-name: site-preloader-animation;
                 animation-duration: .5s;
                 animation-timing-function: linear;
                 animation-iteration-count: infinite;
             }
+            
             .site-preloader__fade {
                 transition: opacity .3s;
                 opacity: 0;
@@ -77,4 +80,5 @@
 
     <app-root></app-root>
 </body>
+
 </html>
