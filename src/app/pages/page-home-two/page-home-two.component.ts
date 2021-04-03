@@ -7,6 +7,9 @@ import { Brand } from '../../shared/interfaces/brand';
 import { Product } from '../../shared/interfaces/product';
 import { Category } from '../../shared/interfaces/category';
 import { BlockHeaderGroup } from '../../shared/interfaces/block-header-group';
+import { HomeCommonService } from 'src/app/shared/services/home-common.service';
+import { FeaturedProductsService } from 'src/app/shared/services/featured-products.service';
+import { SubbannerService } from 'src/app/shared/services/subbanner.service';
 
 interface ProductsCarouselGroup extends BlockHeaderGroup {
     products$: Observable<Product[]>;
@@ -40,10 +43,12 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     latestProducts: ProductsCarouselData;
 
     constructor(
-        private shop: ShopService,
+        private shop: ShopService,private banner:HomeCommonService, private featuredprods:FeaturedProductsService, private subbanner:SubbannerService
     ) { }
 
     ngOnInit(): void {
+        this.getbanner();
+        this.getfeaturedprod();
         this.bestsellers$ = this.shop.getBestsellers(7);
         this.brands$ = this.shop.getPopularBrands();
         this.popularCategories$ = this.shop.getCategoriesBySlug([
@@ -116,7 +121,23 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
         };
         this.groupChange(this.latestProducts, this.latestProducts.groups[0]);
     }
-
+    //Get Banners
+    getbanner(){
+        this.banner.getBanner().subscribe(banner => {
+            console.log(banner);
+        })
+    }
+        //Get Featured Products
+        getfeaturedprod(){
+            this.featuredprods.getFeaturedProducts().subscribe(featuredprods =>{
+                console.log(featuredprods);
+            })
+        }
+        getSubBanner(){
+            this.subbanner.getSubBanner().subscribe(subbanner => {
+                console.log(subbanner);
+            })
+        }
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
