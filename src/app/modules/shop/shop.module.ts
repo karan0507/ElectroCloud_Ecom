@@ -28,11 +28,11 @@ import { PageTrackOrderComponent } from './pages/page-track-order/page-track-ord
 import { PageWishlistComponent } from './pages/page-wishlist/page-wishlist.component';
 import { ProductSidebarComponent } from './components/product-sidebar/product-sidebar.component';
 import { PageOrderSuccessComponent } from './pages/page-order-success/page-order-success.component';
-import { CustomProductsComponent } from './custom-products/custom-products';
 import  { InfoComponent } from './custom-products/components/info/info.component';
 import { Info1Component } from './custom-products/components/info1/info1.component';
 import { Info2Component } from './custom-products/components/info2/info2.component';
 import { Info3Component } from './custom-products/components/info3/info3.component';
+import { CustomProductsComponent } from './custom-products/custom-products.component';
 @NgModule({
     declarations: [
         // components
@@ -49,6 +49,7 @@ import { Info3Component } from './custom-products/components/info3/info3.compone
         PageWishlistComponent,
         ProductSidebarComponent,
         PageOrderSuccessComponent,
+        CustomProductsComponent,
         InfoComponent,
         Info1Component,
         Info2Component,
