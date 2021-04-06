@@ -49,7 +49,6 @@ import { Info3Component } from './custom-products/components/info3/info3.compone
         PageWishlistComponent,
         ProductSidebarComponent,
         PageOrderSuccessComponent,
-        CustomProductsComponent,
         InfoComponent,
         Info1Component,
         Info2Component,
