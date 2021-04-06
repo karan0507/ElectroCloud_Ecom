@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "3f46048a-3852-494b-a155-95637e13ae34",
+		"name": "ElectroCloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Merchant",
+			"item": [
+				{
+					"name": "Add Products",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									"pm.globals.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Nokia 118",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "SDA/8DS/SADSAD-SAD",
+									"type": "text"
+								},
+								{
+									"key": "metaTitle",
+									"value": "NOkia 118",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "nokia",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "warranty_guarantee_type",
+									"value": "warranty",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1800",
+									"type": "text"
+								},
+								{
+									"key": "discount_type",
+									"value": "Percentage",
+									"type": "text"
+								},
+								{
+									"key": "discount",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "brandId",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "product_images",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-30 at 6.00.54 PM.png"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{stagging}}/products",
+							"host": [
+								"{{stagging}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "9",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Adding Products"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{stagging}}/products",
+							"host": [
+								"{{stagging}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add New Banners",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image_url\":\"https://homepages.cae.wisc.edu/~ece533/images/airplane.png\",\n    \"head_text\": \"description\",\n    \"description\": \"description\",\n    \"button\": \"Shop Now\",\n    \"isActive\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/banners",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"banners"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get  Home Page Banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/customer/banner",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"customer",
+								"banner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Featured Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://127.0.0.1:3000/"
+		},
+		{
+			"key": "stagging",
+			"value": "stagging"
+		}
+	]
+}

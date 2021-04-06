@@ -13,7 +13,9 @@ export class HomeCommonService {
   }
   getBanner():Observable<any>{
 
-  return this.http.get(environment.apiUrl + 'banners'); 
+  return this.http.get(environment.apiUrl + 'customer/banner'); 
   }
-
+getCategories():Observable<any>{
+  return this.http.get(environment.apiUrl + 'categories');
+}
 }

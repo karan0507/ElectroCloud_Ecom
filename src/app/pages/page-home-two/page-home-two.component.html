@@ -1,7 +1,7 @@
 <app-block-slideshow></app-block-slideshow>
 
 <app-block-features layout="boxed"></app-block-features>
-<app-block-categories header="Popular Categories" layout="compact" [categories]="popularCategories$|async"></app-block-categories>
+<app-block-categories header="Popular Categories" layout="compact" [categories]="popularCategories"></app-block-categories>
 
 <app-block-products-carousel
     header="Featured Products"
@@ -32,5 +32,13 @@
 
 
 <app-block-brands [brands]="brands$|async"></app-block-brands>
-
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p>Search for <span>
+                <a href="#">Custom Products?</a>
+            </span></p>
+        </div>
+    </div>
+</div>
+<!-- <app-custom-products></app-custom-products> -->

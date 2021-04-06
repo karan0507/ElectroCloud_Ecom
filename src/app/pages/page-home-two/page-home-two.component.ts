@@ -31,8 +31,7 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     destroy$: Subject<void> = new Subject<void>();
     bestsellers$: Observable<Product[]>;
     brands$: Observable<Brand[]>;
-    popularCategories$: Observable<Category[]>;
-
+    popularCategories: Observable<Category[]>;
     columnTopRated$: Observable<Product[]>;
     columnSpecialOffers$: Observable<Product[]>;
     columnBestsellers$: Observable<Product[]>;
@@ -43,22 +42,15 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     latestProducts: ProductsCarouselData;
 
     constructor(
-        private shop: ShopService,private banner:HomeCommonService, private featuredprods:FeaturedProductsService, private subbanner:SubbannerService
+        private shop: ShopService,private commonService:HomeCommonService, private featuredprods:FeaturedProductsService, private subbanner:SubbannerService
     ) { }
 
     ngOnInit(): void {
-        this.getbanner();
+        // this.getbanner();
+        this.getCategories();
         this.getfeaturedprod();
         this.bestsellers$ = this.shop.getBestsellers(7);
         this.brands$ = this.shop.getPopularBrands();
-        this.popularCategories$ = this.shop.getCategoriesBySlug([
-            'power-tools',
-            'hand-tools',
-            'machine-tools',
-            'power-machinery',
-            'measurement',
-            'clothes-and-ppe',
-        ], 1);
         this.columnTopRated$ = this.shop.getTopRated(3);
         this.columnSpecialOffers$ = this.shop.getSpecialOffers(3);
         this.columnBestsellers$ = this.shop.getBestsellers(3);
@@ -121,12 +113,14 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
         };
         this.groupChange(this.latestProducts, this.latestProducts.groups[0]);
     }
-    //Get Banners
-    getbanner(){
-        this.banner.getBanner().subscribe(banner => {
-            console.log(banner);
+    //Get popular categories
+    getCategories(){
+        this.commonService.getCategories().subscribe(categories => {
+            console.log(categories);
+            this.popularCategories = categories;
         })
     }
+   
         //Get Featured Products
         getfeaturedprod(){
             this.featuredprods.getFeaturedProducts().subscribe(featuredprods =>{
