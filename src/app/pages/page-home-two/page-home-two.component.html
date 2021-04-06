@@ -15,22 +15,6 @@
 
 <app-block-banner></app-block-banner>
 
-<app-block-products header="Bestsellers" layout="large-last" [products]="bestsellers$|async"></app-block-products>
-
-
-
-<app-block-products-carousel
-    header="New Arrivals"
-    layout="grid-5"
-    [rows]="1"
-    [loading]="latestProducts.loading"
-    [products]="latestProducts.products"
-    [groups]="latestProducts.groups"
-    (groupChange)="groupChange(latestProducts, $event)"
-></app-block-products-carousel>
-
-
-
 <app-block-brands [brands]="brands$|async"></app-block-brands>
 <div class="container">
     <div class="row">
