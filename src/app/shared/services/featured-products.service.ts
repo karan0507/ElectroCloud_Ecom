@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class FeaturedProductsService {
 
   constructor(private http:HttpClient) { }
-  getFeaturedProducts():Observable<any>{
-    return this.http.get(environment.apiUrl + 'FeaturedProducts');
-  }
+  // getFeaturedProducts():Observable<any>{
+  //   return this.http.get(environment.apiUrl + 'FeaturedProducts');
+  // }
 }

@@ -48,7 +48,7 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         // this.getbanner();
         this.getCategories();
-        this.getfeaturedprod();
+        // this.getfeaturedprod();
         this.bestsellers$ = this.shop.getBestsellers(7);
         this.brands$ = this.shop.getPopularBrands();
         this.columnTopRated$ = this.shop.getTopRated(3);
@@ -122,11 +122,11 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     }
    
         //Get Featured Products
-        getfeaturedprod(){
-            this.featuredprods.getFeaturedProducts().subscribe(featuredprods =>{
-                console.log(featuredprods);
-            })
-        }
+        // getfeaturedprod(){
+        //     this.featuredprods.getFeaturedProducts().subscribe(featuredprods =>{
+        //         console.log(featuredprods);
+        //     })
+        // }
         getSubBanner(){
             this.subbanner.getSubBanner().subscribe(subbanner => {
                 console.log(subbanner);
