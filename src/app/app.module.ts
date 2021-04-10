@@ -60,7 +60,7 @@ import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-off
         HeaderModule,
         MobileModule,
         SharedModule,
-        WidgetsModule
+        WidgetsModule, 
     ],
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }
