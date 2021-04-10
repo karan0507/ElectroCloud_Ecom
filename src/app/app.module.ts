@@ -31,6 +31,8 @@ import { PageHomeOneComponent } from './pages/page-home-one/page-home-one.compon
 import { PageHomeTwoComponent } from './pages/page-home-two/page-home-two.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-offcanvas-cart.component';
+import { ShopModule } from './modules/shop/shop.module';
+import { CategoriesComponent } from './modules/shop/components/categories/categories.component';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-off
         PageHomeOneComponent,
         PageHomeTwoComponent,
         PageNotFoundComponent,
-        PageOffcanvasCartComponent
+        PageOffcanvasCartComponent,
+        CategoriesComponent
     ],
     imports: [
         // modules (angular)
@@ -61,6 +64,7 @@ import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-off
         MobileModule,
         SharedModule,
         WidgetsModule, 
+        ShopModule
     ],
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }

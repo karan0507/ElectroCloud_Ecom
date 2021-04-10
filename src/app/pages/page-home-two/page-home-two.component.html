@@ -1,13 +1,22 @@
 <app-block-slideshow></app-block-slideshow>
 
 <app-block-features layout="boxed"></app-block-features>
-<app-block-categories header="Popular Categories" layout="compact" [categories]="popularCategories"></app-block-categories>
+<app-categories></app-categories>
+<!-- <app-block-categories header="Popular Categories" layout="compact" [categories]="popularCategories"></app-block-categories>
 
-<app-block-products-carousel header="Featured Products" layout="grid-5" [rows]="2" [loading]="featuredProducts.loading" [products]="featuredProducts.products" [groups]="featuredProducts.groups" (groupChange)="groupChange(featuredProducts, $event)"></app-block-products-carousel>
+<app-block-products-carousel
+    header="Featured Products"
+    layout="grid-5"
+    [rows]="2"
+    [loading]="featuredProducts.loading"
+    [products]="featuredProducts.products"
+    [groups]="featuredProducts.groups"
+    (groupChange)="groupChange(featuredProducts, $event)"
+></app-block-products-carousel> -->
 
 <app-block-banner></app-block-banner>
 
-<app-block-brands [brands]="brands$|async"></app-block-brands>
+<!-- <app-block-brands [brands]="brands$|async"></app-block-brands>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -17,4 +26,4 @@
         </div>
     </div>
 </div>
-<!-- <app-custom-products></app-custom-products> -->
+<app-custom-products></app-custom-products> -->

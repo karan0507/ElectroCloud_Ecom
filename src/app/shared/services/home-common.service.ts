@@ -18,4 +18,7 @@ export class HomeCommonService {
 getCategories():Observable<any>{
   return this.http.get(environment.apiUrl + 'categories');
 }
+getSubBanner():Observable<any>{
+  return this.http.get(environment.apiUrl + 'subbanner')
+}
 }
