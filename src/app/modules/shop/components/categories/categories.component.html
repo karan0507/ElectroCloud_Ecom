@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="text-center">Categories</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let category of categories" class="col-4" >
+            <div class="card mb-3" style="background-image: url({{category.image_url}}); background-size: cover;">
+                <div class="card-header"></div>
+                <div class="card-body"></div>
+                <div style="text-align: center;" id="footer" class="footer">{{category.category_name}}</div>
+              </div>
+         
+        </div>
+    </div>
+</div>
+

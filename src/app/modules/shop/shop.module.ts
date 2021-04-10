@@ -67,6 +67,9 @@ import { CustomProductsComponent } from './custom-products/custom-products.compo
         SharedModule,
         ShopRoutingModule,
         WidgetsModule
+    ],
+    exports:[
+        CustomProductsComponent
     ]
 })
 export class ShopModule { }
