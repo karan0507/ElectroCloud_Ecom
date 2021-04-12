@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     // apiUrl:"https://127.0.0.1:3000/"
-    apiUrl:"http://206.189.128.222/"
+    apiUrl:"https://api.vidyutcloud.com/"
 };
 
 /*
