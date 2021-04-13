@@ -33,6 +33,7 @@ import { Info1Component } from './custom-products/components/info1/info1.compone
 import { Info2Component } from './custom-products/components/info2/info2.component';
 import { Info3Component } from './custom-products/components/info3/info3.component';
 import { CustomProductsComponent } from './custom-products/custom-products.component';
+import { ProductlistComponent } from './components/productlist/productlist.component';
 @NgModule({
     declarations: [
         // components
@@ -53,7 +54,8 @@ import { CustomProductsComponent } from './custom-products/custom-products.compo
         InfoComponent,
         Info1Component,
         Info2Component,
-        Info3Component
+        Info3Component,
+        ProductlistComponent
     ],
     imports: [
         // modules (angular)

@@ -35,6 +35,8 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     columnTopRated$: Observable<Product[]>;
     columnSpecialOffers$: Observable<Product[]>;
     columnBestsellers$: Observable<Product[]>;
+    banner2:any = 'src/assets/images/banners/banner-1.jpg';
+    
 
     posts = posts;
 
@@ -54,7 +56,6 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
         this.columnTopRated$ = this.shop.getTopRated(3);
         this.columnSpecialOffers$ = this.shop.getSpecialOffers(3);
         this.columnBestsellers$ = this.shop.getBestsellers(3);
-
         this.featuredProducts = {
             abort$: new Subject<void>(),
             loading: false,
@@ -127,11 +128,11 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
         //         console.log(featuredprods);
         //     })
         // }
-        getSubBanner(){
-            this.subbanner.getSubBanner().subscribe(subbanner => {
-                console.log(subbanner);
-            })
-        }
+        // getSubBanner(){
+        //     this.subbanner.getSubBanner().subscribe(subbanner => {
+        //         console.log(subbanner);
+        //     })
+        // }
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
