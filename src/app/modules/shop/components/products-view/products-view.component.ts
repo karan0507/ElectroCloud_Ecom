@@ -13,12 +13,12 @@ export type Layout = 'grid'|'grid-with-features'|'list';
     styleUrls: ['./products-view.component.scss']
 })
 export class ProductsViewComponent implements OnInit, OnDestroy {
-    @Input() layout: Layout = 'grid';
+    @Input() layout: Layout = 'list';
     @Input() grid: 'grid-3-sidebar'|'grid-4-full'|'grid-5-full' = 'grid-3-sidebar';
     @Input() offcanvas: 'always'|'mobile' = 'mobile';
-
+    
     destroy$: Subject<void> = new Subject<void>();
-
+   
     listOptionsForm: FormGroup;
     filtersCount = 0;
 
@@ -36,7 +36,6 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
         });
         this.listOptionsForm.valueChanges.subscribe(value => {
             value.limit = parseFloat(value.limit);
-
             this.pageService.updateOptions(value);
         });
 
@@ -56,7 +55,7 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
     }
 
     setLayout(value: Layout): void {
-        this.layout = value;
+        this.layout = 'list';
     }
 
     resetFilters(): void {
