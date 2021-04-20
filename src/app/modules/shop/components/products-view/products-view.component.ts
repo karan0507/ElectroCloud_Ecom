@@ -29,6 +29,7 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
+        this.setLayout('list');
         this.listOptionsForm = this.fb.group({
             page: this.fb.control(this.pageService.page),
             limit: this.fb.control(this.pageService.limit),

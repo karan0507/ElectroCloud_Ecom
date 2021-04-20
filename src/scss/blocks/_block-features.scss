@@ -15,7 +15,7 @@
 .block-features__item {
     flex-basis: 0;
     flex-grow: 1;
-    padding: 16px 24px;
+    // padding: 16px 24px;
     display: flex;
 }
 .block-features__divider {
@@ -23,8 +23,8 @@
 }
 .block-features__icon {
     flex-shrink: 0;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     fill: $block-features-icon-color;
 
     @include direction {
@@ -39,6 +39,7 @@
     padding-top: 2px;
 }
 .block-features__title {
+    margin-top: 20px;
     font-size: 17px;
     line-height: 24px;
     font-weight: $font-weight-bold;
@@ -63,7 +64,8 @@
         border-radius: 3px;
         text-align: center;
         align-items: center;
-        padding: 30px 28px 28px;
+        height: 14em;
+        padding: 20px 20px 20px 20px;
     }
     .block-features__divider {
         width: $local-margin;

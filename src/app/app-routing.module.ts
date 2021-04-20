@@ -69,6 +69,7 @@ const routes: Routes = [
                 path: 'site',
                 loadChildren: () => import('./modules/site/site.module').then(m => m.SiteModule)
             },
+            
             {
                 path: '**',
                 component: PageNotFoundComponent
