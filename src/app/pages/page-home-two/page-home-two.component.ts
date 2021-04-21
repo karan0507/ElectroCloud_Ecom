@@ -10,6 +10,7 @@ import { BlockHeaderGroup } from '../../shared/interfaces/block-header-group';
 import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 import { FeaturedProductsService } from 'src/app/shared/services/featured-products.service';
 import { SubbannerService } from 'src/app/shared/services/subbanner.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface ProductsCarouselGroup extends BlockHeaderGroup {
     products$: Observable<Product[]>;
@@ -44,7 +45,8 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     latestProducts: ProductsCarouselData;
 
     constructor(
-        private shop: ShopService,private commonService:HomeCommonService, private featuredprods:FeaturedProductsService, private subbanner:SubbannerService
+        private shop: ShopService,private commonService:HomeCommonService, private featuredprods:FeaturedProductsService,
+        private subbanner:SubbannerService
     ) { }
 
     ngOnInit(): void {

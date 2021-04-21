@@ -19,6 +19,7 @@ import { PageContactUsComponent } from './pages/page-contact-us/page-contact-us.
 import { PageFaqComponent } from './pages/page-faq/page-faq.component';
 import { PageTermsComponent } from './pages/page-terms/page-terms.component';
 import { PageTypographyComponent } from './pages/page-typography/page-typography.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { PageTypographyComponent } from './pages/page-typography/page-typography
         // modules
         BlocksModule,
         SharedModule,
-        SiteRoutingModule
+        SiteRoutingModule,
+        MatExpansionModule
     ]
 })
 export class SiteModule { }

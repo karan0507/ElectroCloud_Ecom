@@ -33,6 +33,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-offcanvas-cart.component';
 import { ShopModule } from './modules/shop/shop.module';
 import { CategoriesComponent } from './modules/shop/components/categories/categories.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { CategoriesComponent } from './modules/shop/components/categories/catego
         MobileModule,
         SharedModule,
         WidgetsModule, 
-        ShopModule
+        ShopModule,
+        MatExpansionModule
     ],
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }
