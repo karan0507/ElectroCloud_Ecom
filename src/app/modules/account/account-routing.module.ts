@@ -9,6 +9,7 @@ import { PageProfileComponent } from './pages/page-profile/page-profile.componen
 import { PagePasswordComponent } from './pages/page-password/page-password.component';
 import { PageOrderDetailsComponent } from './pages/page-order-details/page-order-details.component';
 import { PageEditAddressComponent } from './pages/page-edit-address/page-edit-address.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
     {
@@ -53,7 +54,11 @@ const routes: Routes = [
     {
         path: 'login',
         component: PageLoginComponent
-    }
+    },
+    {
+        path: 'register',
+        component:RegisterComponent,
+    },
 ];
 
 @NgModule({
