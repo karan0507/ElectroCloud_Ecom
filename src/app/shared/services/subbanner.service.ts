@@ -10,7 +10,7 @@ export class SubbannerService {
 
   constructor(private http:HttpClient) { }
     getSubBanner():Observable<any>{
-      return this.http.get(environment.apiUrl + 'SubBanner')
+      return this.http.get(environment.apiUrl + 'customer/banner')
     }
     
 }

@@ -12,6 +12,12 @@ export class AuthService {
   
    }
    getOTP(number):Observable<any>{
-    return this.http.post(environment.apiUrl + 'customer/login/otp',{'number':number});
+    return this.http.post(environment.apiUrl + 'customer/resend/otp',number);
+   }
+   register(user):Observable<any>{
+return this.http.post(environment.apiUrl + 'customer/register',user);
+   }
+   login(user):Observable<any>{
+     return this.http.post(environment.apiUrl + 'customer/login', user);
    }
 }

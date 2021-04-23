@@ -34,6 +34,8 @@ import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-off
 import { ShopModule } from './modules/shop/shop.module';
 import { CategoriesComponent } from './modules/shop/components/categories/categories.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { AuthInterceptor } from './auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -70,6 +72,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ],
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

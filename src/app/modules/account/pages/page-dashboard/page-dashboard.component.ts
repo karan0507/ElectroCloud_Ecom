@@ -12,6 +12,6 @@ import { addresses } from '../../../../../data/account-addresses';
 export class PageDashboardComponent {
     address: Address = addresses[0];
     orders: Partial<Order>[] = orders.slice(0, 3);
-
+    isAddress:false;
     constructor() { }
 }

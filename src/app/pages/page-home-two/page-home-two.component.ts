@@ -11,6 +11,7 @@ import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 import { FeaturedProductsService } from 'src/app/shared/services/featured-products.service';
 import { SubbannerService } from 'src/app/shared/services/subbanner.service';
 import { ToastrService } from 'ngx-toastr';
+import { Meta } from '@angular/platform-browser';
 
 interface ProductsCarouselGroup extends BlockHeaderGroup {
     products$: Observable<Product[]>;
@@ -46,7 +47,7 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
 
     constructor(
         private shop: ShopService,private commonService:HomeCommonService, private featuredprods:FeaturedProductsService,
-        private subbanner:SubbannerService
+       private metatitle: Meta
     ) { }
 
     ngOnInit(): void {

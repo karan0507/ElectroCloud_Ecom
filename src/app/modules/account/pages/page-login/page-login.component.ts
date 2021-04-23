@@ -22,7 +22,7 @@ constructor(private fb:FormBuilder, private auth:AuthService, private toast:Toas
 
 login(){
     this.toast.success('Login','Login Page');
-    timeInterval:100;
+    
     console.log(this.loginForm.value);
     this.auth.getOTP(this.loginForm.value.number).subscribe(login => {
         console.log(login);

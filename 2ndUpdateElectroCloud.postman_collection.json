@@ -591,7 +591,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"sad@mail.com\",\n    \"password\": \"ac0de52dh\"\n}",
+							"raw": "{\n    \"email\": \"hotsake@mail.com\",\n    \"password\": \"ac0de52dh\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -705,7 +705,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\":\"sagar\",\n\"lastName\":\"kelkar\",\n\"email\":\"hotsake@mail.com\",\n\"phone_no\":\"9561555479\",\n\"password\":\"ac0de52dh\"\n}",
+							"raw": "{\n    \"firstName\":\"sagar\",\n\"lastName\":\"kelkar\",\n\"email\":\"yash@mail.com\",\n\"phone_no\":\"9561555479\",\n\"password\":\"ac0de52dh\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -713,11 +713,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{local}}customer/register",
+							"raw": "{{local}}/customer/register",
 							"host": [
-								"{{local}}customer"
+								"{{local}}"
 							],
 							"path": [
+								"customer",
 								"register"
 							]
 						}
@@ -779,6 +780,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Customer Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_no\": \"9561555479\",\n    \"otp\":\"6054\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}customer/login",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -805,12 +832,10 @@
 	],
 	"variable": [
 		{
-			"id": "78c2c4f7-621f-42a6-8345-94a1dcbf6f9d",
 			"key": "local",
 			"value": "http://127.0.0.1:3000/"
 		},
 		{
-			"id": "373de4f9-ad88-494b-aec0-13ef3f6d743d",
 			"key": "stagging",
 			"value": "stagging"
 		}
