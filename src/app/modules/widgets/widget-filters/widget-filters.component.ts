@@ -13,7 +13,8 @@ import {
 import { RootService } from '../../../shared/services/root.service';
 import { Subject } from 'rxjs';
 import { PageCategoryService } from '../../shop/services/page-category.service';
-import { map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
+import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 
 interface FormFilterValues {
     [filterSlug: string]: [number, number] | {[itemSlug: string]: boolean} | string;
@@ -29,10 +30,13 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
 
     destroy$: Subject<void> = new Subject<void>();
 
-    filters: Filter[];
+    // filters: Filter[];
+    filters:any = [];
     filtersForm: FormGroup;
     isPlatformBrowser = isPlatformBrowser(this.platformId);
     rightToLeft = false;
+    categories:any;
+    brands: any;
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: any,
@@ -40,26 +44,46 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
         private fb: FormBuilder,
         public root: RootService,
         public pageCategory: PageCategoryService,
+        private common:HomeCommonService
     ) {
         this.rightToLeft = this.direction.isRTL();
     }
-
-    ngOnInit(): void {
-        this.pageCategory.list$.pipe(
-            map(x => x.filters),
-            takeUntil(this.destroy$),
-        ).subscribe(filters => {
-            this.filters = filters;
-            this.filtersForm = this.makeFiltersForm(filters);
-
-            this.filtersForm.valueChanges.subscribe(formValues => {
-                this.pageCategory.updateOptions({
-                    filterValues: this.convertFormToFilterValues(filters, formValues)
-                });
-            });
-        });
+    ngOnInit():void{
+        this.getCategories();
+        this.getBrands();
     }
+    // ngOnInit(): void {
+    //     this.pageCategory.list$.pipe(
+    //         map(x => x.filters),
+    //         takeUntil(this.destroy$),
+    //     ).subscribe(filters => {
+    //         console.log(filters);
+    //         this.filters = filters;
+    //         this.filtersForm = this.makeFiltersForm(filters);
 
+    //         this.filtersForm.valueChanges.subscribe(formValues => {
+    //             this.pageCategory.updateOptions({
+    //                 filterValues: this.convertFormToFilterValues(filters, formValues)
+    //             });
+    //         });
+    //     });
+    // }
+    getBrands(){
+        this.common.getBrands().subscribe(brands=>{
+            this.brands = brands;
+            console.log(brands);
+            this.filters.push({name:'Brands',brands:this.brands});
+        })
+    }
+    getCategories(){
+        this.common.getCategories().subscribe(categories => {
+            console.log(categories);
+            this.categories = categories;
+            this.filters.push({name:'Categories',categories:this.categories});
+           
+            console.log(this.filters);
+        })
+    }
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();

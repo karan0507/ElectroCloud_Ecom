@@ -40,8 +40,8 @@ const routes: Routes = [
     {
         path: 'catalog/:categorySlug',
         component: PageCategoryComponent,
-        data: categoryPageData,
-        resolve: categoryPageResolvers,
+        // data: categoryPageData,
+        // resolve: categoryPageResolvers,
     },
     {
         path: 'products/:productSlug',

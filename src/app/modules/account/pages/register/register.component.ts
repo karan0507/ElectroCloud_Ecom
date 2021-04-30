@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Toast, ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/modules/shop/services/auth.service';
 @Component({
   selector: 'app-register',
@@ -7,14 +9,19 @@ import { AuthService } from 'src/app/modules/shop/services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  isVerify = false;
+  isVerify = true;
   registerForm:FormGroup;
+  verification:FormGroup;
   user:any;
-  constructor(private fb:FormBuilder, private auth:AuthService) { 
+  constructor(private fb:FormBuilder, private auth:AuthService, private toast:ToastrService, private router:Router) { 
    this.registerForm = this.fb.group({
      firstName:['',[Validators.required]],
      lastName:['',[Validators.required]],
      email:['',[Validators.required]],
+     phone_no:['',[Validators.required]]
+   })
+   this.verification = this.fb.group({
+     otp:['',[Validators.required]],
      phone_no:['',[Validators.required]]
    })
    
@@ -22,17 +29,38 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+verify(){
+this.auth.verifyCustomer(this.verification.value).subscribe(reguser=>{
+  
+  console.log(reguser);
+  this.router.navigateByUrl('/');
+})
+}
   register(){
-    console.log(this.registerForm.value);
-    // this.registerForm.get('firstname').value;
-    this.auth.register(this.registerForm.value).subscribe(user=>{
-      console.log(user);
-      console.log(user.user.id)
-      localStorage.setItem('customer_id',user.customer.id);
-      localStorage.setItem('user_id',user.user.id);      
-    });
+    if(this.registerForm.valid){
+      console.log(this.registerForm.value);
+      // this.registerForm.get('firstname').value;
+      this.auth.register(this.registerForm.value).subscribe(user=>{
+        console.log(user);
+        console.log(user.user.id)
+        localStorage.setItem('customer_id',user.customer.id);
+        localStorage.setItem('user_id',user.user.id);  
+        this.isVerify = false;
+        console.log(this.registerForm.value.phone_no);
+        this.verification.setValue({
+          phone_no:this.registerForm.value.phone_no,
+          otp:''
+        });
+  
+      });
+    }
+    else{
+      this.toast.error('Please fill all the fields');
+    }
+   
+   
 
+    
 
   }
 

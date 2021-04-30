@@ -315,9 +315,9 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
         }
     }
 
-    onItemClick(slug): void {
-        this.router.navigateByUrl('shop/catalog/' + slug);
-        console.log(slug);
+    onItemClick(): void {
+        this.router.navigateByUrl('shop/catalog');
+        
         this.close();
     }
 

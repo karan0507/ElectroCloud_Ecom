@@ -1,7 +1,8 @@
-<div class="products-view" [ngClass]="{'products-view--loading': this.pageService.isLoading$|async}" [formGroup]="listOptionsForm">
+<!-- [ngClass]="{'products-view--loading': this.pageService.isLoading$|async}" -->
+<div class="products-view" [formGroup]="product_list">
     <div class="products-view__loader"></div>
 
-    <div *ngIf="pageService.items?.length" class="products-view__content">
+    <div  class="products-view__content">
         <div class="products-view__options">
             <div class="view-options" [ngClass]="{
                 'view-options--offcanvas--always': offcanvas === 'always',
@@ -27,17 +28,20 @@
 
                                 <app-icon name="layout-grid-with-details-16x16" size="16"></app-icon>
                             </button> -->
-                            <button title="List" type="button" class="layout-switcher__button"
+                            <!-- <button title="List" type="button" class="layout-switcher__button"
                                     [ngClass]="{'layout-switcher__button--active': layout === 'list'}" (click)="setLayout('list')">
 
                                 <app-icon name="layout-list-16x16" size="16"></app-icon>
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
-                <div class="view-options__legend">
-                    Showing {{ this.pageService.from }}–{{ this.pageService.to }}
-                    of {{ this.pageService.total }}
+                <div class="view-options__legend" style="margin-left: 0px;">
+                    
+                    Showing
+
+                     <!-- {{ this.pageService.from }}–{{ this.pageService.to }} -->
+                     {{ totalItems }}
                     results
                 </div>
                 <div class="view-options__divider"></div>
@@ -65,18 +69,18 @@
 
         <div class="products-view__list products-list" [attr.data-layout]="layout != 'list' ? grid : layout" [attr.data-with-features]="layout == 'grid-with-features' ? 'true' : 'false'">
             <div class="products-list__body">
-                <div *ngFor="let product of pageService.items" class="products-list__item">
+                <div *ngFor="let product of prod" class="products-list__item">
                     <app-product-card [product]="product"></app-product-card>
                 </div>
             </div>
         </div>
 
         <div class="products-view__pagination">
-            <app-pagination formControlName="page" [siblings]="2" [total]="pageService.pages"></app-pagination>
+            <app-pagination formControlName="page" [siblings]="2" [total]="totalPages"></app-pagination>
         </div>
     </div>
 
-    <div *ngIf="!pageService.items?.length" class="products-view__empty">
+    <div *ngIf="prod?.length" class="products-view__empty">
         <div class="products-view__empty-title">No matching items</div>
         <div class="products-view__empty-subtitle">Try resetting the filters</div>
         <button type="button" class="btn btn-primary btn-sm" (click)="resetFilters()">Reset filters</button>

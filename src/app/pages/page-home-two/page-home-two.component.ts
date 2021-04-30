@@ -53,40 +53,40 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         // this.getbanner();
         this.getCategories();
-        this.getfeaturedprod();
+        // this.getfeaturedprod();
         this.bestsellers$ = this.shop.getBestsellers(7);
         this.brands$ = this.shop.getPopularBrands();
         this.columnTopRated$ = this.shop.getTopRated(3);
         this.columnSpecialOffers$ = this.shop.getSpecialOffers(3);
         this.columnBestsellers$ = this.shop.getBestsellers(3);
-        this.featuredProducts = {
-            abort$: new Subject<void>(),
-            loading: false,
-            products: [],
-            groups: [
-                {
-                    name: 'All',
-                    current: true,
-                    products$: this.shop.getFeaturedProducts(null, 10),
-                },
-                {
-                    name: 'Power Tools',
-                    current: false,
-                    products$: this.shop.getFeaturedProducts('power-tools', 10),
-                },
-                {
-                    name: 'Hand Tools',
-                    current: false,
-                    products$: this.shop.getFeaturedProducts('hand-tools', 10),
-                },
-                {
-                    name: 'Plumbing',
-                    current: false,
-                    products$: this.shop.getFeaturedProducts('plumbing', 10),
-                },
-            ],
-        };
-        this.groupChange(this.featuredProducts, this.featuredProducts.groups[0]);
+        // this.featuredProducts = {
+        //     abort$: new Subject<void>(),
+        //     loading: false,
+        //     products: [],
+        //     groups: [
+        //         {
+        //             name: 'All',
+        //             current: true,
+        //             products$: this.shop.getFeaturedProducts(null, 10),
+        //         },
+        //         {
+        //             name: 'Power Tools',
+        //             current: false,
+        //             products$: this.shop.getFeaturedProducts('power-tools', 10),
+        //         },
+        //         {
+        //             name: 'Hand Tools',
+        //             current: false,
+        //             products$: this.shop.getFeaturedProducts('hand-tools', 10),
+        //         },
+        //         {
+        //             name: 'Plumbing',
+        //             current: false,
+        //             products$: this.shop.getFeaturedProducts('plumbing', 10),
+        //         },
+        //     ],
+        // };
+        // this.groupChange(this.featuredProducts, this.featuredProducts.groups[0]);
 
         this.latestProducts = {
             abort$: new Subject<void>(),
@@ -126,11 +126,11 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     }
    
         //Get Featured Products
-        getfeaturedprod(){
-            this.featuredprods.getFeaturedProducts().subscribe(featuredprods =>{
-                console.log(featuredprods);
-            })
-        }
+        // getfeaturedprod(){
+        //     this.featuredprods.getFeaturedProducts().subscribe(featuredprods =>{
+        //         console.log(featuredprods);
+        //     })
+        // }
         // getSubBanner(){
         //     this.subbanner.getSubBanner().subscribe(subbanner => {
         //         console.log(subbanner);

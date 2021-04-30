@@ -1,0 +1,64 @@
+.merchant_name{
+color: #ff7700 !important;
+font-family: "HelveticaNeue-Light"; 
+   font-weight: 300;
+    color: #444444;
+    font-size: 15pt;
+
+font-feature-settings: 'Font Awesome 5 Brands';
+}
+.mer-property{
+    width: 20px;
+    height: 20px;
+}
+.wrapper{
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: lighter;
+}
+.prop_list{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.points{
+padding-top: 6px;
+}
+
+.prod_img{
+    border-right: 1px solid #eeeeee;
+}
+.product-image__body{
+    padding-top: 1.6rem !important;
+}
+.attributes{
+    
+    list-style: none;
+    padding: 0rem 0rem;
+    margin-top: 1rem;
+}
+.atr_name{
+   
+    color: black;
+    // transition: 12.15s;
+    font-weight: 400;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+    color: #444444;
+    font-size: 16pt;
+}
+.atr_key{
+    font-size: 16px;
+    float: left;
+    color: #383737;
+    font-weight: normal;
+    font-family: roboto;
+}
+.atr_value{
+    font-size: 16px;
+    float: left;
+    color: #383737;
+    font-weight: lighter;
+    padding-left:2em ;
+    font-family: roboto-condensed;
+}

@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Post } from '../../../../shared/interfaces/post';
@@ -18,11 +18,20 @@ export class PageCategoryComponent implements OnDestroy {
 
     posts: Post[] = posts;
 
-    constructor(private route: ActivatedRoute) {
-        this.route.data.pipe(takeUntil(this.destroy$)).subscribe(data => {
-            this.sidebarPosition = data.sidebarPosition;
-            this.layout = data.layout;
-        });
+
+    // takeUntil(this.destroy$)).subscribe(data => {
+    //     this.sidebarPosition = data.sidebarPosition;
+    //     this.layout = data.layout;
+    // })    pipe params;
+     constructor(private route: ActivatedRoute, private router:Router) {
+        this.route.params;
+        console.log(this.route.params);
+    }
+
+    goToCategory(slug): void {
+        console.log('Hello Friends');
+        this.router.navigateByUrl('shop/catalog/' + slug);
+        console.log(slug);
     }
 
     ngOnDestroy(): void {

@@ -6,6 +6,17 @@
 .bullet{
 padding-left: 1em;
 padding-top: 0px;
+list-style: none;
+float: left;
+
+
+}
+.st{
+    margin-top: -1.5rem;
+}
+.sub{
+   
+    margin-left: -1em;
 }
 .sub_header{
     margin-bottom: 0px !important;
@@ -13,3 +24,10 @@ padding-top: 0px;
 // .mat-form-field + .mat-form-field {
 //     margin-left: 8px;
 //   }
+.questions{
+    padding: 1rem 1rem 1rem 0rem;
+}
+.mul{
+    padding-left: 1rem;
+padding-top: 1px;
+}

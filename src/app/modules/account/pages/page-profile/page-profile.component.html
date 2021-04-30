@@ -1,32 +1,79 @@
 <div class="card">
     <div class="card-header">
-        <h5>Edit Profile</h5>
+        <h5>Edit Profile <img src="../../../../../assets/images/logos/edit/close.png" class="icons" alt=""><br>
+        </h5>
+        
+        
     </div>
-    <div class="card-divider"></div>
+    <div [formGroup]="edit_profile">
     <div class="card-body">
         <div class="row no-gutters">
-            <div class="col-12 col-lg-7 col-xl-6">
-                <div class="form-group">
-                    <label for="profile-first-name">First Name</label>
-                    <input type="text" class="form-control" id="profile-first-name" placeholder="First Name">
+            <div class="col-md-12" style="text-align: center;">
+                    <img src="../../../../../assets/images/avatars/avatar-1.jpg" style="width: 7rem; height: 7rem; border-radius: 70px;" class="profile-img" alt="">
+                   
+        <br> <input style="margin-left: 10rem; margin-top: 1rem; border: none;" formControlName="profile_img" aria-invalid="true" #imageInput
+        type="file"
+        accept="image/*"
+        >
+        <!-- (change)="processFile(imageInput)" -->
+            </div>
+           
+        </div>
+        <div class="row no-gutters mt-4">
+            <div class="col-6 col-lg-7 col-xl-6 ">
+           
+                   
+                    <div class="form-group">
+                        <label for="profile-first-name">First Name</label>
+                        <input type="text" class="form-control" formControlName="firstName" id="profile-first-name" placeholder="First Name">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="profile-last-name">Last Name</label>
-                    <input type="text" class="form-control" id="profile-last-name" placeholder="Last Name">
-                </div>
+                <div class="col-6 col-lg-7 col-xl-6">
+                    <div class="form-group">
+                        <label for="profile-last-name">Last Name</label>
+                        <input type="text" class="form-control" id="profile-last-name" formControlName="lastName" placeholder="Last Name">
+                    </div>
+                    </div>
+               
+                    <div class="col-6 col-lg-7 col-xl-6">
                 <div class="form-group">
                     <label for="profile-email">Email Address</label>
-                    <input type="email" class="form-control" id="profile-email" placeholder="Email Address">
+                    <input type="email" class="form-control" id="profile-email" formControlName="email" placeholder="Email Address">
                 </div>
+                </div>
+                <div class="col-6 col-lg-7 col-xl-6">
                 <div class="form-group">
                     <label for="profile-phone">Phone Number</label>
-                    <input type="text" class="form-control" id="profile-phone" placeholder="Phone Number">
-                </div>
-
-                <div class="form-group mt-5 mb-0">
-                    <button class="btn btn-primary">Save</button>
+                    <input type="text" class="form-control" id="profile-phone" formControlName="phone_no" placeholder="Phone Number">
                 </div>
             </div>
-        </div>
+                <div class="col-md-12" style="text-align: center;" >
+                    <div class="form-group mt-5 mb-0">
+                        <button class="btn btn-primary save" (click)="setProfile()">Save</button>
+                    </div>
+                </div>
+            
+        
     </div>
 </div>
+</div>
+<head>
+    <style>
+        .form-control{
+            width: 90%;
+        }
+        .mb-4{
+            margin-top: 4rem;
+        }
+        .save{
+            width: 10rem;
+        }
+        .icons{
+            height: 20px;
+            width: 20px;
+            /* border-radius: 20px; */
+            float: right;
+        }
+
+    </style>
+</head>

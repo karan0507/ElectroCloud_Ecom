@@ -1,38 +1,238 @@
 <div class="dashboard">
-    <div class="dashboard__profile card profile-card">
-        <div class="card-body profile-card__body">
+    <div *ngIf="isEdit" class="dashboard__profile card profile-card">
+      <div>
+       <!-- <a (click)="editProfile()">
+        <img src="../../../../../assets/images/logos/edit/edit.png" class="iconst" alt="" >
+       </a>  -->
+       <div class="wrapper">
+        <strong>User Profile </strong>
+     <a (click)="editProfile()"> <img src="../../../../../assets/images/logos/edit/edit.png" class="iconst"></a>
+    </div>
+    
+        <!-- <div class="card-body profile-card__body">
             <div class="profile-card__avatar">
+              
                 <img src="./assets/images/avatars/avatar-3.jpg" alt="">
+             
             </div>
-            <div class="profile-card__name">Helena Garcia</div>
+            <div class="profile-card__name">{{log_user?.firstName}} {{log_user?.lastName}}</div>
+            <div class="profile-card__name">{{log_user?.lastName}}</div>
             <div class="profile-card__email">techmave@example.com</div>
             <div class="profile-card__edit">
                 <a routerLink="../profile" class="btn btn-secondary btn-sm">Edit Profile</a>
             </div>
-        </div>
-    </div>
-    <div class="dashboard__address card address-card address-card--featured">
-        <div class="address-card__badge" *ngIf="address.default">Default Address</div>
+        </div> -->
+    <!-- </div> -->
+    <!-- <div class="dashboard__address card address-card address-card--featured"> -->
+        <!-- <div class="address-card__badge" *ngIf="address.default">Default Address</div> -->
+      
         <div class="address-card__body">
-            <div class="address-card__name">{{ address.firstName + ' ' + address.lastName}}</div>
-            <div class="address-card__row" *ngIf="isAddress">
-                {{ address.country }}<br>
-                {{ address.postcode }}, {{ address.city }}<br>
-                {{ address.address }}
-            </div>
+          <div class="row flex">
+             
+            
+                <div class="col-md-4 d-flex justify-content-center">
+                    <div class="address-card__row">
+                    <div class=" profile-card__avatar profile">
+                  
+                        <img src="./assets/images/avatars/avatar-3.jpg" alt="">
+                     </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 d-flex justify-content-center"> 
+                    <div class="address-card__row">
+                      <div class="address-card__row-title title">First Name</div>
+                  <div class="address-card__name pt-2">{{log_user?.firstName}}</div>
+                </div>
+                </div>
+                  <div class="col-md-4 d-flex justify-content-center">
+                    <div class="address-card__row">
+                    <div class="address-card__row-title title">Last Name</div>
+                    <div class="address-card__name pt-2"> {{log_user?.lastName}}</div>
+                </div>
+                </div>
+            
+          
+            <div class="col-md-4 d-flex justify-content-center"> 
+                <div class="address-card__row">
+                    <div class="address-card__row-title title">Phone Number</div>
+                    <div class="address-card__row-content pt-2">{{ log_user?.phone_no }}</div>
+                </div>
+           </div>
+           <div class="col-md-4 d-flex justify-content-center"> 
             <div class="address-card__row">
-                <div class="address-card__row-title">Phone Number</div>
-                <div class="address-card__row-content">{{ address.phone }}</div>
+                <div class="address-card__row-title title">Email Address</div>
+                <div class="address-card__row-content pt-2">sdsdssd@gmail.com{{ log_user?.email }}</div>
             </div>
-            <div class="address-card__row">
-                <div class="address-card__row-title">Email Address</div>
-                <div class="address-card__row-content">techmave@gmail.com</div>
-            </div>
-            <div class="address-card__footer">
-                <a routerLink="/account/addresses/5">Edit Address</a>
+       </div>
+       <div class="col-md-4 d-flex justify-content-center"> 
+        <div class="address-card__row">
+            <div class="address-card__row-title title">Address</div>
+           
+            <div class="address-card__row-content">
+                
+                {{ log_user?.CustomerAddresses[0].address_line}} <br>
+                {{ log_user?.CustomerAddresses[0].address_line_2 }} <br>
+                {{ log_user?.CustomerAddresses[0].pincode }}<br>
+                {{ log_user?.CustomerAddresses[0].city }}<br>
             </div>
         </div>
+   </div>
+        </div>
+           
+            <!-- <div class="address-card__footer">
+                <a routerLink="/account/addresses/5">Edit Address</a>
+            </div> -->
+        </div>
+    
     </div>
+    
+</div>
+
+
+
+<!-- ////////////////////////////************************Edit Section******************///////////////////////////////////// -->
+
+
+<div *ngIf="!isEdit" class="dashboard__profile card profile-card">
+    <div>
+     <div class="wrapper">
+      <strong>User Profile </strong>
+   <a (click)="close()"> <img src="../../../../../assets/images/logos/edit/close.png" class="iconst"></a>
+  </div>
+    
+  <div >
+    <div [formGroup]="editInfo" class="address-card__body">
+        <div class="row flex">
+           
+          
+              <div class="col-md-4 d-flex justify-content-center">
+                <div class="address-card__row"> 
+                <div class=" profile-card__avatar profile">
+                
+                      <img src="./assets/images/avatars/avatar-3.jpg" alt="">
+                   </div>
+                  </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <div class="address-card__row">
+                    <div class="address-card__row-title title">First Name</div>
+                    <input *ngIf="log_user?.firstName !== null" type="text" class="form-control address-card__name pt-2" name="" id="firstName" placeholder="{{log_user?.firstName}}" value="{{log_user?.firstName}}" formControlName = "firstName">
+                    </div>
+                <!-- <div class="address-card__name pt-2">{{log_user?.firstName}}</div> -->
+              </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                    <div class="address-card__row">
+                  <div class="address-card__row-title title">Last Name</div>
+                  <input *ngIf="log_user?.lastName !== null" type="text" class="form-control address-card__name pt-2" name="" id="lastName" placeholder="{{log_user?.lastName}}" formControlName = "lastName">  
+                  </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center"> </div>
+        
+          <div class="col-md-4 d-flex justify-content-center"> 
+              <div class="address-card__row">
+                  <div class="address-card__row-title title">Phone Number</div>
+                  <input *ngIf="log_user?.phone_no !== null" type="text" class="form-control address-card__name pt-2" name="" id="" placeholder="{{log_user?.phone_no}}" formControlName = "phone_no">  
+                </div>
+         </div>
+         <div class="col-md-4 d-flex justify-content-center"> 
+          <div class="address-card__row">
+              <div class="address-card__row-title title">Email Address</div>
+              <input  *ngIf="log_user?.email !== null"  placeholder="{{log_user?.email}}" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "email">   
+          </div>
+     </div>
+     <!-- ////////****Address******//////// -->
+    
+    <div class="row mt-3"  [formGroup]="address">
+        <div class="col-md-4 d-flex justify-content-center"> 
+            <div class="address-card__row">
+                <div class="address-card__row-title title">City</div>
+                <div class="address-card__row-content">
+                <input *ngIf="log_user?.CustomerAddresses[0].city  !== null" placeholder="{{log_user?.CustomerAddresses[0].city}}" value="log_user?.CustomerAddresses[0].city" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "city"> 
+                  
+                    </div>
+            </div>
+       </div>
+       <div class="col-md-4 d-flex justify-content-center"> 
+          <div class="address-card__row">
+              <div class="address-card__row-title title">Pincode</div>
+              <div class="address-card__row-content">
+                  
+                      <input *ngIf="log_user?.CustomerAddresses[0].pincode !== null" placeholder="{{log_user?.CustomerAddresses[0].pincode }}" value="log_user?.CustomerAddresses[0].pincode" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "pincode">  
+                  </div>
+          </div>
+      </div>
+      <div class="col-md-4 d-flex justify-content-center"> 
+        <div class="address-card__row" style="padding-left: 0px;
+        padding-right: 18px;">
+            <div class="address-card__row-title title">State</div>
+            <div class="address-card__row-content">
+                
+                    <input *ngIf="log_user?.CustomerAddresses[0].state !== null" placeholder="{{log_user?.CustomerAddresses[0].state }}" value="log_user?.CustomerAddresses[0].state" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "state">  
+                </div>
+        </div>
+    </div>
+      <div class="col-md-4 d-flex justify-content-center"> 
+          <div class="address-card__row">
+              <div class="address-card__row-title title">Address1</div>
+              <div class="address-card__row-content">
+                  
+                      <input *ngIf="log_user?.CustomerAddresses[0].address_line !== null" placeholder="{{log_user?.CustomerAddresses[0].address_line}}" value="log_user?.CustomerAddresses[0].address_line" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "address_line">  
+                  </div>
+          </div>
+      </div>
+      <div class="col-md-4 d-flex justify-content-center"> 
+          <div class="address-card__row">
+              <div class="address-card__row-title title">Address2</div>
+              <div class="address-card__row-content">
+                  
+                      <input *ngIf="log_user?.CustomerAddresses[0].address_line_2 !== null" placeholder="{{log_user?.CustomerAddresses[0].address_line_2 }}" value="log_user?.CustomerAddresses[0].address_line_2" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "address_line_2">   
+                  </div>
+          </div>
+      </div>
+      
+    </div>
+     
+
+
+
+<div class="col-md-12 pt-4 d-flex justify-content-center">
+    <button (click)="save()" class="btn btn-primary save">Save</button>
+</div>
+
+      </div>
+
+         
+          <!-- <div class="address-card__footer">
+            <span class="addr">
+                <input *ngIf="log_user?.CustomerAddresses[0].address_line_2 !== null" placeholder="{{log_user?.CustomerAddresses[0].address_line_2 }}" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "address2">    </span>
+              <span class="addr">
+                <input *ngIf="log_user?.CustomerAddresses[0].pincode !== null" placeholder="{{log_user?.CustomerAddresses[0].pincode }}" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "address3">   </span>
+              <span class="addr">
+                <input *ngIf="log_user?.CustomerAddresses[0].city  !== null" placeholder="{{log_user?.CustomerAddresses[0].city  }}" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "address4">   </span>
+
+
+            {{ log_user?.CustomerAddresses[0].address_line_2 }} </span>
+                <span class="addr">{{ log_user?.CustomerAddresses[0].pincode }}</span>
+                <span class="addr">{{ log_user?.CustomerAddresses[0].city }}
+              <a routerLink="/account/addresses/5">Edit Address</a>
+          </div> -->
+      </div>
+  </div>
+  
+  </div>
+  </div>
+
+
+
+
+<!-- ////////////////////////////************************Order History Section******************///////////////////////////////////// -->
+    
+
+
+
+
+
+
     <div class="dashboard__orders card">
         <div class="card-header">
             <h5>Recent Orders</h5>
@@ -61,4 +261,5 @@
             </div>
         </div>
     </div>
+
 </div>

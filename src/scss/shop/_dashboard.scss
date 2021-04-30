@@ -19,7 +19,7 @@
 @media (min-width: breakpoint(md-start)) {
     .dashboard__profile,
     .dashboard__address {
-        width: calc(50% - 12px);
+        width: calc(100%);
     }
 }
 @media (max-width: breakpoint(sm-end)) {

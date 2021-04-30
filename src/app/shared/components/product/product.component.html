@@ -62,81 +62,92 @@
                 </ng-container>
             </div>
             <!-- .product__options -->
-            <form class="product__options">
-                <div class="form-group product__option">
-                    <label class="product__option-label">Color</label>
-                    <div class="input-radio-color">
-                        <div class="input-radio-color__list">
-                            <label class="input-radio-color__item input-radio-color__item--white" style="color: #fff;" data-toggle="tooltip" title="White">
-                                <input type="radio" name="color">
-                                <span></span>
-                            </label>
-                            <label class="input-radio-color__item" style="color: #ffd333;" data-toggle="tooltip" title="Yellow">
-                                <input type="radio" name="color">
-                                <span></span>
-                            </label>
-                            <label class="input-radio-color__item" style="color: #ff4040;" data-toggle="tooltip" title="Red">
-                                <input type="radio" name="color">
-                                <span></span>
-                            </label>
-                            <label class="input-radio-color__item input-radio-color__item--disabled" style="color: #4080ff;" data-toggle="tooltip" title="Blue">
-                                <input type="radio" name="color" disabled>
-                                <span></span>
-                            </label>
+           <div class="row">
+               <div class="col-md-6">
+                <form class="product__options">
+                    <div class="form-group product__option">
+                        <label class="product__option-label">Color</label>
+                        <div class="input-radio-color">
+                            <div class="input-radio-color__list">
+                                <label class="input-radio-color__item input-radio-color__item--white" style="color: #fff;" data-toggle="tooltip" title="White">
+                                    <input type="radio" name="color">
+                                    <span></span>
+                                </label>
+                                <label class="input-radio-color__item" style="color: #ffd333;" data-toggle="tooltip" title="Yellow">
+                                    <input type="radio" name="color">
+                                    <span></span>
+                                </label>
+                                <label class="input-radio-color__item" style="color: #ff4040;" data-toggle="tooltip" title="Red">
+                                    <input type="radio" name="color">
+                                    <span></span>
+                                </label>
+                                <label class="input-radio-color__item input-radio-color__item--disabled" style="color: #4080ff;" data-toggle="tooltip" title="Blue">
+                                    <input type="radio" name="color" disabled>
+                                    <span></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group product__option">
-                    <label class="product__option-label">Material</label>
-                    <div class="input-radio-label">
-                        <div class="input-radio-label__list">
-                            <label>
-                                <input type="radio" name="material">
-                                <span>Metal</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="material">
-                                <span>Wood</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="material" disabled>
-                                <span>Plastic</span>
-                            </label>
+                    <div class="form-group product__option">
+                        <label class="product__option-label">Material</label>
+                        <div class="input-radio-label">
+                            <div class="input-radio-label__list">
+                                <label>
+                                    <input type="radio" name="material">
+                                    <span>Metal</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="material">
+                                    <span>Wood</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="material" disabled>
+                                    <span>Plastic</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group product__option">
-                    <label class="product__option-label">Quantity</label>
-                    <div class="product__actions">
-                        <div class="product__actions-item">
-                            <app-input-number aria-label="Quantity" class="product__quantity" size="lg" [min]="1" [formControl]="quantity"></app-input-number>
-                        </div>
-                        <div class="product__actions-item product__actions-item--addtocart">
-                            <button type="button" class="btn btn-primary btn-lg"
-                                    [ngClass]="{'btn-loading': addingToCart}"
-                                    appClick (click)="addToCart()">Add to cart</button>
-                        </div>
-                        <div class="product__actions-item product__actions-item--wishlist">
-                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Wishlist"
-                                    [ngClass]="{'btn-loading': addingToWishlist}"
-                                    appClick (click)="addToWishlist()">
-                                <app-icon name="wishlist-16" size="16"></app-icon>
-                            </button>
-                        </div>
-                        <div class="product__actions-item product__actions-item--compare">
-                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Compare"
-                                    [ngClass]="{'btn-loading': addingToCompare}"
-                                    appClick (click)="addToCompare()">
-                                <app-icon name="compare-16" size="16"></app-icon>
-                            </button>
+                    <div class="form-group product__option">
+                        <label class="product__option-label">Quantity</label>
+                        <div class="product__actions">
+                            <div class="product__actions-item">
+                                <app-input-number aria-label="Quantity" class="product__quantity" size="lg" [min]="1" [formControl]="quantity"></app-input-number>
+                            </div>
+                            <div class="product__actions-item product__actions-item--addtocart">
+                                <button type="button" class="btn btn-primary btn-lg"
+                                        [ngClass]="{'btn-loading': addingToCart}"
+                                        appClick (click)="addToCart()">Get a Quote</button>
+                            </div>
+                            <!-- <div class="product__actions-item product__actions-item--wishlist">
+                                <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Wishlist"
+                                        [ngClass]="{'btn-loading': addingToWishlist}"
+                                        appClick (click)="addToWishlist()">
+                                    <app-icon name="wishlist-16" size="16"></app-icon>
+                                </button>
+                            </div>
+                            <div class="product__actions-item product__actions-item--compare">
+                                <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Compare"
+                                        [ngClass]="{'btn-loading': addingToCompare}"
+                                        appClick (click)="addToCompare()">
+                                    <app-icon name="compare-16" size="16"></app-icon>
+                                </button>
+                            </div> -->
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+               </div>
+               <div class="col-md-6">
+                   <div class="card">
+                       <div class="card-header"><span>Hello Friends</span></div>
+                       <div class="card-body"> Documents</div>
+                       <div class="card-footer">View</div>
+                   </div>
+               </div>
+           </div>
             <!-- .product__options / end -->
         </div>
         <!-- .product__end -->
-        <div class="product__footer">
+        <!-- <div class="product__footer">
             <div class="product__tags tags">
                 <div class="tags__list">
                     <a href="" appClick>Mounts</a>
@@ -152,6 +163,6 @@
                 [pageTitle]="product.name"
                 [pageImage]="product.images[0]|absoluteUrl:'html'"
             ></app-share-buttons>
-        </div>
+        </div> -->
     </div>
 </div>

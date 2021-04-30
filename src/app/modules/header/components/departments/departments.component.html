@@ -1,46 +1,58 @@
-<!-- .departments -->
+
+
+
+
+
+
+
+
+
+
 <div class="departments">
     <div class="departments__body" #bodyElement>
         <div class="departments__links-wrapper" (mouseleave)="onMouseLeave()">
             <div class="departments__submenus-container" #containerElement>
                 <ng-container *ngFor="let item of items">
                     <div
-                  
+                        *ngIf="item.menu && item.menu.type == 'megamenu'"
+                        class="departments__submenu departments__submenu--type--megamenu departments__submenu--size--{{ item.menu.size }}"
                         [ngClass]="{'departments__submenu--open': item === hoveredItem}"
                         #submenuElement
                     >
-                        <span style="padding: 5px 20px 20px 20px;">{{item.category_name}}</span>
+                        <app-header-megamenu [menu]="item.menu" (itemClick)="onSubItemClick()"></app-header-megamenu>
                     </div>
-                    <!-- class="departments__submenu departments__submenu--type--menu"
-                    [ngClass]="{'departments__submenu--open': item === hoveredItem}"
-                    -->
-                    <!-- <div
-                        class="menu"
+                    <div
+                        *ngIf="item.menu && item.menu.type == 'menu'"
+                        class="departments__submenu departments__submenu--type--menu"
+                        [ngClass]="{'departments__submenu--open': item === hoveredItem}"
                         #submenuElement
                     >
-                         <span>{{item.category_name}}</span>
-                    </div> -->
+                        <app-header-menu [items]="item.menu.items" (itemClick)="onSubItemClick()"></app-header-menu>
+                    </div>
                 </ng-container>
             </div>
-            <ul style="list-style: none;">
+            <ul class="departments__links">
                 <li
                     *ngFor="let item of items"
-                  
-                   
-                    
-                    
+                    class="departments__item"
+                    [ngClass]="{
+                        'departments__item--menu': item.menu && item.menu.type == 'menu',
+                        'departments__item--hover': item === hoveredItem
+                    }"
+                    (mouseenter)="onItemMouseEnter(item)"
+                    #itemElement
                 >
 
                     <ng-template #link>
-                        {{ item.label }}
+                        {{ item.category_name }}
                         <app-icon *ngIf="item.menu" class="departments__item-arrow" name="arrow-rounded-right-6x9" size="6x9"></app-icon>
                     </ng-template>
 
-                    <a *ngIf="!item.external" class="departments__item-link" [target]="item.target" (click)="onItemClick(item.slug)">
+                    <a class="departments__item-link" [routerLink]="item.url" [target]="item.target" (click)="onItemClick()" (appTouchClick)="onTouchClick($event, item)">
                         <ng-container [ngTemplateOutlet]="link"></ng-container>
                     </a>
-                    <!-- <a *ngIf="item.external" class="departments__item-link" [href]="item.url" [target]="item.target" (click)="onItemClick(item.slug)" (appTouchClick)="onTouchClick($event, item)"> -->
-                        <!-- <ng-container [ngTemplateOutlet]="link"></ng-container>
+                    <!-- <a *ngIf="item.external" class="departments__item-link" [target]="item.target" (click)="onItemClick('slug')" (appTouchClick)="onTouchClick($event, item)">
+                        <ng-container [ngTemplateOutlet]="link"></ng-container>
                     </a> -->
                 </li>
             </ul>
@@ -53,4 +65,24 @@
         <app-icon class="departments__button-arrow" name="arrow-rounded-down-9x6" size="9x6"></app-icon>
     </button>
 </div>
-<!-- .departments / end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

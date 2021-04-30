@@ -15,7 +15,8 @@
                     <div class="posts-view__list posts-list posts-list--layout--{{ layout }}">
                         <div class="posts-list__body">
                             <div *ngFor="let post of posts" class="posts-list__item">
-                                <app-post-card [post]="post" [layout]="{
+
+                                <app-post-card [post]="post" (click)="goToCategory(post.slug)" [layout]="{
                                     classic: 'grid-lg',
                                     grid: 'grid-nl',
                                     list: 'list-nl'

@@ -8,6 +8,7 @@ import { RootService } from '../../services/root.service';
 import { CurrencyService } from '../../services/currency.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { HomeCommonService } from '../../services/home-common.service';
 
 @Component({
     selector: 'app-product-card',
@@ -18,14 +19,15 @@ import { Subject } from 'rxjs';
 export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
     private destroy$: Subject<void> = new Subject();
 
-    @Input() product: Product;
+    @Input() product: any;
     @Input() layout: 'grid-sm'|'grid-nl'|'grid-lg'|'list'|'horizontal'|null = null;
 
     addingToCart = false;
     addingToWishlist = false;
     addingToCompare = false;
     showingQuickview = false;
-    featuredAttributes: ProductAttribute[] = [];
+    // featuredAttributes: ProductAttribute[] = [];
+    // prod:any;
 
     constructor(
         private cd: ChangeDetectorRef,
@@ -34,25 +36,40 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
         public wishlist: WishlistService,
         public compare: CompareService,
         public quickview: QuickviewService,
-        public currency: CurrencyService
-    ) { }
+        public currency: CurrencyService,
+        private common: HomeCommonService
+    ) {
+        // this.getProducts();
+     }
 
+    // getProducts(){
+    //     this.common.getProducts().subscribe(products=>{
+    //         console.log(products);
+    //         console.log(products.products);
+    //         console.log(products.products[0].name);
+    //         console.log(products.products[0].Merchant.business_name);
+    //         this.prod = products.products;
+    //     })
+    // }
     ngOnInit(): void {
         this.currency.changes$.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.cd.markForCheck();
         });
+        // console.log(this.product);
     }
 
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
     }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        if ('product' in changes) {
-            this.featuredAttributes = !this.product ? [] : this.product.attributes.filter(x => x.featured);
-        }
-    }
+ngOnChanges(){
+    
+}
+    // ngOnChanges(changes: SimpleChanges): void {
+    //     if ('product' in changes) {
+    //         this.featuredAttributes = !this.product ? [] : this.product.attributes.filter(x => x.featured);
+    //     }
+    // }
 
     addToCart(): void {
         if (this.addingToCart) {

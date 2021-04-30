@@ -46,20 +46,20 @@
             <img src="assets/images/avatars/avatar-3.jpg" alt="">
         </div>
         <div class="account-menu__user-info">
-            <!-- <div class="account-menu__user-name">{{}}</div>
-            <div class="account-menu__user-email">{{}}</div> -->
+            <div class="account-menu__user-name">{{log_user?.firstName}}  {{log_user?.lastName}}</div>
+            <div class="account-menu__user-email">{{log_user?.email}}</div>
         </div>
     </a>
     <div class="account-menu__divider"></div>
     <ul class="account-menu__links">
-        <li><a routerLink="/account/profile" (click)="closeMenu.emit()">Edit Profile</a></li>
+        <li><a routerLink="/account/dashboard" (click)="closeMenu.emit()">Dashboard</a></li>
         <li><a routerLink="/account/orders" (click)="closeMenu.emit()">Order History</a></li>
         <li><a routerLink="/account/addresses" (click)="closeMenu.emit()">Addresses</a></li>
-        <li><a routerLink="/account/password" (click)="closeMenu.emit()">Password</a></li>
+        <li><a routerLink="/account/password" (click)="closeMenu.emit()">Chat</a></li>
     </ul>
     <div class="account-menu__divider"></div>
     <ul class="account-menu__links">
-        <li><a routerLink="/account/login" (click)="closeMenu.emit()">Logout</a></li>
+        <li><a routerLink="/" (click)="closeMenu.emit(); logout()">Logout</a></li>
     </ul>
     </div>
 </div>

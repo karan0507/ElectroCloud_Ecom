@@ -37,7 +37,14 @@ export class PageCategoryComponent implements OnDestroy {
         private shop: ShopService,
         private location: Location,
     ) {
-        this.route.data.subscribe(data => {
+        
+        this.route.params;
+        console.log(this.route.snapshot.params.categorySlug);
+        console.log(this.route.queryParamMap);
+
+        this.route.
+        data.subscribe(data => {
+            console.log(data);
             this.breadcrumbs = [
                 {label: 'Home', url: this.root.home()},
                 {label: 'Shop', url: this.root.shop()},
@@ -46,16 +53,21 @@ export class PageCategoryComponent implements OnDestroy {
             // If categorySlug is undefined then this is a root catalog page.
             if (!this.getCategorySlug()) {
                 this.pageHeader = 'Shop';
-            } else {
-                this.pageHeader = data.category.name;
-
-                this.breadcrumbs = this.breadcrumbs.concat([
-                    ...data.category.parents.map(
-                        parent => ({label: parent.name, url: this.root.category(parent)})
-                    ),
-                    {label: data.category.name, url: this.root.category(data.category)},
-                ]);
             }
+            else{
+                this.pageHeader = this.route.snapshot.params.categorySlug;
+            }
+
+            // } else {
+            //     this.pageHeader = data.params;
+
+            //     this.breadcrumbs = this.breadcrumbs.concat([
+            //         ...data.category.parents.map(
+            //             parent => ({label: parent.name, url: this.root.category(parent)})
+            //         ),
+            //         {label: data.category.name, url: this.root.category(data.category)},
+            //     ]);
+            // }
 
             this.pageService.setList(data.products);
 
