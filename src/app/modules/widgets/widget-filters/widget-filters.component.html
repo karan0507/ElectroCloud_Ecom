@@ -23,43 +23,13 @@
                                
                                 <li *ngFor="let item of filter.categories" class="filter-categories__item ">
                                     <!-- <app-icon *ngIf="item.type == 'parent'" class="filter-categories__arrow"  name="arrow-rounded-left-6x9" size="6x9"></app-icon> -->
-                                    <a [routerLink]="item.slug">
+                                    <a routerLinkActive="active-link" [routerLink]="'/shop/catalog/' + item.slug" >
                                         <div *ngIf="filter.name === 'Categories'">{{ item?.category_name }} </div>
                                     </a> <!--{{ filter?.categories[0].category_name }}        [routerLink]="this.root.category(item.category)"-->
                                         
                                     <!-- <div class="filter-categories__counter" *ngIf="item.type === 'child'">{{ item.count }}</div> -->
                                 </li>
-                                <li  class="filter-categories__item " >
-                                    
-                                    <div class="filter-list__list">
-                                        <label
-                                        *ngFor="let item of filter.brands; trackBy: trackBySlug" 
-                                            class="filter-list__item"
-                                            [ngClass]="{'filter-list__item--disabled': isItemDisabled(filter, item)}"
-                                        >
-                                            <span class="filter-list__input input-check">
-                                                <span class="input-check__body">
-                                                    <!-- [formControlName]="brand_name.slug" for input -->
-                                                    <input
-                                                        class="input-check__input"
-                                                        type="checkbox"
-                                                        [value]="item.slug"
-                                                        [name]="'filter_' + filter.slug"
-                                                      
-                                                    >
-                                                    <span class="input-check__box"></span>
-                                                    <app-icon class="input-check__icon" name="check-9x7" size="9x7"></app-icon>
-                                                </span>
-                                            </span>
-                                            <div>{{ item?.brand_name }} </div>
-                                            <!-- <span class="filter-list__title">{{ item?.brand_name }}</span> -->
-                                            <!-- <span class="filter-list__counter">{{ item.count }}</span> -->
-                                        </label>
-                                    </div>
-
-                                  
-
-                                </li>
+                            
                             </ul>
                         </div>
 
@@ -172,3 +142,37 @@
         <button class="btn btn-secondary btn-sm" (click)="reset()">Reset</button>
     </div>
 </div>
+
+
+
+<!-- <li  class="filter-categories__item " >
+                                    
+    <div class="filter-list__list">
+        <label
+        *ngFor="let item of filter.brands; trackBy: trackBySlug" 
+            class="filter-list__item"
+            [ngClass]="{'filter-list__item--disabled': isItemDisabled(filter, item)}"
+        >
+            <span class="filter-list__input input-check">
+                <span class="input-check__body">
+                    [formControlName]="brand_name.slug" for input
+                    <input
+                        class="input-check__input"
+                        type="checkbox"
+                        [value]="item.slug"
+                        [name]="'filter_' + filter.slug"
+                      
+                    >
+                    <span class="input-check__box"></span>
+                    <app-icon class="input-check__icon" name="check-9x7" size="9x7"></app-icon>
+                </span>
+            </span>
+            <div>{{ item?.brand_name }} </div>
+            <span class="filter-list__title">{{ item?.brand_name }}</span>
+            <span class="filter-list__counter">{{ item.count }}</span>
+        </label>
+    </div>
+
+  
+
+</li> -->

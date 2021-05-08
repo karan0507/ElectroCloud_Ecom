@@ -13,6 +13,8 @@ import { NavigationLink } from '../app/shared/interfaces/navigation-link';
 // }
 
 export const navigation: NavigationLink[] = [
+    
+    {label: 'All Categories', url:'/shop/catalog'},    
     {label: 'Home', url: '/'},
     {label: 'About Us', url: '/site/about-us'},
     {label: 'Contact Us', url: '/site/contact-us'},

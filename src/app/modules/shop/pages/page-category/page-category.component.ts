@@ -3,13 +3,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ShopSidebarService } from '../../services/shop-sidebar.service';
 import { PageCategoryService } from '../../services/page-category.service';
 import { Link } from '../../../../shared/interfaces/link';
-import { RootService } from '../../../../shared/services/root.service';
 import { of, Subject, timer } from 'rxjs';
-import { debounce, mergeMap, takeUntil } from 'rxjs/operators';
+// import { debounce, mergeMap, takeUntil } from 'rxjs/operators';
 import { Location } from '@angular/common';
-import { parseProductsListParams } from '../../resolvers/products-list-resolver.service';
-import { ShopService } from '../../../../shared/api/shop.service';
 import { parseFilterValue } from '../../../../shared/helpers/filter';
+import { HomeCommonService } from 'src/app/shared/services/home-common.service';
+import{ EventEmitter, Output} from '@angular/core';
 
 @Component({
     selector: 'app-grid',
@@ -28,90 +27,69 @@ export class PageCategoryComponent implements OnDestroy {
     sidebarPosition: 'start'|'end' = 'start'; // For LTR scripts "start" is "left" and "end" is "right"
     breadcrumbs: Link[] = [];
     pageHeader: string;
+    categorySlug:any;
+    prod:any;
+    totalItems: any;
+    totalPages:string;
+    currentPages: number = 0;
+    @Output() pageChange: EventEmitter<number> = new EventEmitter();
+paginate:string;
+event:number;
 
     constructor(
-        private root: RootService,
         private router: Router,
         private route: ActivatedRoute,
         private pageService: PageCategoryService,
-        private shop: ShopService,
         private location: Location,
+        private common: HomeCommonService
     ) {
-        
-        this.route.params;
-        console.log(this.route.snapshot.params.categorySlug);
-        console.log(this.route.queryParamMap);
+       this.event = 0;
+        this.route.params.subscribe(categorySlug=>{
+            console.log(categorySlug);
+         this.categorySlug = categorySlug.categorySlug;
 
-        this.route.
-        data.subscribe(data => {
-            console.log(data);
-            this.breadcrumbs = [
-                {label: 'Home', url: this.root.home()},
-                {label: 'Shop', url: this.root.shop()},
-            ];
-
-            // If categorySlug is undefined then this is a root catalog page.
-            if (!this.getCategorySlug()) {
-                this.pageHeader = 'Shop';
+            if(categorySlug.categorySlug !== undefined && categorySlug.categorySlug !== null){
+                this.getProducts(categorySlug.categorySlug, this.currentPages);
             }
             else{
-                this.pageHeader = this.route.snapshot.params.categorySlug;
+                this.getProducts('','');
             }
-
-            // } else {
-            //     this.pageHeader = data.params;
-
-            //     this.breadcrumbs = this.breadcrumbs.concat([
-            //         ...data.category.parents.map(
-            //             parent => ({label: parent.name, url: this.root.category(parent)})
-            //         ),
-            //         {label: data.category.name, url: this.root.category(data.category)},
-            //     ]);
-            // }
-
-            this.pageService.setList(data.products);
-
-            this.columns = 'columns' in data ? data.columns : this.columns;
-            this.viewMode = 'viewMode' in data ? data.viewMode : this.viewMode;
-            this.sidebarPosition = 'sidebarPosition' in data ? data.sidebarPosition : this.sidebarPosition;
         });
-        this.route.queryParams.subscribe(queryParams => {
-            this.pageService.setOptions(parseProductsListParams(queryParams), false);
-        });
-
-        this.pageService.optionsChange$.pipe(
-            debounce(changedOptions => {
-                return changedOptions.filterValues ? timer(250) : of(changedOptions);
-            }),
-            mergeMap(() => {
-                this.updateUrl();
-                this.pageService.setIsLoading(true);
-
-                return this.shop.getProductsList(
-                    this.getCategorySlug(),
-                    this.pageService.options,
-                ).pipe(
-                    takeUntil(this.pageService.optionsChange$)
-                );
-            }),
-            takeUntil(this.destroy$),
-        ).subscribe(list => {
-            this.pageService.setList(list);
-            this.pageService.setIsLoading(false);
-        });
+        console.log(this.route.snapshot.params.categorySlug);
+       
+        
     }
-
+    
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
-    }
 
+    }
+    
     updateUrl(): void {
         const tree = this.router.parseUrl(this.router.url);
         tree.queryParams = this.getQueryParams();
         this.location.replaceState(tree.toString());
     }
-
+    current(event){
+        console.log(this.categorySlug);
+       
+        if(event !== undefined && event !== null && event >=1){
+            this.currentPages = event -1;
+            this.getProducts(this.categorySlug, this.currentPages);
+        }
+        else{
+            this.getProducts('','');
+        }
+        // if(this.categorySlug === undefined || this.categorySlug === null){
+        //     const temp = 0;
+        //     this.getProducts('',temp);
+        // }else{
+        //     this.currentPages = event - 1;
+        // this.getProducts(this.categorySlug, this.currentPages);
+        // }
+        
+    }
     getQueryParams(): Params {
         const params: Params = {};
         const options =  this.pageService.options;
@@ -157,8 +135,30 @@ export class PageCategoryComponent implements OnDestroy {
 
         return params;
     }
-
+    getProducts(categorySlug?, currentPage?){
+        // pageChange = JSON.stringify(pageChange);
+        console.log(categorySlug);  
+        this.common.getProducts(categorySlug, currentPage).subscribe(products=>{
+            if(products.totalItems > 0 ){
+              
+                this.prod = products.products;
+                console.log(products.totalItems);
+                this.totalItems = products.totalItems;
+                this.totalPages = products.totalPages;
+               
+                this.currentPages = products.currentPage + 1;
+                console.log(this.currentPages);
+            }
+            else
+            {
+                this.prod=[];
+                console.log('Wrong Parameter');
+            }
+           
+        })
+    }
     getCategorySlug(): string|null {
         return this.route.snapshot.params.categorySlug || this.route.snapshot.data.categorySlug || null;
     }
+ 
 }

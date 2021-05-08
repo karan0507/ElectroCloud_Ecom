@@ -28,7 +28,7 @@
                         attribute, in which case the width and height will be obtained from the naturalWidth
                         and naturalHeight property of img.product-image__img.
                         -->
-                        <img class="product-image__img" [src]="item.image" alt="" #imageElement>
+                        <img class="product-image__img" [src]="item.image" alt=""  onerror="this.src = '../../../assets/images/categories/custom-built-transformer-250x250.jpg'" #imageElement>
                     </a>
                 </div>
             </ng-template>

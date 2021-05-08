@@ -27,7 +27,7 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
     addingToCompare = false;
     showingQuickview = false;
     // featuredAttributes: ProductAttribute[] = [];
-    // prod:any;
+    prod:any;
 
     constructor(
         private cd: ChangeDetectorRef,
@@ -39,23 +39,15 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
         public currency: CurrencyService,
         private common: HomeCommonService
     ) {
-        // this.getProducts();
+        
      }
 
-    // getProducts(){
-    //     this.common.getProducts().subscribe(products=>{
-    //         console.log(products);
-    //         console.log(products.products);
-    //         console.log(products.products[0].name);
-    //         console.log(products.products[0].Merchant.business_name);
-    //         this.prod = products.products;
-    //     })
-    // }
+ 
     ngOnInit(): void {
         this.currency.changes$.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.cd.markForCheck();
         });
-        // console.log(this.product);
+        console.log(this.product);
     }
 
     ngOnDestroy(): void {
@@ -70,48 +62,50 @@ ngOnChanges(){
     //         this.featuredAttributes = !this.product ? [] : this.product.attributes.filter(x => x.featured);
     //     }
     // }
+addToCart(){
+    
+}
+    // addToCart(): void {
+    //     if (this.addingToCart) {
+    //         return;
+    //     }
 
-    addToCart(): void {
-        if (this.addingToCart) {
-            return;
-        }
+    //     this.addingToCart = true;
+    //     this.cart.add(this.product, 1).subscribe({
+    //         complete: () => {
+    //             this.addingToCart = false;
+    //             this.cd.markForCheck();
+    //         }
+    //     });
+    // }
 
-        this.addingToCart = true;
-        this.cart.add(this.product, 1).subscribe({
-            complete: () => {
-                this.addingToCart = false;
-                this.cd.markForCheck();
-            }
-        });
-    }
+    // addToWishlist(): void {
+    //     if (this.addingToWishlist) {
+    //         return;
+    //     }
 
-    addToWishlist(): void {
-        if (this.addingToWishlist) {
-            return;
-        }
+    //     this.addingToWishlist = true;
+    //     this.wishlist.add(this.product).subscribe({
+    //         complete: () => {
+    //             this.addingToWishlist = false;
+    //             this.cd.markForCheck();
+    //         }
+    //     });
+    // }
 
-        this.addingToWishlist = true;
-        this.wishlist.add(this.product).subscribe({
-            complete: () => {
-                this.addingToWishlist = false;
-                this.cd.markForCheck();
-            }
-        });
-    }
+    // addToCompare(): void {
+    //     if (this.addingToCompare) {
+    //         return;
+    //     }
 
-    addToCompare(): void {
-        if (this.addingToCompare) {
-            return;
-        }
-
-        this.addingToCompare = true;
-        this.compare.add(this.product).subscribe({
-            complete: () => {
-                this.addingToCompare = false;
-                this.cd.markForCheck();
-            }
-        });
-    }
+    //     this.addingToCompare = true;
+    //     this.compare.add(this.product).subscribe({
+    //         complete: () => {
+    //             this.addingToCompare = false;
+    //             this.cd.markForCheck();
+    //         }
+    //     });
+    // }
 
     showQuickview(): void {
         if (this.showingQuickview) {

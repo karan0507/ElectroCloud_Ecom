@@ -69,14 +69,14 @@
 
         <div class="products-view__list products-list" [attr.data-layout]="layout != 'list' ? grid : layout" [attr.data-with-features]="layout == 'grid-with-features' ? 'true' : 'false'">
             <div class="products-list__body">
-                <div *ngFor="let product of prod" class="products-list__item">
-                    <app-product-card [product]="product"></app-product-card>
+                <div *ngFor="let prod of product" class="products-list__item">
+                    <app-product-card [product]="prod"></app-product-card>
                 </div>
             </div>
         </div>
 
         <div class="products-view__pagination">
-            <app-pagination formControlName="page" [siblings]="2" [total]="totalPages"></app-pagination>
+            <app-pagination formControlName="page" [siblings]="2" (pageChange)="current($event)" [current]="currentPages" [total]="totalPages"></app-pagination>
         </div>
     </div>
 

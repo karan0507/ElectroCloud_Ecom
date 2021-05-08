@@ -152,10 +152,11 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
     }
     getItems(){
         this.common.getCategories().subscribe(productcategories =>{
-          console.log('hello');
+       
           console.log(productcategories);
           
           this.items = productcategories;
+          console.log(this.items[0]);
         })
       }
     getAreaBottom(): number {
@@ -315,8 +316,8 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
         }
     }
 
-    onItemClick(): void {
-        this.router.navigateByUrl('shop/catalog');
+    onItemClick(categoryName): void {
+        this.router.navigateByUrl('shop/catalog/' + categoryName);
         
         this.close();
     }

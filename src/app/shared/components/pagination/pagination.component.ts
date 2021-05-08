@@ -14,13 +14,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     ]
 })
 export class PaginationComponent implements OnChanges, OnInit, ControlValueAccessor  {
-    @Input() siblings = 1;
-    @Input() current = 1;
-    @Input() total = 1;
-
+    @Input() siblings:number;
+    @Input() current:number;
+    @Input() total:number;
     @Output() pageChange: EventEmitter<number> = new EventEmitter();
-
-    pages: number[] = [];
+pages:number[] = [];
+    // pages: number[] = [1,2,3];
 
     onChange: any = () => {};
     onTouched: any = () => {};
@@ -29,6 +28,8 @@ export class PaginationComponent implements OnChanges, OnInit, ControlValueAcces
 
     ngOnInit(): void {
         this.calc();
+        console.log(this.pages);
+     
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -37,13 +38,16 @@ export class PaginationComponent implements OnChanges, OnInit, ControlValueAcces
 
     setPage(value: number, emitEvent: boolean = true): void {
         this.onTouched();
-
+        // console.log(this.current);
+        console.log(value);
         if (value < 1 || value > this.total || value === this.current) {
             return;
+            
         }
 
         if (this.current !== value) {
             this.onChange(value);
+             
         }
 
         this.current = value;

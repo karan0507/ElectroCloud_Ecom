@@ -17,8 +17,8 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
   goToCategory(slug): void {
-    console.log('Hello Friends');
-    this.router.navigateByUrl('shop/catwelog/' + slug);
+    // console.log('Hello Friends');
+    this.router.navigateByUrl('shop/catalog/' + slug);
     console.log(slug);
 }
   getCategories(){

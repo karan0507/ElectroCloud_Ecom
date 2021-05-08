@@ -2,12 +2,13 @@
     <div class="product__content">
         <!-- .product__gallery -->
         <div class="product__gallery">
-            <app-product-gallery [productLayout]="layout" [images]="product.images"></app-product-gallery>
+            <!--  -->
+            <app-product-gallery  [images]="product.ProductImages" [productLayout]="layout" ></app-product-gallery>
         </div>
         <!-- .product__gallery / end -->
         <!-- .product__info -->
         <div class="product__info">
-            <div class="product__wishlist-compare">
+            <!-- <div class="product__wishlist-compare">
                 <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip" data-placement="right" title="Wishlist"
                         appClick (click)="addToWishlist()"
                         [ngClass]="{'btn-loading': addingToWishlist}">
@@ -18,7 +19,7 @@
                         [ngClass]="{'btn-loading': addingToCompare}">
                     <app-icon name="compare-16" size="16"></app-icon>
                 </button>
-            </div>
+            </div> -->
             <h1 class="product__name">{{ product.name }}</h1>
             <div class="product__rating">
                 <div class="product__rating-stars">
@@ -52,7 +53,7 @@
                 Availability: <span class="text-success">In Stock</span>
             </div>
 
-            <div class="product__prices">
+            <!-- <div class="product__prices">
                 <ng-container *ngIf="product.compareAtPrice">
                     <span class="product__new-price">{{ product.price|currencyFormat }}</span>{{ ' ' }}
                     <span class="product__old-price">{{ product.compareAtPrice|currencyFormat }}</span>
@@ -60,12 +61,12 @@
                 <ng-container *ngIf="!product.compareAtPrice">
                     {{ product.price|currencyFormat }}
                 </ng-container>
-            </div>
+            </div> -->
             <!-- .product__options -->
            <div class="row">
                <div class="col-md-6">
                 <form class="product__options">
-                    <div class="form-group product__option">
+                    <!-- <div class="form-group product__option">
                         <label class="product__option-label">Color</label>
                         <div class="input-radio-color">
                             <div class="input-radio-color__list">
@@ -106,19 +107,20 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group product__option">
-                        <label class="product__option-label">Quantity</label>
-                        <div class="product__actions">
+                        <div class="product__actions-item product__actions-item--addtocart">
+                            <button type="button" class="btn btn-primary btn-lg"
+                                    [ngClass]="{'btn-loading': addingToCart}"
+                                  >Get a Quote</button>
+                        </div>
+                     
+                        <!-- <div class="product__actions">
                             <div class="product__actions-item">
                                 <app-input-number aria-label="Quantity" class="product__quantity" size="lg" [min]="1" [formControl]="quantity"></app-input-number>
                             </div>
-                            <div class="product__actions-item product__actions-item--addtocart">
-                                <button type="button" class="btn btn-primary btn-lg"
-                                        [ngClass]="{'btn-loading': addingToCart}"
-                                        appClick (click)="addToCart()">Get a Quote</button>
-                            </div>
-                            <!-- <div class="product__actions-item product__actions-item--wishlist">
+                           
+                            <div class="product__actions-item product__actions-item--wishlist">
                                 <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Wishlist"
                                         [ngClass]="{'btn-loading': addingToWishlist}"
                                         appClick (click)="addToWishlist()">
@@ -131,18 +133,12 @@
                                         appClick (click)="addToCompare()">
                                     <app-icon name="compare-16" size="16"></app-icon>
                                 </button>
-                            </div> -->
-                        </div>
+                            </div>
+                        </div> -->
                     </div>
                 </form>
                </div>
-               <div class="col-md-6">
-                   <div class="card">
-                       <div class="card-header"><span>Hello Friends</span></div>
-                       <div class="card-body"> Documents</div>
-                       <div class="card-footer">View</div>
-                   </div>
-               </div>
+             
            </div>
             <!-- .product__options / end -->
         </div>

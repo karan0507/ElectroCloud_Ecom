@@ -15,9 +15,8 @@ export type ProductLayout = 'standard' | 'sidebar' | 'columnar' | 'quickview';
 })
 export class ProductComponent {
     @Input() layout: ProductLayout;
-
-    @Input() product: Product;
-
+    @Input() product: any;
+    prod:any;
     quantity: FormControl = new FormControl(1);
 
     addingToCart = false;
@@ -26,33 +25,35 @@ export class ProductComponent {
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: any,
-        private cart: CartService,
-        private wishlist: WishlistService,
-        private compare: CompareService,
+        // private cart: CartService,
+        // private wishlist: WishlistService,
+        // private compare: CompareService,
         public root: RootService,
-    ) { }
+    ) {
+      
+     }
+     
+    // addToCart(): void {
+    //     if (!this.addingToCart && this.product && this.quantity.value > 0) {
+    //         this.addingToCart = true;
 
-    addToCart(): void {
-        if (!this.addingToCart && this.product && this.quantity.value > 0) {
-            this.addingToCart = true;
+    //         this.cart.add(this.product, this.quantity.value).subscribe({complete: () => this.addingToCart = false});
+    //     }
+    // }
 
-            this.cart.add(this.product, this.quantity.value).subscribe({complete: () => this.addingToCart = false});
-        }
-    }
+    // addToWishlist(): void {
+    //     if (!this.addingToWishlist && this.product) {
+    //         this.addingToWishlist = true;
 
-    addToWishlist(): void {
-        if (!this.addingToWishlist && this.product) {
-            this.addingToWishlist = true;
+    //         this.wishlist.add(this.product).subscribe({complete: () => this.addingToWishlist = false});
+    //     }
+    // }
 
-            this.wishlist.add(this.product).subscribe({complete: () => this.addingToWishlist = false});
-        }
-    }
+    // addToCompare(): void {
+    //     if (!this.addingToCompare && this.product) {
+    //         this.addingToCompare = true;
 
-    addToCompare(): void {
-        if (!this.addingToCompare && this.product) {
-            this.addingToCompare = true;
-
-            this.compare.add(this.product).subscribe({complete: () => this.addingToCompare = false});
-        }
-    }
+    //         this.compare.add(this.product).subscribe({complete: () => this.addingToCompare = false});
+    //     }
+    // }
 }
