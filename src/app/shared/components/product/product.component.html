@@ -2,8 +2,7 @@
     <div class="product__content">
         <!-- .product__gallery -->
         <div class="product__gallery">
-            <!--  -->
-            <app-product-gallery  [images]="product.ProductImages" [productLayout]="layout" ></app-product-gallery>
+            <app-product-gallery [productLayout]="layout" [images]="product.images"></app-product-gallery>
         </div>
         <!-- .product__gallery / end -->
         <!-- .product__info -->
@@ -112,7 +111,7 @@
                         <div class="product__actions-item product__actions-item--addtocart">
                             <button type="button" class="btn btn-primary btn-lg"
                                     [ngClass]="{'btn-loading': addingToCart}"
-                                  >Get a Quote</button>
+                                  (click)="getQoute()">Get a Quote</button>
                         </div>
                      
                         <!-- <div class="product__actions">

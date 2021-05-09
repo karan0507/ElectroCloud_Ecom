@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import { parseFilterValue } from '../../../../shared/helpers/filter';
 import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 import{ EventEmitter, Output} from '@angular/core';
+import { products } from 'src/fake-server/database/products';
 
 @Component({
     selector: 'app-grid',
@@ -34,7 +35,8 @@ export class PageCategoryComponent implements OnDestroy {
     currentPages: number = 0;
     @Output() pageChange: EventEmitter<number> = new EventEmitter();
 paginate:string;
-event:number;
+    data: any;
+
 
     constructor(
         private router: Router,
@@ -43,18 +45,26 @@ event:number;
         private location: Location,
         private common: HomeCommonService
     ) {
-       this.event = 0;
-        this.route.params.subscribe(categorySlug=>{
-            console.log(categorySlug);
-         this.categorySlug = categorySlug.categorySlug;
-
-            if(categorySlug.categorySlug !== undefined && categorySlug.categorySlug !== null){
-                this.getProducts(categorySlug.categorySlug, this.currentPages);
-            }
-            else{
-                this.getProducts('','');
-            }
+        this.route.data.subscribe(product=>{
+            console.log(product);
         });
+       
+        // this.route.data.subscribe((response=>{
+        //     this.paginate = response.category;
+        //     console.log(this.paginate);
+        // }))
+        // this.route.params.subscribe(categorySlug=>{
+        //     console.log(categorySlug);
+        //  this.categorySlug = categorySlug.categorySlug;
+
+        //     if(categorySlug.categorySlug !== undefined && categorySlug.categorySlug !== null){
+        //         this.getProducts(categorySlug.categorySlug, this.currentPages);
+        //     }
+        //     else{
+        //         this.categorySlug
+        //         this.getProducts('','');
+        //     }
+        // });
         console.log(this.route.snapshot.params.categorySlug);
        
         
@@ -63,9 +73,7 @@ event:number;
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
-
     }
-    
     updateUrl(): void {
         const tree = this.router.parseUrl(this.router.url);
         tree.queryParams = this.getQueryParams();
@@ -74,12 +82,14 @@ event:number;
     current(event){
         console.log(this.categorySlug);
        
-        if(event !== undefined && event !== null && event >=1){
-            this.currentPages = event -1;
+        if(event !== undefined && event !== null && event !== 0 && this.categorySlug !== undefined){
+            this.currentPages = event - 1;
             this.getProducts(this.categorySlug, this.currentPages);
         }
         else{
-            this.getProducts('','');
+            this.categorySlug = '';
+            this.currentPages = 0; 
+            this.getProducts(this.categorySlug,this.currentPages);
         }
         // if(this.categorySlug === undefined || this.categorySlug === null){
         //     const temp = 0;

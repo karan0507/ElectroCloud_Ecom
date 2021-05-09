@@ -5,6 +5,7 @@ import { CartService } from '../../services/cart.service';
 import { WishlistService } from '../../services/wishlist.service';
 import { CompareService } from '../../services/compare.service';
 import { RootService } from '../../services/root.service';
+import { products } from 'src/fake-server/database/products';
 
 export type ProductLayout = 'standard' | 'sidebar' | 'columnar' | 'quickview';
 
@@ -30,9 +31,11 @@ export class ProductComponent {
         // private compare: CompareService,
         public root: RootService,
     ) {
-      
+    //   console.log(this.prod);
      }
-     
+     getQuote(){
+         
+     }
     // addToCart(): void {
     //     if (!this.addingToCart && this.product && this.quantity.value > 0) {
     //         this.addingToCart = true;

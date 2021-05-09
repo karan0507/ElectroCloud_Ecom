@@ -45,7 +45,8 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
         limit:['10'],
         page:this.totalPages
     })
-    }
+        
+}
     current(event){
         console.log(event);
         if (event) {
@@ -54,6 +55,7 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
     }
     ngOnInit(): void {
         this.setLayout('list');
+        // console.log(this.product);
     }
 
     // getProducts(){

@@ -35,13 +35,15 @@ const routes: Routes = [
         path: 'catalog',
         component: PageCategoryComponent,
         data: categoryPageData,
-        resolve: categoryPageResolvers,
+        resolve: {
+            category: CategoryResolverService}
     },
     {
         path: 'catalog/:categorySlug',
         component: PageCategoryComponent,
         // data: categoryPageData,
-        // resolve: categoryPageResolvers,
+        resolve: {
+            category:CategoryResolverService}
     },
     {
         path: 'product/:productSlug',
