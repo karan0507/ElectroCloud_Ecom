@@ -23,17 +23,17 @@ export class PageProductComponent implements OnInit {
         private route: ActivatedRoute,
         private common:HomeCommonService
     ) { 
-        this.route.params.subscribe(productSlug=>{
-            console.log(productSlug);
-         this.slug = productSlug.productSlug;
+        // this.route.params.subscribe(productSlug=>{
+        //     console.log(productSlug);
+        //  this.slug = productSlug.productSlug;
 
-            if(productSlug.productSlug !== undefined && productSlug.productSlug !== null){
-                this.getSingleProduct(this.slug);
-            }
-            else{
-                this.getSingleProduct('');
-            }
-        });
+        //     if(productSlug.productSlug !== undefined && productSlug.productSlug !== null){
+        //         this.getSingleProduct(this.slug);
+        //     }
+        //     else{
+        //         this.getSingleProduct('');
+        //     }
+        // });
     }
 
     ngOnInit(): void {
@@ -46,11 +46,11 @@ export class PageProductComponent implements OnInit {
         //     this.relatedProducts$ = this.shop.getRelatedProducts(data.product);
         // });
     }
-    getSingleProduct(slug){
-        this.common.getSingleProduct(slug).subscribe(prod=>{
-            console.log(prod);
-            this.product = prod;
-            console.log(this.product);
-        })
-    }
+    // getSingleProduct(slug){
+    //     this.common.getSingleProduct(slug).subscribe(prod=>{
+    //         console.log(prod);
+    //         this.product = prod;
+    //         console.log(this.product);
+    //     })
+    // }
 }

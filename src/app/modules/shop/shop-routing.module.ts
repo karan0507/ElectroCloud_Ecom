@@ -34,9 +34,10 @@ const routes: Routes = [
     {
         path: 'catalog',
         component: PageCategoryComponent,
-        data: categoryPageData,
+        // data: categoryPageData,
         resolve: {
             category: CategoryResolverService}
+    
     },
     {
         path: 'catalog/:categorySlug',
@@ -44,6 +45,7 @@ const routes: Routes = [
         // data: categoryPageData,
         resolve: {
             category:CategoryResolverService}
+    
     },
     {
         path: 'product/:productSlug',
@@ -57,8 +59,8 @@ const routes: Routes = [
         //     sidebarPosition: 'start'
         // },
         resolve: {
-            product: ProductResolverService
-        },
+            category:ProductResolverService
+        }
     },
     {
         path: 'cart',

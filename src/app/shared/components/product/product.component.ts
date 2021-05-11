@@ -31,10 +31,11 @@ export class ProductComponent {
         // private compare: CompareService,
         public root: RootService,
     ) {
-    //   console.log(this.prod);
+        this.getQuote();
+      console.log(this.product);
      }
      getQuote(){
-         
+
      }
     // addToCart(): void {
     //     if (!this.addingToCart && this.product && this.quantity.value > 0) {

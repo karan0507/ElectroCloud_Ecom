@@ -12,7 +12,7 @@ import{ EventEmitter, Output} from '@angular/core';
 import { products } from 'src/fake-server/database/products';
 
 @Component({
-    selector: 'app-grid',
+    selector: 'app-page-category',
     templateUrl: './page-category.component.html',
     styleUrls: ['./page-category.component.scss'],
     providers: [
@@ -43,11 +43,29 @@ paginate:string;
         private route: ActivatedRoute,
         private pageService: PageCategoryService,
         private location: Location,
-        private common: HomeCommonService
+        private common: HomeCommonService,
+        
     ) {
-        this.route.data.subscribe(product=>{
-            console.log(product);
+        this.route.data.subscribe(products=>{
+            console.log(products.category);
+            // this.prod = products.category;
+            if(products.category.totalItems > 0 ){
+              
+                            this.prod = products.category.products;
+                            console.log(products.category.totalItems);
+                            this.totalItems = products.category.totalItems;
+                            this.totalPages = products.category.totalPages;
+                           
+                            this.currentPages = products.category.currentPage + 1;
+                            console.log(this.currentPages);
+                        }
+                        else
+                        {
+                            this.prod=[];
+                            console.log('Wrong Parameter');
+                        }
         });
+        
        
         // this.route.data.subscribe((response=>{
         //     this.paginate = response.category;
@@ -58,16 +76,43 @@ paginate:string;
         //  this.categorySlug = categorySlug.categorySlug;
 
         //     if(categorySlug.categorySlug !== undefined && categorySlug.categorySlug !== null){
-        //         this.getProducts(categorySlug.categorySlug, this.currentPages);
+        //         // this.getProducts(categorySlug.categorySlug, this.currentPages);
         //     }
         //     else{
         //         this.categorySlug
-        //         this.getProducts('','');
+        //         // this.getProducts('','');
         //     }
         // });
-        console.log(this.route.snapshot.params.categorySlug);
+        // console.log(this.route.snapshot.params.categorySlug);
        
         
+    }
+     current(event){
+    console.log(event);
+        
+       
+       
+        // if(event !== undefined && event !== null && event !== 0 && this.categorySlug !== undefined){
+        //     this.currentPages = event - 1;
+        //     this.getProducts(this.categorySlug, this.currentPages);
+        // }
+        // else{
+        //     this.categorySlug = '';
+        //     this.currentPages = 0; 
+        //     this.getProducts(this.categorySlug,this.currentPages);
+        // }
+        
+    }
+    ngOnInit(): void {
+        this.route.data.subscribe(products_details => {
+            console.log(products_details);
+        });
+        //     this.layout = data.layout || this.layout;
+        //     this.sidebarPosition = data.sidebarPosition || this.sidebarPosition;
+        //     this.product = data.product;
+
+        //     this.relatedProducts$ = this.shop.getRelatedProducts(data.product);
+        // });
     }
     
     ngOnDestroy(): void {
@@ -79,27 +124,7 @@ paginate:string;
         tree.queryParams = this.getQueryParams();
         this.location.replaceState(tree.toString());
     }
-    current(event){
-        console.log(this.categorySlug);
-       
-        if(event !== undefined && event !== null && event !== 0 && this.categorySlug !== undefined){
-            this.currentPages = event - 1;
-            this.getProducts(this.categorySlug, this.currentPages);
-        }
-        else{
-            this.categorySlug = '';
-            this.currentPages = 0; 
-            this.getProducts(this.categorySlug,this.currentPages);
-        }
-        // if(this.categorySlug === undefined || this.categorySlug === null){
-        //     const temp = 0;
-        //     this.getProducts('',temp);
-        // }else{
-        //     this.currentPages = event - 1;
-        // this.getProducts(this.categorySlug, this.currentPages);
-        // }
-        
-    }
+   
     getQueryParams(): Params {
         const params: Params = {};
         const options =  this.pageService.options;
@@ -145,28 +170,28 @@ paginate:string;
 
         return params;
     }
-    getProducts(categorySlug?, currentPage?){
-        // pageChange = JSON.stringify(pageChange);
-        console.log(categorySlug);  
-        this.common.getProducts(categorySlug, currentPage).subscribe(products=>{
-            if(products.totalItems > 0 ){
+    // getProducts(categorySlug?, currentPage?){
+    //     // pageChange = JSON.stringify(pageChange);
+    //     console.log(categorySlug);  
+    //     this.common.getProducts(categorySlug, currentPage).subscribe(products=>{
+    //         if(products.totalItems > 0 ){
               
-                this.prod = products.products;
-                console.log(products.totalItems);
-                this.totalItems = products.totalItems;
-                this.totalPages = products.totalPages;
+    //             this.prod = products.products;
+    //             console.log(products.totalItems);
+    //             this.totalItems = products.totalItems;
+    //             this.totalPages = products.totalPages;
                
-                this.currentPages = products.currentPage + 1;
-                console.log(this.currentPages);
-            }
-            else
-            {
-                this.prod=[];
-                console.log('Wrong Parameter');
-            }
+    //             this.currentPages = products.currentPage + 1;
+    //             console.log(this.currentPages);
+    //         }
+    //         else
+    //         {
+    //             this.prod=[];
+    //             console.log('Wrong Parameter');
+    //         }
            
-        })
-    }
+    //     })
+    // }
     getCategorySlug(): string|null {
         return this.route.snapshot.params.categorySlug || this.route.snapshot.data.categorySlug || null;
     }

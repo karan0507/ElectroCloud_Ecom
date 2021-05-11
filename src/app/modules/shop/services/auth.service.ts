@@ -11,8 +11,8 @@ export class AuthService {
   constructor(private http:HttpClient) {
   
    }
-   getOTP(number):Observable<any>{
-    return this.http.post(environment.apiUrl + 'customer/resend/otp',number);
+   getOTP(phone_no):Observable<any>{
+    return this.http.post(environment.apiUrl + 'customer/resend/otp',{phone_no:phone_no});
    }
    verifyCustomer(verification):Observable<any>{
      return this.http.post(environment.apiUrl + 'customer/register/verify',verification);

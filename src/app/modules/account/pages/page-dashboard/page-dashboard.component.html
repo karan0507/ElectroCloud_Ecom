@@ -68,12 +68,15 @@
         <div class="address-card__row">
             <div class="address-card__row-title title">Address</div>
            
-            <div class="address-card__row-content">
+            <div *ngIf="isAddress" class="address-card__row-content">
                 
-                {{ log_user?.CustomerAddresses[0].address_line}} <br>
-                {{ log_user?.CustomerAddresses[0].address_line_2 }} <br>
-                {{ log_user?.CustomerAddresses[0].pincode }}<br>
-                {{ log_user?.CustomerAddresses[0].city }}<br>
+                {{ log_user?.CustomerAddresses[0]?.address_line}} <br>
+                {{ log_user?.CustomerAddresses[0]?.address_line_2 }} <br>
+                {{ log_user?.CustomerAddresses[0]?.pincode }}<br>
+                {{ log_user?.CustomerAddresses[0]?.city }}<br>
+            </div>
+            <div *ngIf="!isAddress" class="address-card__row-content">
+               <button (click)="editProfile()" class="btn btn-outline">Add Your Address</button>
             </div>
         </div>
    </div>
@@ -131,13 +134,13 @@
           <div class="col-md-4 d-flex justify-content-center"> 
               <div class="address-card__row">
                   <div class="address-card__row-title title">Phone Number</div>
-                  <input *ngIf="log_user?.phone_no !== null" type="text" class="form-control address-card__name pt-2" name="" id="" placeholder="{{log_user?.phone_no}}" formControlName = "phone_no">  
+                  <input *ngIf="log_user?.phone_no !== null" type="text" class="form-control address-card__name pt-2" name=""  placeholder="{{log_user?.phone_no}}" formControlName = "phone_no">  
                 </div>
          </div>
          <div class="col-md-4 d-flex justify-content-center"> 
           <div class="address-card__row">
               <div class="address-card__row-title title">Email Address</div>
-              <input  *ngIf="log_user?.email !== null"  placeholder="{{log_user?.email}}" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "email">   
+              <input  *ngIf="log_user?.email !== null"  placeholder="{{log_user?.email}}" type="text" class="form-control address-card__name pt-2" name=""  formControlName = "email">   
           </div>
      </div>
      <!-- ////////****Address******//////// -->
@@ -147,7 +150,7 @@
             <div class="address-card__row">
                 <div class="address-card__row-title title">City</div>
                 <div class="address-card__row-content">
-                <input *ngIf="log_user?.CustomerAddresses[0].city  !== null" placeholder="{{log_user?.CustomerAddresses[0].city}}" value="log_user?.CustomerAddresses[0].city" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "city"> 
+                <input  placeholder="" value="" type="text" class="form-control address-card__name pt-2" name=""  formControlName = "city"> 
                   
                     </div>
             </div>
@@ -157,7 +160,7 @@
               <div class="address-card__row-title title">Pincode</div>
               <div class="address-card__row-content">
                   
-                      <input *ngIf="log_user?.CustomerAddresses[0].pincode !== null" placeholder="{{log_user?.CustomerAddresses[0].pincode }}" value="log_user?.CustomerAddresses[0].pincode" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "pincode">  
+                      <input placeholder="" value="" type="text" class="form-control address-card__name pt-2" name=""  formControlName = "pincode">  
                   </div>
           </div>
       </div>
@@ -167,7 +170,7 @@
             <div class="address-card__row-title title">State</div>
             <div class="address-card__row-content">
                 
-                    <input *ngIf="log_user?.CustomerAddresses[0].state !== null" placeholder="{{log_user?.CustomerAddresses[0].state }}" value="log_user?.CustomerAddresses[0].state" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "state">  
+                    <input placeholder="" value="" type="text" class="form-control address-card__name pt-2" name=""  formControlName = "state">  
                 </div>
         </div>
     </div>
@@ -176,7 +179,7 @@
               <div class="address-card__row-title title">Address1</div>
               <div class="address-card__row-content">
                   
-                      <input *ngIf="log_user?.CustomerAddresses[0].address_line !== null" placeholder="{{log_user?.CustomerAddresses[0].address_line}}" value="log_user?.CustomerAddresses[0].address_line" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "address_line">  
+                      <input placeholder="" value="" type="text" class="form-control address-card__name pt-2" name=""  formControlName = "address_line">  
                   </div>
           </div>
       </div>
@@ -185,7 +188,7 @@
               <div class="address-card__row-title title">Address2</div>
               <div class="address-card__row-content">
                   
-                      <input *ngIf="log_user?.CustomerAddresses[0].address_line_2 !== null" placeholder="{{log_user?.CustomerAddresses[0].address_line_2 }}" value="log_user?.CustomerAddresses[0].address_line_2" type="text" class="form-control address-card__name pt-2" name="" id="" formControlName = "address_line_2">   
+                      <input placeholder="" value="" type="text" class="form-control address-card__name pt-2" name=""  formControlName = "address_line_2">   
                   </div>
           </div>
       </div>

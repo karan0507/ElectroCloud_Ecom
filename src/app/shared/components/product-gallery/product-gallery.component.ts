@@ -22,8 +22,8 @@ export interface ProductGalleryItem {
 export class ProductGalleryComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
 
-    items: ProductGalleryItem[] = [];
-
+    items: any;
+    @Input() images: any;
     currentItem: ProductGalleryItem = null;
 
     carouselOptions: Partial<OwlCarouselOConfig> = {

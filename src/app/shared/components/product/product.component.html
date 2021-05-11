@@ -2,7 +2,7 @@
     <div class="product__content">
         <!-- .product__gallery -->
         <div class="product__gallery">
-            <app-product-gallery [productLayout]="layout" [images]="product.images"></app-product-gallery>
+            <app-product-gallery [productLayout]="layout" [images]="product?.ProductImages"></app-product-gallery>
         </div>
         <!-- .product__gallery / end -->
         <!-- .product__info -->
@@ -19,13 +19,13 @@
                     <app-icon name="compare-16" size="16"></app-icon>
                 </button>
             </div> -->
-            <h1 class="product__name">{{ product.name }}</h1>
+            <h1 class="product__name">{{ product?.name }}</h1>
             <div class="product__rating">
                 <div class="product__rating-stars">
                     <app-rating [value]="product.rating"></app-rating>
                 </div>
                 <div class="product__rating-legend">
-                    <a href="" appClick>{{ product.reviews }} Reviews</a><span>/</span><a href="" appClick>Write A Review</a>
+                    <a href="" appClick>{{ product?.reviews }} Reviews</a><span>/</span><a href="" appClick>Write A Review</a>
                 </div>
             </div>
             <div class="product__description">
@@ -108,10 +108,10 @@
                         </div>
                     </div> -->
                     <div class="form-group product__option">
-                        <div class="product__actions-item product__actions-item--addtocart">
+                        <div class="quote  product__actions-item product__actions-item--addtocart">
                             <button type="button" class="btn btn-primary btn-lg"
                                     [ngClass]="{'btn-loading': addingToCart}"
-                                  (click)="getQoute()">Get a Quote</button>
+                                 >Get a Quote</button>
                         </div>
                      
                         <!-- <div class="product__actions">

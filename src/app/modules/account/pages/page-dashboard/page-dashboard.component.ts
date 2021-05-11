@@ -17,7 +17,7 @@ export class PageDashboardComponent {
     log_user:any;
     editInfo:FormGroup;
     address: FormGroup;
-
+ 
     orders: Partial<Order>[] = orders.slice(0, 3);
     isAddress = false;
     isEdit = true;
@@ -53,9 +53,8 @@ export class PageDashboardComponent {
           console.log("hello");
           console.log(addr);
         })
-      
-        this.getCustInfo();
-        this.close();
+      this.getCustInfo();
+      this.close();
      }
      close(){
       this.isEdit = true;
@@ -65,11 +64,16 @@ export class PageDashboardComponent {
         this.auth.getCustInfo().subscribe(user=>{
           console.log(user);
           this.log_user = user.customer;
-          if(typeof user.customer.CustomerAddresses !== undefined ){
+          if(typeof user.customer.CustomerAddresses !== undefined &&  user.customer.CustomerAddresses.length > 0){
             this.user_adr = user.customer.CustomerAddresses[0];
+            this.address.patchValue(this.user_adr);
+            this.isAddress = true;
+          }
+          else{
+            this.user_adr = null;
           }
           this.editInfo.patchValue(this.log_user);
-          this.address.patchValue(this.user_adr);
+         
         })
       }
 }
