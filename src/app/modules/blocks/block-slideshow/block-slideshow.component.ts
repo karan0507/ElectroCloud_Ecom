@@ -49,12 +49,12 @@ export class BlockSlideshowComponent {
     constructor(
         public sanitizer: DomSanitizer,
         private direction: DirectionService,
-        private banner:HomeCommonService
+        private common:HomeCommonService
     ) { 
         this.getbanner();
     }
     getbanner(){
-        this.banner.getBanner().subscribe(banner => {
+        this.common.getBanner().subscribe(banner => {
             console.log(banner);
             this.slides = banner;
         })
