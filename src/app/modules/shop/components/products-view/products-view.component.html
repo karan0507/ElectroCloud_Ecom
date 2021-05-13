@@ -1,4 +1,5 @@
 <!-- [ngClass]="{'products-view--loading': this.pageService.isLoading$|async}" -->
+
 <div class="products-view" [formGroup]="product_list">
     <div class="products-view__loader"></div>
 
@@ -58,8 +59,10 @@
                     <label for="view-options-limit">Show</label>
                     <div>
                         <select class="form-control form-control-sm" id="view-options-limit" formControlName="limit">
-                            <option value="12">12</option>
-                            <option value="24">24</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
                         </select>
                     </div>
                 </div>

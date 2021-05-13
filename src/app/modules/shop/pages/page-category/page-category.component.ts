@@ -10,6 +10,7 @@ import { parseFilterValue } from '../../../../shared/helpers/filter';
 import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 import { EventEmitter, Output } from '@angular/core';
 import { products } from 'src/fake-server/database/products';
+import { getProductsList } from 'src/fake-server';
 
 @Component({
     selector: 'app-page-category',

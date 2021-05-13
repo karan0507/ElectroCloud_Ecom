@@ -1,8 +1,8 @@
-<div class="product product--layout--{{ layout }}" *ngIf="product">
+<div class="product product--layout--{{ layout }}" >
     <div class="product__content">
         <!-- .product__gallery -->
         <div class="product__gallery">
-            <app-product-gallery [productLayout]="layout" [images]="product?.ProductImages"></app-product-gallery>
+            <app-product-gallery [productLayout]="layout" [images]="image"></app-product-gallery>
         </div>
         <!-- .product__gallery / end -->
         <!-- .product__info -->
@@ -29,8 +29,7 @@
                 </div>
             </div>
             <div class="product__description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ornare, mi in ornare elementum, libero nibh
-                lacinia urna, quis convallis lorem erat at purus. Maecenas eu varius nisi.
+                {{product?.description}}
             </div>
             <ul class="product__features">
                 <li>Speed: 750 RPM</li>
@@ -40,9 +39,29 @@
                 <li>Battery Capacity: 2 Ah</li>
             </ul>
             <ul class="product__meta">
-                <li class="product__meta-availability">Availability: <span class="text-success">In Stock</span></li>
-                <li>Brand: <a href="" appClick>Wakita</a></li>
-                <li>SKU: 83690/32</li>
+               <div class="row" style="width: 100%;">
+                   <div class="col-md-4">
+                    <li class="product__meta-availability">
+                        <div *ngIf="inStock">
+                            Availability:  <span  class="text-success">In Stock</span>
+                            
+                        </div>
+                        <div *ngIf="!inStock">
+                          <div class="wrap"> Availability:  <span class="text-danger">Comming Soon</span></div> 
+                        </div>
+                        </li>
+                   </div>
+                   <!-- <div class="col-md-4" style="padding-left: 3rem;">
+                    <li>Brand: <a href="" appClick>Wakita</a></li>
+                   </div> -->
+                   <div class="col-md-4"></div>
+                   
+                  <div class="col-md-4">
+                    <li>SKU: {{product?.sku}}</li>
+                  </div>
+               </div> 
+                
+              
             </ul>
         </div>
         <!-- .product__info / end -->

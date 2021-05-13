@@ -25,7 +25,6 @@ export class CategoriesComponent implements OnInit {
     this.common.getCategories().subscribe(productcategories =>{
       console.log('hello');
       console.log(productcategories);
-      
       this.categories = productcategories;
     })
   }

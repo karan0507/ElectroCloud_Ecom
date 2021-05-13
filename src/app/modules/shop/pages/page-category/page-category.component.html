@@ -23,6 +23,6 @@
         <div class="block">
             <app-products-view [layout]="viewMode" [product]="prod" [grid]="'grid-'+columns+'-full'" offcanvas="always"></app-products-view>
         </div>
-        <app-shop-sidebar offcanvas="always"></app-shop-sidebar>
+        <app-shop-sidebar [prod]="prod" offcanvas="always"></app-shop-sidebar>
     </div>
 </ng-container>

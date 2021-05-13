@@ -21,7 +21,6 @@ export interface ProductGalleryItem {
 })
 export class ProductGalleryComponent implements OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
-
     items: any;
     @Input() images: any;
     currentItem: ProductGalleryItem = null;
@@ -75,8 +74,13 @@ export class ProductGalleryComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit(): void {
+        setTimeout(() => {
+            console.log('Product is here on time:',this.images);  // You will get the @Input value
+            // this.images = this.product.featuredImageUrl;
+        });
         if (this.productLayout !== 'quickview' && isPlatformBrowser(this.platformId)) {
             this.photoSwipe.load().subscribe();
+
         }
 
         this.router.events.pipe(

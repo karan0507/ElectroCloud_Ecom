@@ -201,6 +201,8 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
             }
         });
 
-        this.filtersForm.setValue(formValues);
+        // this.filtersForm.setValue(formValues[0]);
+        // formValues
     }
+   
 }

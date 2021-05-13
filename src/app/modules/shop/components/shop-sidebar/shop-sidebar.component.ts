@@ -19,7 +19,7 @@ export class ShopSidebarComponent implements OnInit, OnDestroy {
      * - mobile: https://stroyka.angular.themeforest.scompiler.ru/themes/default-ltr/classic/shop/category-grid-3-columns-sidebar
      */
     @Input() offcanvas: 'always'|'mobile' = 'mobile';
-
+@Input() prod:any;
     destroy$: Subject<void> = new Subject<void>();
     bestsellers$: Observable<Product[]>;
     isOpen = false;
