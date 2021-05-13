@@ -33,15 +33,17 @@ const categoryPageResolvers: ResolveData = {
 const routes: Routes = [
     {
         path: 'catalog',
-        component: PageCategoryComponent,
+        // runGuardsAndResolvers :'always',
+        component: PageCategoryComponent
         // data: categoryPageData,
         // resolve: {
-        //     category: CategoryResolverService}
-    
+        //     category: CategoryResolverService
+        // }
+
     },
     {
         path: 'catalog/:categorySlug',
-        component: PageCategoryComponent,
+        component: PageCategoryComponent
         // data: categoryPageData,
         // resolve: {
         //     category:CategoryResolverService}

@@ -47,72 +47,58 @@ export class PageCategoryComponent implements OnDestroy {
         private common: HomeCommonService,
 
     ) {
+        // this.getProducts()
         // this.route.data.subscribe(products => {
         //     console.log(products.category);
         //     // this.prod = products.category;
         //     if (products.category.totalItems > 0) {
 
         //         this.prod = products.category.products;
-        //         console.log(products.category.totalItems);
         //         this.totalItems = products.category.totalItems;
         //         this.totalPages = products.category.totalPages;
-
         //         this.currentPages = products.category.currentPage + 1;
-        //         console.log(this.currentPages);
         //     }
         //     else {
         //         this.prod = [];
         //         console.log('Wrong Parameter');
         //     }
         // });
-        this.categorySlug = this.getCategorySlug();
-        console.log(this.categorySlug);
-        if(this.categorySlug !== null && this.categorySlug !== undefined){
-            this.getProducts(this.categorySlug,this.currentPages);
-            
-        }
-        else{
-            this.getProducts('','');
-        }
-   
-  
-   
+
+
+        this.route.data.subscribe((response=>{
+            this.paginate = response.category;
+            console.log(this.paginate);
+        }))
+        this.route.params.subscribe(categorySlug=>{
+            console.log(categorySlug);
+         this.categorySlug = categorySlug.categorySlug;
+
+            if(categorySlug.categorySlug !== undefined && categorySlug.categorySlug !== null){
+                this.getProducts(categorySlug.categorySlug, '');
+            }
+            else{
+                this.categorySlug
+                this.getProducts('','');
+            }
+        });
+
     }
-   
     current(event) {
         console.log(event);
-    // this.categorySlug = this.getCategorySlug();
-        if(event !== null && event !== undefined && this.categorySlug !== null || this.categorySlug !== undefined ){
-if(event > 1)
-{            this.currentPages = event - 1;
-            console.log(this.currentPages);
-            console.log(this.categorySlug);
-            this.getProducts(this.categorySlug,this.currentPages);
-}else{
-    this.currentPages = event;
-    console.log(this.currentPages);
-    console.log(this.categorySlug);
-    this.getProducts(this.categorySlug,this.currentPages);
-}
-        }
-        else{
-            this.getProducts('','');
-        }
-        }
+        const page= JSON.stringify(event - 1);
+        this.updateUrl(page)
 
-   
+    }
 
-    // if (event !== undefined && event !== null && event !== 0 && this.categorySlug !== undefined) {
-    //     this.currentPages = event - 1;
-    //     console.log(this.currentPages);
-    //     console.log(this.categorySlug);
-    //     this.getProducts(this.categorySlug, this.currentPages);
-    // }
-    // else {
-    //     this.categorySlug = '';
-    //     this.currentPages = 0;
-    //     this.getProducts(this.categorySlug, this.currentPages);
-    // }
+        // if(event !== undefined && event !== null && event !== 0 && this.categorySlug !== undefined){
+        //     this.currentPages = event - 1;
+        //     this.getProducts(this.categorySlug, this.currentPages);
+        // }
+        // else{
+        //     this.categorySlug = '';
+        //     this.currentPages = 0; 
+        //     this.getProducts(this.categorySlug,this.currentPages);
+        // }
 
 
     ngOnInit(): void {
@@ -131,80 +117,65 @@ if(event > 1)
         this.destroy$.next();
         this.destroy$.complete();
     }
-    updateUrl(): void {
+    updateUrl(page:string = '0'): void {
         const tree = this.router.parseUrl(this.router.url);
-        tree.queryParams = this.getQueryParams();
+        console.log(tree)
+        tree.queryParams = this.getQueryParams(page);
+        console.log(tree.queryParams)
+        // if(tree.queryParams)
         this.location.replaceState(tree.toString());
+        if(this.categorySlug !== undefined && this.categorySlug !== null){
+            this.getProducts(this.categorySlug, tree.queryParams.page);
+            this.onClick()
+        }
+        else{
+            this.categorySlug
+            this.getProducts('',tree.queryParams.page);
+            this.onClick()
+        }
     }
 
-    getQueryParams(): Params {
+    getQueryParams(page: string = '0'): Params {
         const params: Params = {};
         const options = this.pageService.options;
         const filterValues = options.filterValues;
-
-        if ('page' in options && options.page !== 1) {
-            params.page = options.page;
-        }
-        if ('limit' in options && options.limit !== 12) {
-            params.limit = options.limit;
-        }
-        if ('sort' in options && options.sort !== 'default') {
-            params.sort = options.sort;
-        }
-        if ('filterValues' in options) {
-            this.pageService.filters.forEach(filter => {
-                if (!(filter.slug in filterValues)) {
-                    return;
-                }
-
-                const filterValue: any = parseFilterValue(filter.type as any, filterValues[filter.slug]);
-
-                switch (filter.type) {
-                    case 'range':
-                        if (filter.min !== filterValue[0] || filter.max !== filterValue[1]) {
-                            params[`filter_${filter.slug}`] = `${filterValue[0]}-${filterValue[1]}`;
-                        }
-                        break;
-                    case 'check':
-                    case 'color':
-                        if (filterValue.length > 0) {
-                            params[`filter_${filter.slug}`] = filterValues[filter.slug];
-                        }
-                        break;
-                    case 'radio':
-                        if (filterValue !== filter.items[0].slug) {
-                            params[`filter_${filter.slug}`] = filterValue;
-                        }
-                        break;
-                }
-            });
-        }
-
+        params.page = page;
         return params;
     }
-    getProducts(categorySlug?, currentPage?) {
+
+
+    getProducts(categorySlug?, currentPage?){
         // pageChange = JSON.stringify(pageChange);
-        console.log(categorySlug);
-        this.common.getProducts(categorySlug, currentPage).subscribe(products => {
-            if (products.totalItems > 0) {
+        console.log(categorySlug);  
+        this.common.getProducts(categorySlug, currentPage).subscribe(products=>{
+            if(products.totalItems > 0 ){
 
                 this.prod = products.products;
                 console.log(products.totalItems);
                 this.totalItems = products.totalItems;
                 this.totalPages = products.totalPages;
 
-                this.currentPages = products.currentPage+1;
+                this.currentPages = products.currentPage + 1;
                 console.log(this.currentPages);
             }
-            else {
-                this.prod = [];
+            else
+            {
+                this.prod=[];
                 console.log('Wrong Parameter');
             }
 
         })
     }
     getCategorySlug(): string | null {
-        return this.route.snapshot.params.categorySlug || this.route.snapshot.data.categorySlug || '';
+        return this.route.snapshot.params.categorySlug || this.route.snapshot.data.categorySlug || null;
+    }
+
+    onClick(): void {
+        try {
+            window.scrollTo({top: 0, left: 0, behavior: 'auto'});
+        } catch {
+            window.scrollTo(0, 0);
+        }
     }
 
 }

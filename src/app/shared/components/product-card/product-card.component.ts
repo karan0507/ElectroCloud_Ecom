@@ -47,7 +47,7 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
         this.currency.changes$.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.cd.markForCheck();
         });
-      
+        // console.log(this.product);
     }
 
     ngOnDestroy(): void {
