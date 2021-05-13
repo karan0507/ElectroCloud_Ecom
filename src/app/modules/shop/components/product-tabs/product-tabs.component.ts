@@ -12,9 +12,20 @@ import { Review } from '../../../../shared/interfaces/review';
 export class ProductTabsComponent {
     @Input() withSidebar = false;
     @Input() tab: 'description'|'specification'|'reviews' = 'description';
-
+    @Input() product:any;
     specification: ProductFeaturesSection[] = specification;
     reviews: Review[] = reviews;
-
-    constructor() { }
-}
+    attribute:any;
+    
+    constructor() {
+        
+        setTimeout(() => {
+            console.log('Product is here on time:',this.product);  // You will get the @Input value
+            this.attribute = this.product.ProductAttributes;
+            console.log(this.attribute);
+           
+        });
+    }
+   
+   
+    }

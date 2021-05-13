@@ -23,6 +23,7 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
     @Input() totalPages:string;
     @Input() currentPages:string;
     @Input() totalItems:string;
+    @Input() title;
     @Output() pageChange: EventEmitter<number> = new EventEmitter();
     destroy$: Subject<void> = new Subject<void>();
    prod:any;

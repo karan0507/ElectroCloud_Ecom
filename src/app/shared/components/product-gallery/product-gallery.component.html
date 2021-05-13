@@ -1,10 +1,12 @@
 <div
     class="product-gallery__featured"
-    redZoomClass="product-red-zoom product-red-zoom--layout--{{ productLayout }}"
-    [redZoom]="currentItem.image"
-    [redZoomThumb]="currentItem.image"
-    [redZoomLazy]="true"
+   
+ 
 >
+<!-- redZoomClass="product-red-zoom product-red-zoom--layout--{{ productLayout }}" 
+    [redZoom]="images"
+[redZoomThumb]="currentItem.image"
+[redZoomLazy]="true" -->
     <div class="product-gallery__featured-inset">
         <button *ngIf="productLayout !== 'quickview'" class="product-gallery__zoom" (click)="openPhotoSwipe(currentItem)">
             <app-icon name="zoom-in-24" size="24"></app-icon>
@@ -28,7 +30,7 @@
                         attribute, in which case the width and height will be obtained from the naturalWidth
                         and naturalHeight property of img.product-image__img.
                         -->
-                        <img class="product-image__img" [src]="item.image" alt=""  onerror="this.src = '../../../assets/images/categories/custom-built-transformer-250x250.jpg'" #imageElement>
+                        <img class="product-image__img" src="{{images}}" alt=""  onerror="this.src = '../../../assets/images/categories/custom-built-transformer-250x250.jpg'" #imageElement>
                     </a>
                 </div>
             </ng-template>
@@ -36,12 +38,14 @@
     </div>
 </div>
 <div class="product-gallery__carousel">
+    <!-- [options]="thumbnailsCarouselOptions"
+    [appFakeSlides]="items.length" -->
+    <!-- #fakeSlides="appFakeSlides"
+        #thumbnailsCarousel -->
     <owl-carousel-o
         appOwlPreventClick
-        [options]="thumbnailsCarouselOptions"
-        [appFakeSlides]="items.length"
-        #fakeSlides="appFakeSlides"
-        #thumbnailsCarousel
+        
+       
     >
         <!--suppress AngularUndefinedBinding -->
         <ng-template *ngFor="let item of items" carouselSlide [id]="item.id">
@@ -52,11 +56,11 @@
                 (click)="onThumbnailImageClick(item)"
             >
                 <div class="product-image__body">
-                    <img class="product-image__img product-gallery__carousel-image" onerror="this.src = '../../../assets/images/categories/custom-built-transformer-250x250.jpg'" [src]="item.image" alt="">
+                    <img class="product-image__img product-gallery__carousel-image" onerror="this.src = '../../../assets/images/categories/custom-built-transformer-250x250.jpg'" [src]="images" alt="">
                 </div>
             </div>
         </ng-template>
         <!--suppress AngularUndefinedBinding -->
-        <ng-template *ngFor="let i of fakeSlides.slides" carouselSlide [id]="'fake-slide-'+i"></ng-template>
+        <!-- <ng-template *ngFor="let i of fakeSlides.slides" carouselSlide [id]="'fake-slide-'+i"></ng-template> -->
     </owl-carousel-o>
 </div>

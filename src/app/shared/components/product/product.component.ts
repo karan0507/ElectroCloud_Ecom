@@ -6,6 +6,7 @@ import { WishlistService } from '../../services/wishlist.service';
 import { CompareService } from '../../services/compare.service';
 import { RootService } from '../../services/root.service';
 import { products } from 'src/fake-server/database/products';
+import { ActivatedRoute } from '@angular/router';
 
 export type ProductLayout = 'standard' | 'sidebar' | 'columnar' | 'quickview';
 
@@ -19,6 +20,9 @@ export class ProductComponent {
     @Input() product: any;
     prod:any;
     quantity: FormControl = new FormControl(1);
+    image:any;
+    inStock:boolean;
+   
 
     addingToCart = false;
     addingToWishlist = false;
@@ -29,11 +33,22 @@ export class ProductComponent {
         // private cart: CartService,
         // private wishlist: WishlistService,
         // private compare: CompareService,
+        // private route: ActivatedRoute,
         public root: RootService,
     ) {
         this.getQuote();
-      console.log(this.product);
+        setTimeout(() => {
+            console.log('Product is here on time:',this.product);  // You will get the @Input value
+            this.image = this.product.featuredImageUrl;
+            if(this.product.isActive !== null){
+                this.inStock = true;
+            }
+        });
+        
+    
      }
+
+    
      getQuote(){
 
      }

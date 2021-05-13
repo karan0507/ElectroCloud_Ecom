@@ -10,6 +10,16 @@ import { RootService } from '../../../shared/services/root.service';
 export class WidgetProductsComponent {
     @Input() header = '';
     @Input() products: Product[] = [];
-
-    constructor(public root: RootService) { }
+@Input() prod:any;
+    constructor(public root: RootService) { 
+        this.ngOnIt();
+    }
+    ngOnIt():void{
+        setTimeout(() => {
+            console.log('Product is here on time:',this.prod);  // You will get the @Input value
+            // this.attribute = this.product.ProductAttributes;
+            // console.log(this.attribute);
+        });
+    
+    }
 }

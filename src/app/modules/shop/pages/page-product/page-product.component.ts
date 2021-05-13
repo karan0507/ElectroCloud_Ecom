@@ -13,16 +13,23 @@ import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 export class PageProductComponent implements OnInit {
     relatedProducts$: Observable<Product[]>;
 
-    product: any;
+    prod: any;
     layout: 'standard'|'columnar'|'sidebar' = 'standard';
     sidebarPosition: 'start'|'end' = 'start'; // For LTR scripts "start" is "left" and "end" is "right"
     withSidebar:false;
     slug:string;
+    category_name:any;
     constructor(
         private shop: ShopService,
         private route: ActivatedRoute,
         private common:HomeCommonService
     ) { 
+        this.route.data.subscribe(products=>{
+            console.log(products.category);
+            this.prod = products.category;
+            console.log(this.prod);
+            this.category_name = this.prod.category[0].category_name;
+        });
         // this.route.params.subscribe(productSlug=>{
         //     console.log(productSlug);
         //  this.slug = productSlug.productSlug;

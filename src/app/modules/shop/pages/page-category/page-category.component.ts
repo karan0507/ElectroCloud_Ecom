@@ -8,33 +8,34 @@ import { of, Subject, timer } from 'rxjs';
 import { Location } from '@angular/common';
 import { parseFilterValue } from '../../../../shared/helpers/filter';
 import { HomeCommonService } from 'src/app/shared/services/home-common.service';
-import{ EventEmitter, Output} from '@angular/core';
+import { EventEmitter, Output } from '@angular/core';
 import { products } from 'src/fake-server/database/products';
+import { getProductsList } from 'src/fake-server';
 
 @Component({
     selector: 'app-page-category',
     templateUrl: './page-category.component.html',
     styleUrls: ['./page-category.component.scss'],
     providers: [
-        {provide: PageCategoryService, useClass: PageCategoryService},
-        {provide: ShopSidebarService, useClass: ShopSidebarService},
+        { provide: PageCategoryService, useClass: PageCategoryService },
+        { provide: ShopSidebarService, useClass: ShopSidebarService },
     ]
 })
 export class PageCategoryComponent implements OnDestroy {
     destroy$: Subject<void> = new Subject<void>();
 
-    columns: 3|4|5 = 3;
-    viewMode: 'grid'|'grid-with-features'|'list' = 'grid';
-    sidebarPosition: 'start'|'end' = 'start'; // For LTR scripts "start" is "left" and "end" is "right"
+    columns: 3 | 4 | 5 = 3;
+    viewMode: 'grid' | 'grid-with-features' | 'list' = 'grid';
+    sidebarPosition: 'start' | 'end' = 'start'; // For LTR scripts "start" is "left" and "end" is "right"
     breadcrumbs: Link[] = [];
     pageHeader: string;
-    categorySlug:any;
-    prod:any;
+    categorySlug: any;
+    prod: any;
     totalItems: any;
-    totalPages:string;
+    totalPages: string;
     currentPages: number = 0;
     @Output() pageChange: EventEmitter<number> = new EventEmitter();
-paginate:string;
+    paginate: string;
     data: any;
 
 
@@ -44,65 +45,76 @@ paginate:string;
         private pageService: PageCategoryService,
         private location: Location,
         private common: HomeCommonService,
-        
-    ) {
-        this.route.data.subscribe(products=>{
-            console.log(products.category);
-            // this.prod = products.category;
-            if(products.category.totalItems > 0 ){
-              
-                            this.prod = products.category.products;
-                            console.log(products.category.totalItems);
-                            this.totalItems = products.category.totalItems;
-                            this.totalPages = products.category.totalPages;
-                           
-                            this.currentPages = products.category.currentPage + 1;
-                            console.log(this.currentPages);
-                        }
-                        else
-                        {
-                            this.prod=[];
-                            console.log('Wrong Parameter');
-                        }
-        });
-        
-       
-        // this.route.data.subscribe((response=>{
-        //     this.paginate = response.category;
-        //     console.log(this.paginate);
-        // }))
-        // this.route.params.subscribe(categorySlug=>{
-        //     console.log(categorySlug);
-        //  this.categorySlug = categorySlug.categorySlug;
 
-        //     if(categorySlug.categorySlug !== undefined && categorySlug.categorySlug !== null){
-        //         // this.getProducts(categorySlug.categorySlug, this.currentPages);
+    ) {
+        // this.route.data.subscribe(products => {
+        //     console.log(products.category);
+        //     // this.prod = products.category;
+        //     if (products.category.totalItems > 0) {
+
+        //         this.prod = products.category.products;
+        //         console.log(products.category.totalItems);
+        //         this.totalItems = products.category.totalItems;
+        //         this.totalPages = products.category.totalPages;
+
+        //         this.currentPages = products.category.currentPage + 1;
+        //         console.log(this.currentPages);
         //     }
-        //     else{
-        //         this.categorySlug
-        //         // this.getProducts('','');
+        //     else {
+        //         this.prod = [];
+        //         console.log('Wrong Parameter');
         //     }
         // });
-        // console.log(this.route.snapshot.params.categorySlug);
-       
-        
+        this.categorySlug = this.getCategorySlug();
+        console.log(this.categorySlug);
+        if(this.categorySlug !== null && this.categorySlug !== undefined){
+            this.getProducts(this.categorySlug,this.currentPages);
+            
+        }
+        else{
+            this.getProducts('','');
+        }
+   
+  
+   
     }
-     current(event){
-    console.log(event);
-        
-       
-       
-        // if(event !== undefined && event !== null && event !== 0 && this.categorySlug !== undefined){
-        //     this.currentPages = event - 1;
-        //     this.getProducts(this.categorySlug, this.currentPages);
-        // }
-        // else{
-        //     this.categorySlug = '';
-        //     this.currentPages = 0; 
-        //     this.getProducts(this.categorySlug,this.currentPages);
-        // }
-        
-    }
+   
+    current(event) {
+        console.log(event);
+    // this.categorySlug = this.getCategorySlug();
+        if(event !== null && event !== undefined && this.categorySlug !== null || this.categorySlug !== undefined ){
+if(event > 1)
+{            this.currentPages = event - 1;
+            console.log(this.currentPages);
+            console.log(this.categorySlug);
+            this.getProducts(this.categorySlug,this.currentPages);
+}else{
+    this.currentPages = event;
+    console.log(this.currentPages);
+    console.log(this.categorySlug);
+    this.getProducts(this.categorySlug,this.currentPages);
+}
+        }
+        else{
+            this.getProducts('','');
+        }
+        }
+
+   
+
+    // if (event !== undefined && event !== null && event !== 0 && this.categorySlug !== undefined) {
+    //     this.currentPages = event - 1;
+    //     console.log(this.currentPages);
+    //     console.log(this.categorySlug);
+    //     this.getProducts(this.categorySlug, this.currentPages);
+    // }
+    // else {
+    //     this.categorySlug = '';
+    //     this.currentPages = 0;
+    //     this.getProducts(this.categorySlug, this.currentPages);
+    // }
+
+
     ngOnInit(): void {
         this.route.data.subscribe(products_details => {
             console.log(products_details);
@@ -114,7 +126,7 @@ paginate:string;
         //     this.relatedProducts$ = this.shop.getRelatedProducts(data.product);
         // });
     }
-    
+
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
@@ -124,10 +136,10 @@ paginate:string;
         tree.queryParams = this.getQueryParams();
         this.location.replaceState(tree.toString());
     }
-   
+
     getQueryParams(): Params {
         const params: Params = {};
-        const options =  this.pageService.options;
+        const options = this.pageService.options;
         const filterValues = options.filterValues;
 
         if ('page' in options && options.page !== 1) {
@@ -170,30 +182,29 @@ paginate:string;
 
         return params;
     }
-    // getProducts(categorySlug?, currentPage?){
-    //     // pageChange = JSON.stringify(pageChange);
-    //     console.log(categorySlug);  
-    //     this.common.getProducts(categorySlug, currentPage).subscribe(products=>{
-    //         if(products.totalItems > 0 ){
-              
-    //             this.prod = products.products;
-    //             console.log(products.totalItems);
-    //             this.totalItems = products.totalItems;
-    //             this.totalPages = products.totalPages;
-               
-    //             this.currentPages = products.currentPage + 1;
-    //             console.log(this.currentPages);
-    //         }
-    //         else
-    //         {
-    //             this.prod=[];
-    //             console.log('Wrong Parameter');
-    //         }
-           
-    //     })
-    // }
-    getCategorySlug(): string|null {
-        return this.route.snapshot.params.categorySlug || this.route.snapshot.data.categorySlug || null;
+    getProducts(categorySlug?, currentPage?) {
+        // pageChange = JSON.stringify(pageChange);
+        console.log(categorySlug);
+        this.common.getProducts(categorySlug, currentPage).subscribe(products => {
+            if (products.totalItems > 0) {
+
+                this.prod = products.products;
+                console.log(products.totalItems);
+                this.totalItems = products.totalItems;
+                this.totalPages = products.totalPages;
+
+                this.currentPages = products.currentPage+1;
+                console.log(this.currentPages);
+            }
+            else {
+                this.prod = [];
+                console.log('Wrong Parameter');
+            }
+
+        })
     }
- 
+    getCategorySlug(): string | null {
+        return this.route.snapshot.params.categorySlug || this.route.snapshot.data.categorySlug || '';
+    }
+
 }

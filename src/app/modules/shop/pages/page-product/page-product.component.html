@@ -1,15 +1,16 @@
 <app-page-header [breadcrumbs]="[
     {label: 'Home',         url: '/'},
     {label: 'All Categories', url: '/shop/catalog'},
-    {label: product?.name,  url: ''}
+    {label: category_name, url: '/shop/catalog/'+category_name},
+    {label: prod?.name,  url: ''}
 ]"></app-page-header>
 
 <ng-container *ngIf="layout !== 'sidebar'">
     <div class="block">
         <div class="container">
-            <app-product [product]="product"></app-product>
+            <app-product [product]="prod"></app-product>
 
-            <app-product-tabs></app-product-tabs>
+            <app-product-tabs [product]="prod"></app-product-tabs>
         </div>
     </div>
 

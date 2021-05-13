@@ -18,6 +18,7 @@
             <div class="typography">
                 <h3>Product Full Description</h3>
                 <p>
+                    <!-- {{product.description}} -->
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum, diam non iaculis finibus,
                     ipsum arcu sollicitudin dolor, ut cursus sapien sem sed purus. Donec vitae fringilla tortor, sed
                     fermentum nunc. Suspendisse sodales turpis dolor, at rutrum dolor tristique id. Quisque pellentesque
@@ -47,16 +48,16 @@
         <div class="product-tabs__pane" id="tab-specification" [ngClass]="{'product-tabs__pane--active': tab === 'specification'}">
             <div class="spec">
                 <h3 class="spec__header">Specification</h3>
-                <div *ngFor="let section of specification" class="spec__section">
-                    <h4 class="spec__section-title">{{ section.name }}</h4>
-                    <div *ngFor="let feature of section.features" class="spec__row">
-                        <div class="spec__name">{{ feature.name }}</div><div class="spec__value">{{ feature.value }}</div>
+                <div *ngFor="let attr of attribute" class="spec__section">
+                    <h4 class="spec__section-title">{{ attr?.attribute_name }}</h4>
+                    <div class="spec__row">
+                        <div class="spec__name">{{ attr?.Attribute.attribute_name }}:</div><div class="spec__value"><b>{{ attr?.Attribute.attribute_value }}</b></div>
                     </div>
                 </div>
-                <div class="spec__disclaimer">
+                <!-- <div class="spec__disclaimer">
                     Information on technical characteristics, the delivery set, the country of manufacture and the appearance
                     of the goods is for reference only and is based on the latest information available at the time of publication.
-                </div>
+                </div> -->
             </div>
         </div>
 
