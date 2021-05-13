@@ -1,16 +1,21 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 mb-4">
             <h5 class="text-center">Categories</h5>
         </div>
     </div>
     <div class="row">
-        <div *ngFor="let category of categories" class="col-4" >
-            <div class="card mb-3" style="background-image: url({{category.image_url}}); background-size: cover;">
-                <div class="card-header"></div>
-                <div class="card-body"></div>
-                <div id="footer" class="footer"><span class="footer-text">{{category.category_name}}</span></div>
+        <div *ngFor="let category of categories" class="col-md-3" > <!--4 Col for categories-->
+        
+            <div class="card mb-3" (click)="goToCategory(category.slug)">
+                <!-- <div class="card-header"></div> -->
+                <div class="card-body" style="background-image: url({{category.image_url}}); background-size: cover;"></div>
+                <div id="footer" class="card-footer">
+                    
+              <span class="footer-text">{{category.category_name}}</span>
+                </div>
               </div>
+         
          
         </div>
     </div>

@@ -10,5 +10,7 @@ export class PageHeaderComponent {
     @Input() header: string;
     @Input() breadcrumbs: Link[] = [];
 
-    constructor() { }
+    constructor() { 
+        console.log(this.header);
+    }
 }

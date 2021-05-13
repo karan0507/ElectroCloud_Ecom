@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RootService } from '../../../shared/services/root.service';
 import { ShopService } from '../../../shared/api/shop.service';
+import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,15 +15,16 @@ export class ProductResolverService implements Resolve<Product> {
     constructor(
         private root: RootService,
         private router: Router,
-        private shop: ShopService,
+        private shop: HomeCommonService,
     ) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> {
-        const productSlug = route.params.productSlug || route.data.productSlug;
+        const productSlug = route.params.productSlug ;
+        console.log(route.params.productSlug);
 
-        return this.shop.getProduct(productSlug).pipe(
+        return this.shop.getSingleProduct(productSlug).pipe(
             catchError(error => {
-                if (error instanceof HttpErrorResponse && error.status === 404) {
+                if (error instanceof HttpErrorResponse && error.status === 400) {
                     this.router.navigate([this.root.notFound()]).then();
                 }
 

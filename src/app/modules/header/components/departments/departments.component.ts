@@ -16,6 +16,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { HeaderService } from '../../../../shared/services/header.service';
 import { fromMatchMedia } from '../../../../shared/functions/rxjs/fromMatchMedia';
 import { fromOutsideTouchClick } from '../../../../shared/functions/rxjs/fromOutsideTouchClick';
+import { HomeCommonService } from 'src/app/shared/services/home-common.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header-departments',
@@ -30,7 +32,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
     @ViewChildren('submenuElement') submenuElements: QueryList<ElementRef>;
     @ViewChildren('itemElement') itemElements: QueryList<ElementRef>;
 
-    items: NavigationLink[] = departments;
+    items: any;
     hoveredItem: NavigationLink = null;
 
     isOpen = false;
@@ -49,7 +51,11 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
         private el: ElementRef,
         private header: HeaderService,
         private zone: NgZone,
-    ) { }
+        private common:HomeCommonService,
+        private router:Router
+    ) { 
+        this.getItems();
+    }
 
     ngOnInit(): void {
         const root = this.element.querySelector('.departments') as HTMLElement;
@@ -144,7 +150,15 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
             });
         }
     }
-
+    getItems(){
+        this.common.getCategories().subscribe(productcategories =>{
+       
+          console.log(productcategories);
+          
+          this.items = productcategories;
+          console.log(this.items[0]);
+        })
+      }
     getAreaBottom(): number {
         if (!this.header.departmentsArea) {
             return null;
@@ -302,7 +316,9 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
         }
     }
 
-    onItemClick(): void {
+    onItemClick(categoryName): void {
+        this.router.navigateByUrl('shop/catalog/' + categoryName);
+        
         this.close();
     }
 

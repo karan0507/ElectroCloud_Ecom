@@ -8,19 +8,110 @@
                 <div class="about-us__body">
                     <h1 class="about-us__title">About Us</h1>
                     <div class="about-us__text typography">
-                        <p class="about_us">
+                        <p class="about_us" style="margin-bottom: 0rem;">
                             Vidyut Cloud is the online platform for the B2B Ecommerce marketplace platform, especially for the electrical industry.
-                            Vidyut Cloud is a next-gen startup with the vision of providing the best buying solution from the wide electrical market space. We help you to grow your business, worldwide with our B2B E-commerce platform, VIDUYT CLOUD.   
+                            Vidyut Cloud is a next-gen startup with the vision of providing the best buying solution from the wide electrical market space. </p>
+                            <p class="about_us" style="margin-bottom: 0rem;"> We help you to grow your business, worldwide with our B2B E-commerce platform, VIDUYT CLOUD.   
                             Our team has highly qualified electrical engineers with vast industrial experience in the field of Electrical Engineering Technology. Well-known electrical manufacturers & dealers are registered with Vidyut Cloud. This list has only been growing with time. We provide you the following value propositions:
                         </p>   
+
+
+                   
+                          
+
                             <ul class="about_us bullet">
-                            <li>Buyers can purchase the products as per their requirements from the global market.</li>
-                            <li>We provide the product selling facility for the manufacturers/ dealers from all over the world</li> 
-                            <li>Service Orientation:  Our customer-focused approach makes us different from others. To serve the customers with the best quality service is our main aim. The customer care team guide every customer online as well as offline mode</li>
-                            <li>	Our marketing team is good at market research for a variety of products. & it targets mainly panel manufacturers, contractors, builders, etc.</li>
+                            <li>     <mat-accordion class="card">
+                                <mat-expansion-panel (opened)="panelOpenState = true"
+                                                     (closed)="panelOpenState = false">
+                                  <mat-expansion-panel-header>
+                                     <mat-panel-description>
+                                      <strong class="questions">Where can the buyers purchase from?</strong>
+                                    </mat-panel-description>
+                                  </mat-expansion-panel-header>
+                                 <span>
+                                    Buyers can purchase the products as per their requirements from the global market    
+                                </span>
+                                </mat-expansion-panel>
+                              </mat-accordion></li>
+                            <li>
+                                <mat-accordion class="card">
+                                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                                         (closed)="panelOpenState = false">
+                                      <mat-expansion-panel-header>
+                                         <mat-panel-description>
+                                       <strong class="questions"> What facility do we provide?</strong>
+                                        </mat-panel-description>
+                                      </mat-expansion-panel-header>
+                                     <span>
+                                        We provide the product selling facility for the manufacturers/ dealers from all over the world.
+                                        </span>
+                                    </mat-expansion-panel>
+                                  </mat-accordion>
+                              </li> 
+                            <li>
+                                <mat-accordion class="card">
+                                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                                         (closed)="panelOpenState = false">
+                                      <mat-expansion-panel-header>
+                                         <mat-panel-description>
+                                         <strong class="questions"> How do we care for our Customers?</strong>
+                                        </mat-panel-description>
+                                      </mat-expansion-panel-header>
+                                     <span>
+                                        Service Orientation:  Our customer-focused approach makes us different from others. To serve the customers with the best quality service is our main aim. The customer care team guide every customer online as well as offline mode 
+                                       </span>
+                                    </mat-expansion-panel>
+                                  </mat-accordion>
+                                
+                                </li>
+                            <li>
+                                
+                                <mat-accordion class="card">
+                                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                                         (closed)="panelOpenState = false">
+                                      <mat-expansion-panel-header>
+                                         <mat-panel-description>
+                                        <strong class="questions">Strength of Our Marketing Team?</strong>  
+                                        </mat-panel-description>
+                                      </mat-expansion-panel-header>
+                                     <span>
+                                        Our marketing team is good at market research for a variety of products. It targets mainly panel manufacturers, contractors, builders, etc.
+                                        </span>
+
+                                    </mat-expansion-panel>
+                                  </mat-accordion>
+                               </li>
+
+<!-- Why Us? Section if in the same list-->
+<li>
+                                
+    <mat-accordion class="card">
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+             <mat-panel-description>
+             <strong class="questions">Why become a Member of Vidyut Cloud?</strong>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+           <ul class="about_us bullet">
+            <li class="sub st">Search the right manufacturer or supplier for the specific product in just a few clicks.</li>
+            <li class="sub">Searching one type of product from different manufacturers along with price & details makes it easy.</li>
+            <li class="sub">Get multiple quotations from various manufactures in one place. </li>
+            <li class="sub">Negotiation can be done online.</li>
+            <li class="sub">Get free leads for your required product</li>
+            <li class="sub">Get customized design solution for transformer</li>
+            <li class="sub">Manufactures will can grow their business online</li>
+        </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+   </li>
+
+
+
+
                         </ul>
                             
-                           <strong class="about_us "> <p class="sub_header">Why become a Member of Vidyut Cloud?</p></strong>
+                           <!-- <strong class="about_us "> <p class="sub_header">Why become a Member of Vidyut Cloud?</p></strong>
                             <p class="about_us sub_header">By becoming a member you can -</p> 
                             
                             <ul class="about_us bullet">
@@ -31,7 +122,7 @@
                                 <li>Get free leads for your required product</li>
                                 <li>Get customized design solution for transformer</li>
                                 <li>Manufactures will can grow their business online</li>
-                            </ul>
+                            </ul> -->
                     </div>
                     <!-- <div class="about-us__team">
                         <h2 class="about-us__team-title">Meat Our Team</h2>

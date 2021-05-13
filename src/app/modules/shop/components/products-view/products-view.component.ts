@@ -4,6 +4,9 @@ import { PageCategoryService } from '../../services/page-category.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { HomeCommonService } from 'src/app/shared/services/home-common.service';
+import{ EventEmitter, forwardRef, OnChanges, Output, SimpleChanges } from '@angular/core';
+
 
 export type Layout = 'grid'|'grid-with-features'|'list';
 
@@ -16,38 +19,73 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
     @Input() layout: Layout = 'list';
     @Input() grid: 'grid-3-sidebar'|'grid-4-full'|'grid-5-full' = 'grid-3-sidebar';
     @Input() offcanvas: 'always'|'mobile' = 'mobile';
-    
+    @Input() product:any;
+    @Input() totalPages:string;
+    @Input() currentPages:string;
+    @Input() totalItems:string;
+    @Output() pageChange: EventEmitter<number> = new EventEmitter();
     destroy$: Subject<void> = new Subject<void>();
-   
+    prod:any;
+    showNoProductMessage = false;
     listOptionsForm: FormGroup;
     filtersCount = 0;
-
+    // totalItems: any;
+    // totalPages:string;
+    // currentPages: any;
+    product_list:FormGroup;
     constructor(
         private fb: FormBuilder,
         public sidebar: ShopSidebarService,
         public pageService: PageCategoryService,
-    ) { }
-
+        private common:HomeCommonService
+    ) 
+    {
+        //  this.getProducts(); 
+    this.product_list = this.fb.group({
+        sort:[''],
+        limit:['10'],
+        page:this.totalPages
+    })
+        
+}
+    current(event){
+        console.log(event);
+        if (event) {
+            this.pageChange.emit(event);
+        }
+    }
     ngOnInit(): void {
         this.setLayout('list');
-        this.listOptionsForm = this.fb.group({
-            page: this.fb.control(this.pageService.page),
-            limit: this.fb.control(this.pageService.limit),
-            sort: this.fb.control(this.pageService.sort),
-        });
-        this.listOptionsForm.valueChanges.subscribe(value => {
-            value.limit = parseFloat(value.limit);
-            this.pageService.updateOptions(value);
-        });
+        // console.log(this.product);
+    }
 
-        this.pageService.list$.pipe(
-            takeUntil(this.destroy$)
-        ).subscribe(
-            ({page, limit, sort, filterValues}) => {
-                this.filtersCount = Object.keys(filterValues).length;
-                this.listOptionsForm.setValue({page, limit, sort}, {emitEvent: false});
-            }
-        );
+    // getProducts(){
+    //     this.common.getProducts().subscribe(products=>{
+    //         console.log(products);
+    //         console.log(products.products);
+    //         console.log(products.products[0].name);
+    //         console.log(products.products[0].Merchant.business_name);
+    //         this.prod = products.products;
+    //         console.log(products.totalItems);
+    //         this.totalItems = products.totalItems;
+    //         this.totalPages = products.totalPages;
+    //         console.log(this.totalPages);
+    //         this.currentPages = products.currentPages;
+    //     })
+    // }
+
+
+   async prodLenth(product) {
+        // console.log(product)
+        // return false;s
+         if( product.length <= 0){
+             this.showNoProductMessage = true;
+            return true;
+
+        } else {
+            this.showNoProductMessage = true;
+            return false;
+        }
     }
 
     ngOnDestroy(): void {

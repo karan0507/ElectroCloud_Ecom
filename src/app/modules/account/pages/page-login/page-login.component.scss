@@ -11,15 +11,15 @@
     min-width: 220px;
   }
   
-  #divInner{
-    left: 0;
-    position: sticky;
-  }
+  // #divInner{
+  //   left: 0;
+  //   position: sticky;
+  // }
   
-  #divOuter{
-    width: 190px; 
-    overflow: hidden;
-  }
+  // #divOuter{
+  //   width: 190px; 
+  //   overflow: hidden;
+  // }
   input:focus {outline:none;}
   input[type=text]:focus {outline:none;}
 
@@ -32,4 +32,60 @@
 }
 .login{
     width: 50%;
+}
+.verify{
+  text-align: center;
+}
+
+
+
+.container-fluid {
+	.row {
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
+	}
+}
+// Container-fluid Styling only End =====
+
+
+// =====
+// Passcode-wrapper Styling only Begin ==
+.passcode-wrapper {
+	// display: flex;
+	// justify-content: space-between;
+	// align-items: center;
+	// width: auto;
+  padding: 1rem;
+	margin: 0 auto;
+	input {
+		width: 50px;
+		height: 50px;
+		padding: 1 rem;
+		margin-right: 5px;
+		text-align: center;
+		border: 1px solid gray;
+		border-radius: 5px;
+		&:last-child {
+			margin-right: 0;
+		}
+		&::-webkit-inner-spin-button, 
+		&::-webkit-outer-spin-button { 
+			-webkit-appearance: none;
+			appearance: none;
+			margin: 0;
+		}
+		&:focus,
+		&.focus {
+			border-color: #e2e2e2;
+			outline: none;
+			box-shadow: none;
+		}
+	}
+}
+input{
+  outline: none;
+}
+a{
+  outline: none;
 }

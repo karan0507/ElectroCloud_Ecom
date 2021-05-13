@@ -1,24 +1,43 @@
 <div class="account-menu">
-    <div class="account-menu__form">
+    <div [formGroup]="account_login" *ngIf="!isLogin" class="account-menu__form">
         <div class="account-menu__form-title">Log In to Your Account</div>
         
-        <div class="form-group">
+        <div class="form-group" *ngIf="!isVerified">
             <label for="header-signin-email" class="sr-only">Mobile Number</label>
-            <input id="header-signin-email" type="email" class="form-control form-control-sm" placeholder="Mobile Number">
+            <input id="header-signin-email" (keypress)="numberOnly($event)" minlength=10 maxlength=10 (focusout)="clear()" formControlName="phone_no" class="form-control form-control-sm" placeholder="Mobile Number">
             <!-- <button class="btn-primary" style="float: right; margin-top: -30.8px; ">Verify</button> -->
+        
+            <div *ngIf="account_login.get('phone_no').invalid && 
+            account_login.get('phone_no').errors && 
+            (account_login.get('phone_no').dirty || account_login.get('phone_no').touched)">
+        <small class="text-danger"
+            *ngIf="account_login.get('phone_no').hasError('required')">
+            This field is required.
+        </small>
+        <small class="text-danger"
+            *ngIf="account_login.get('phone_no').hasError('minlength')">
+            The minimum length for this field is {{account_login.get('phone_no').errors.minlength.requiredLength}} characters.
+        </small>
+        <small class="text-danger"
+            *ngIf="account_login.get('phone_no').hasError('maxlength')">
+            The maximum length for this field is {{account_login.get('phone_no').errors.maxlength.requiredLength}} characters.
+        </small>
+    </div>
+        
         </div>
-        <div class="form-group" *ngIf = "isVerify">
+        <div class="form-group" *ngIf = "isVerified">
             <label for="header-signin-password" class="sr-only">Verification Code</label>
             <div class="account-menu__form-forgot">
-                <input id="header-signin-password" type="password" class="form-control form-control-sm" placeholder="Verification Code">
-                <a class="account-menu__form-forgot-link txt-blu">Resend?</a>
+                <input id="header-signin-password" type="password" formControlName="otp" class="form-control form-control-sm" placeholder="Verification Code">
+                <button (click)="resend()" class="account-menu__form-forgot-link txt-blu">Resend</button>
+                <!-- <a class="account-menu__form-forgot-link txt-blu">Resend?</a> -->
             </div>
         </div>
         <div class="form-group account-menu__form-button">
-            <button *ngIf="isVerified" class="btn btn-primary btn-sm">Login</button>
-            <button *ngIf="!isVerified" (click)="getOTP()" class="btn btn-primary btn-sm">Verify</button>
+            <button *ngIf="isVerified" (click)="login()" class="btn btn-primary btn-sm">Login</button>
+            <button *ngIf="!isVerified" (click)="getOTP()"  class="btn btn-primary btn-sm">Verify</button>
         </div>
-        <div class="account-menu__form-link"><a routerLink="/account/login" (click)="closeMenu.emit()">Create An Account</a></div>
+        <div class="account-menu__form-link"><a routerLink="/account/register" (click)="closeMenu.emit()">Create An Account</a></div>
     </div>
     <div *ngIf = "isLogin" class="form-group">
         <div class="account-menu__divider"></div>
@@ -27,20 +46,20 @@
             <img src="assets/images/avatars/avatar-3.jpg" alt="">
         </div>
         <div class="account-menu__user-info">
-            <!-- <div class="account-menu__user-name">{{}}</div>
-            <div class="account-menu__user-email">{{}}</div> -->
+            <div class="account-menu__user-name">{{log_user?.firstName}}  {{log_user?.lastName}}</div>
+            <div class="account-menu__user-email">{{log_user?.email}}</div>
         </div>
     </a>
     <div class="account-menu__divider"></div>
     <ul class="account-menu__links">
-        <li><a routerLink="/account/profile" (click)="closeMenu.emit()">Edit Profile</a></li>
+        <li><a routerLink="/account/dashboard" (click)="closeMenu.emit()">Dashboard</a></li>
         <li><a routerLink="/account/orders" (click)="closeMenu.emit()">Order History</a></li>
         <li><a routerLink="/account/addresses" (click)="closeMenu.emit()">Addresses</a></li>
-        <li><a routerLink="/account/password" (click)="closeMenu.emit()">Password</a></li>
+        <li><a routerLink="/account/password" (click)="closeMenu.emit()">Chat</a></li>
     </ul>
     <div class="account-menu__divider"></div>
     <ul class="account-menu__links">
-        <li><a routerLink="/account/login" (click)="closeMenu.emit()">Logout</a></li>
+        <li><a routerLink="/" (click)="closeMenu.emit(); logout()">Logout</a></li>
     </ul>
     </div>
 </div>

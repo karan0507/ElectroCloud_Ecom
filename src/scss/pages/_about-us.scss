@@ -5,9 +5,10 @@
 @import '../functions';
 
 
-.about-us {}
+
 .about-us__image {
-    background-image: url('../../assets/images/avatars/aboutus3.jpg');
+    // background-image: url('../../assets/images/avatars/aboutus3.jpg');
+    background-color: #e2e2e2;
     background-size: cover;
     background-position: bottom center;
     height: 500px;

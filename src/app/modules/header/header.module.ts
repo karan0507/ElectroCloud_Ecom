@@ -18,6 +18,7 @@ import { MegamenuComponent } from './components/megamenu/megamenu.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavComponent } from './components/nav/nav.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,9 @@ import { TopbarComponent } from './components/topbar/topbar.component';
         CommonModule,
         RouterModule,
         // modules
-        SharedModule
+        SharedModule,
+        ReactiveFormsModule,
+        FormsModule
     ],
     exports: [
         // components

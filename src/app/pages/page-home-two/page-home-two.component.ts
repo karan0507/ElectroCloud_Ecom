@@ -10,6 +10,8 @@ import { BlockHeaderGroup } from '../../shared/interfaces/block-header-group';
 import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 import { FeaturedProductsService } from 'src/app/shared/services/featured-products.service';
 import { SubbannerService } from 'src/app/shared/services/subbanner.service';
+import { ToastrService } from 'ngx-toastr';
+import { Meta } from '@angular/platform-browser';
 
 interface ProductsCarouselGroup extends BlockHeaderGroup {
     products$: Observable<Product[]>;
@@ -44,7 +46,8 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
     latestProducts: ProductsCarouselData;
 
     constructor(
-        private shop: ShopService,private commonService:HomeCommonService, private featuredprods:FeaturedProductsService, private subbanner:SubbannerService
+        private shop: ShopService,private commonService:HomeCommonService, private featuredprods:FeaturedProductsService,
+       private metatitle: Meta
     ) { }
 
     ngOnInit(): void {
@@ -56,34 +59,34 @@ export class PageHomeTwoComponent implements OnInit, OnDestroy {
         this.columnTopRated$ = this.shop.getTopRated(3);
         this.columnSpecialOffers$ = this.shop.getSpecialOffers(3);
         this.columnBestsellers$ = this.shop.getBestsellers(3);
-        this.featuredProducts = {
-            abort$: new Subject<void>(),
-            loading: false,
-            products: [],
-            groups: [
-                {
-                    name: 'All',
-                    current: true,
-                    products$: this.shop.getFeaturedProducts(null, 10),
-                },
-                {
-                    name: 'Power Tools',
-                    current: false,
-                    products$: this.shop.getFeaturedProducts('power-tools', 10),
-                },
-                {
-                    name: 'Hand Tools',
-                    current: false,
-                    products$: this.shop.getFeaturedProducts('hand-tools', 10),
-                },
-                {
-                    name: 'Plumbing',
-                    current: false,
-                    products$: this.shop.getFeaturedProducts('plumbing', 10),
-                },
-            ],
-        };
-        this.groupChange(this.featuredProducts, this.featuredProducts.groups[0]);
+        // this.featuredProducts = {
+        //     abort$: new Subject<void>(),
+        //     loading: false,
+        //     products: [],
+        //     groups: [
+        //         {
+        //             name: 'All',
+        //             current: true,
+        //             products$: this.shop.getFeaturedProducts(null, 10),
+        //         },
+        //         {
+        //             name: 'Power Tools',
+        //             current: false,
+        //             products$: this.shop.getFeaturedProducts('power-tools', 10),
+        //         },
+        //         {
+        //             name: 'Hand Tools',
+        //             current: false,
+        //             products$: this.shop.getFeaturedProducts('hand-tools', 10),
+        //         },
+        //         {
+        //             name: 'Plumbing',
+        //             current: false,
+        //             products$: this.shop.getFeaturedProducts('plumbing', 10),
+        //         },
+        //     ],
+        // };
+        // this.groupChange(this.featuredProducts, this.featuredProducts.groups[0]);
 
         this.latestProducts = {
             abort$: new Subject<void>(),

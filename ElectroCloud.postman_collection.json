@@ -23,6 +23,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJlbWFpbCI6ImhvdHNha2VAbWFpbC5jb20ifSwiaWF0IjoxNjE3NjI2MjE3fQ.1byxEExq7ltQ6nT9dtzZ5aVs62U2aNPiSIbdICMZylo",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -30,17 +40,17 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Nokia 118",
+									"value": "Soccer Poster",
 									"type": "text"
 								},
 								{
 									"key": "sku",
-									"value": "SDA/8DS/SADSAD-SAD",
+									"value": "SOCUS",
 									"type": "text"
 								},
 								{
 									"key": "metaTitle",
-									"value": "NOkia 118",
+									"value": "Soccerr",
 									"type": "text"
 								},
 								{
@@ -60,7 +70,7 @@
 								},
 								{
 									"key": "price",
-									"value": "1800",
+									"value": "0.99",
 									"type": "text"
 								},
 								{
@@ -80,26 +90,45 @@
 								},
 								{
 									"key": "brandId",
-									"value": "2",
-									"type": "text",
-									"disabled": true
+									"value": "1",
+									"type": "text"
 								},
 								{
 									"key": "product_images",
 									"type": "file",
-									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-30 at 6.00.54 PM.png"
+									"src": "Mock Products/imani-bahati-LxVxPA1LOVM-unsplash.jpg"
+								},
+								{
+									"key": "featured_images",
+									"type": "file",
+									"src": "Mock Products/imani-bahati-LxVxPA1LOVM-unsplash.jpg"
+								},
+								{
+									"key": "categoriesId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "ribbon_text",
+									"value": "hot",
+									"type": "text"
+								},
+								{
+									"key": "ribbon_color_code",
+									"value": "red",
+									"type": "text"
+								},
+								{
+									"key": "isFeatured",
+									"value": "true",
+									"type": "text"
 								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							]
 						},
 						"url": {
-							"raw": "{{stagging}}/products",
+							"raw": "{{local}}/products",
 							"host": [
-								"{{stagging}}"
+								"{{local}}"
 							],
 							"path": [
 								"products"
@@ -122,12 +151,22 @@
 						"disableCookies": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6InNhZEBtYWlsLmNvbSJ9LCJpYXQiOjE2MTc2MjY4ODl9.903K-in_voXe2xp01MLE-6aWNuA_1GoXKFWcIfvl-q8",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{stagging}}/products",
+							"raw": "{{local}}/products",
 							"host": [
-								"{{stagging}}"
+								"{{local}}"
 							],
 							"path": [
 								"products"
@@ -142,13 +181,40 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"image_url\":\"https://homepages.cae.wisc.edu/~ece533/images/airplane.png\",\n    \"head_text\": \"description\",\n    \"description\": \"description\",\n    \"button\": \"Shop Now\",\n    \"isActive\": true\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image_url",
+									"value": "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "head_text",
+									"value": " description",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": " description",
+									"type": "text"
+								},
+								{
+									"key": "button",
+									"value": " Shop Now",
+									"type": "text"
+								},
+								{
+									"key": "isActive",
+									"value": " 0",
+									"type": "text"
+								},
+								{
+									"key": "banner_image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-31 at 10.16.10 PM.png"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{local}}/banners",
@@ -159,6 +225,394 @@
 								"banners"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/banners",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"banners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Banner By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/banner/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"banner",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Banner",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image_url",
+									"value": "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "head_text",
+									"value": " Exciting New Products",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": " description",
+									"type": "text"
+								},
+								{
+									"key": "button",
+									"value": " Shop Now",
+									"type": "text"
+								},
+								{
+									"key": "isActive",
+									"value": " 1",
+									"type": "text"
+								},
+								{
+									"key": "banner_image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/banner/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"banner",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product Attributes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"attribute_name\":\"attribute_name\",\n    \"attribute_value\":\"attribute_value\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/product/attributes",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"product",
+								"attributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Product Attributes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"attribute_name\":\"attribute_name\",\n    \"attribute_value\":\"attribute_value\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/product/attributes",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"product",
+								"attributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "meta_title",
+									"value": "meta_title",
+									"type": "text"
+								},
+								{
+									"key": "category_name",
+									"value": "category_name",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "slug32",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-30 at 6.00.54 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/category",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "meta_title",
+									"value": "meta_title",
+									"type": "text"
+								},
+								{
+									"key": "category_name",
+									"value": "Transformers",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "slug32",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-30 at 6.00.54 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/category/4",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"category",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/category/3",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"category",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Merchant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "sagar",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "kelkar",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hotsake@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone_no",
+									"value": "89689686",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ac0de52dh",
+									"type": "text"
+								},
+								{
+									"key": "business_name",
+									"value": "fdsfsd",
+									"type": "text"
+								},
+								{
+									"key": "owner_name",
+									"value": "dsf",
+									"type": "text"
+								},
+								{
+									"key": "GST",
+									"value": "sdfsd",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "dsfsd",
+									"type": "text"
+								},
+								{
+									"key": "pancard",
+									"value": "dsfdsf",
+									"type": "text"
+								},
+								{
+									"key": "shopact",
+									"value": "dfsfs",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone_no",
+									"value": "767474",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gst_image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-04-02 at 10.47.03 PM.png"
+								},
+								{
+									"key": "pan_image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-31 at 10.16.10 PM.png"
+								},
+								{
+									"key": "shop_act_image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-04-02 at 10.47.03 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/registration",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Merchant",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sad@mail.com\",\n    \"password\": \"ac0de52dh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}login",
+							"host": [
+								"{{local}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
 					},
 					"response": []
 				}
@@ -173,12 +627,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{local}}/customer/banner",
+							"raw": "{{local}}customer/banner",
 							"host": [
-								"{{local}}"
+								"{{local}}customer"
 							],
 							"path": [
-								"customer",
 								"banner"
 							]
 						}
@@ -190,7 +643,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{local}}customer/products",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"products"
+							]
+						}
 					},
 					"response": []
 				},
@@ -199,7 +660,123 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{local}}customer/products/featured",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"products",
+								"featured"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/customer/categories",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"customer",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "6",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"sagar\",\n\"lastName\":\"kelkar\",\n\"email\":\"hotsake@mail.com\",\n\"phone_no\":\"9561555479\",\n\"password\":\"ac0de52dh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}customer/register",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Registration OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_no\": \"89689686\",\n    \"otp\":\"3134\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/customer/register/verify",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"customer",
+								"register",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Resend OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_no\": \"89689686\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/customer/resend/otp",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"customer",
+								"resend",
+								"otp"
+							]
+						}
 					},
 					"response": []
 				}
@@ -228,10 +805,12 @@
 	],
 	"variable": [
 		{
+			"id": "78c2c4f7-621f-42a6-8345-94a1dcbf6f9d",
 			"key": "local",
 			"value": "http://127.0.0.1:3000/"
 		},
 		{
+			"id": "373de4f9-ad88-494b-aec0-13ef3f6d743d",
 			"key": "stagging",
 			"value": "stagging"
 		}

@@ -17,7 +17,8 @@
         flex-shrink: 0;
     }
     .shop-layout__content {
-        width: calc(100% - 285px);
+        // width: calc(100% - 285px);
+        width: 100%;
     }
     .shop-layout--sidebar--start {
         .shop-layout__sidebar {

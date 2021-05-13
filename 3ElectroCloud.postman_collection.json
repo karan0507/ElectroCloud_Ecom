@@ -1,0 +1,858 @@
+{
+	"info": {
+		"_postman_id": "3f46048a-3852-494b-a155-95637e13ae34",
+		"name": "ElectroCloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Merchant",
+			"item": [
+				{
+					"name": "Add Product Attributes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"attribute_name\":\"attribute_name\",\n    \"attribute_value\":\"attribute_value\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/product/attributes",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"product",
+								"attributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Product Attributes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"attribute_name\":\"attribute_name\",\n    \"attribute_value\":\"attribute_value\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/product/attributes",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"product",
+								"attributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "meta_title",
+									"value": "meta_title",
+									"type": "text"
+								},
+								{
+									"key": "category_name",
+									"value": "category_name",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "slug32",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/VidyutCloud Resources/images/banner3.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/category",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Merchant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "sagar",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "kelkar",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hotsake@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone_no",
+									"value": "89689686",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ac0de52dh",
+									"type": "text"
+								},
+								{
+									"key": "business_name",
+									"value": "fdsfsd",
+									"type": "text"
+								},
+								{
+									"key": "owner_name",
+									"value": "dsf",
+									"type": "text"
+								},
+								{
+									"key": "GST",
+									"value": "sdfsd",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "dsfsd",
+									"type": "text"
+								},
+								{
+									"key": "pancard",
+									"value": "dsfdsf",
+									"type": "text"
+								},
+								{
+									"key": "shopact",
+									"value": "dfsfs",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone_no",
+									"value": "767474",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gst_image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-04-02 at 10.47.03 PM.png"
+								},
+								{
+									"key": "pan_image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-31 at 10.16.10 PM.png"
+								},
+								{
+									"key": "shop_act_image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-04-02 at 10.47.03 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/registration",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Merchant",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"hotsake@mail.com\",\n    \"password\": \"ac0de52dh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}login",
+							"host": [
+								"{{local}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "Add Products",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Soccer Poster",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "SOCUS",
+									"type": "text"
+								},
+								{
+									"key": "metaTitle",
+									"value": "Soccerr",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "nokia",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "warranty_guarantee_type",
+									"value": "warranty",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "0.99",
+									"type": "text"
+								},
+								{
+									"key": "discount_type",
+									"value": "Percentage",
+									"type": "text"
+								},
+								{
+									"key": "discount",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "brandId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "product_images",
+									"type": "file",
+									"src": "Mock Products/imani-bahati-LxVxPA1LOVM-unsplash.jpg"
+								},
+								{
+									"key": "featured_images",
+									"type": "file",
+									"src": "Mock Products/imani-bahati-LxVxPA1LOVM-unsplash.jpg"
+								},
+								{
+									"key": "categoriesId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "ribbon_text",
+									"value": "hot",
+									"type": "text"
+								},
+								{
+									"key": "ribbon_color_code",
+									"value": "red",
+									"type": "text"
+								},
+								{
+									"key": "isFeatured",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{stagging}}/products",
+							"host": [
+								"{{stagging}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "9",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Adding Products"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get  Home Page Banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}customer/banner",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"banner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}customer/products",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Featured Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}customer/products/featured",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"products",
+								"featured"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/customer/categories",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"customer",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "6",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"sagar\",\n\"lastName\":\"kelkar\",\n\"email\":\"yash@mail.com\",\n\"phone_no\":\"9561555479\",\n\"password\":\"ac0de52dh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/customer/register",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"customer",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Registration OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_no\": \"89689686\",\n    \"otp\":\"3134\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/customer/register/verify",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"customer",
+								"register",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Resend OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_no\": \"89689686\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/customer/resend/otp",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"customer",
+								"resend",
+								"otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_no\": \"9561555479\",\n    \"otp\":\"6054\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}customer/login",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}customer/info/1",
+							"host": [
+								"{{local}}customer"
+							],
+							"path": [
+								"info",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All Banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/banners",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"banners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6InNhZEBtYWlsLmNvbSJ9LCJpYXQiOjE2MTc2MjY4ODl9.903K-in_voXe2xp01MLE-6aWNuA_1GoXKFWcIfvl-q8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/products",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "meta_title",
+									"value": "meta_title",
+									"type": "text"
+								},
+								{
+									"key": "category_name",
+									"value": "Transformers",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "slug32",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-30 at 6.00.54 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/category/4",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"category",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Banner",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image_url",
+									"value": "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "head_text",
+									"value": " Exciting New Products",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": " description",
+									"type": "text"
+								},
+								{
+									"key": "button",
+									"value": " Shop Now",
+									"type": "text"
+								},
+								{
+									"key": "isActive",
+									"value": " 1",
+									"type": "text"
+								},
+								{
+									"key": "banner_image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/banner/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"banner",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/category/3",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"category",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Banner By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/banner/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"banner",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add New Banners",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image_url",
+									"value": "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "head_text",
+									"value": " description",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": " description",
+									"type": "text"
+								},
+								{
+									"key": "button",
+									"value": " Shop Now",
+									"type": "text"
+								},
+								{
+									"key": "isActive",
+									"value": " 0",
+									"type": "text"
+								},
+								{
+									"key": "banner_image",
+									"type": "file",
+									"src": "/Users/yashtalegaonkar/Desktop/Screenshot 2021-03-31 at 10.16.10 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/banners",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"banners"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://127.0.0.1:3000/"
+		},
+		{
+			"key": "stagging",
+			"value": "stagging"
+		}
+	]
+}

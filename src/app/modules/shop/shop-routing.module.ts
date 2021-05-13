@@ -33,30 +33,36 @@ const categoryPageResolvers: ResolveData = {
 const routes: Routes = [
     {
         path: 'catalog',
-        component: PageCategoryComponent,
-        data: categoryPageData,
-        resolve: categoryPageResolvers,
+        // runGuardsAndResolvers :'always',
+        component: PageCategoryComponent
+        // data: categoryPageData,
+        // resolve: {
+        //     category: CategoryResolverService
+        // }
+
     },
     {
         path: 'catalog/:categorySlug',
-        component: PageCategoryComponent,
-        data: categoryPageData,
-        resolve: categoryPageResolvers,
+        component: PageCategoryComponent
+        // data: categoryPageData,
+        // resolve: {
+        //     category:CategoryResolverService}
+    
     },
     {
-        path: 'products/:productSlug',
+        path: 'product/:productSlug',
         component: PageProductComponent,
-        data: {
-            // Product page layout. Possible values: 'standard', 'columnar', 'sidebar'.
-            layout: 'standard',
-            // Sidebar position. Possible values: 'start', 'end'.
-            // It does not matter if the value of the 'layout' parameter is not 'sidebar'.
-            // For LTR scripts "start" is "left" and "end" is "right".
-            sidebarPosition: 'start'
-        },
+        // data: {
+        //     // Product page layout. Possible values: 'standard', 'columnar', 'sidebar'.
+        //     layout: 'standard',
+        //     // Sidebar position. Possible values: 'start', 'end'.
+        //     // It does not matter if the value of the 'layout' parameter is not 'sidebar'.
+        //     // For LTR scripts "start" is "left" and "end" is "right".
+        //     sidebarPosition: 'start'
+        // },
         resolve: {
-            product: ProductResolverService
-        },
+            category:ProductResolverService
+        }
     },
     {
         path: 'cart',

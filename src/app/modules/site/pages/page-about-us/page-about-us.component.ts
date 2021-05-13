@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { from } from 'rxjs';
 import { DirectionService } from '../../../../shared/services/direction.service';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 @Component({
     selector: 'app-about-us',
     templateUrl: './page-about-us.component.html',
@@ -17,6 +18,7 @@ export class PageAboutUsComponent {
         },
         rtl: this.direction.isRTL()
     };
+    panelOpenState = false;
 
     constructor(
         private direction: DirectionService

@@ -3,21 +3,42 @@
        margin-bottom: 40rem;
        width: 100%;
        height: 15rem;
-       margin: 10px;
+    //    margin: 10px;
        flex-basis: calc(25% - 2 * 10px); // 25% minus left and right margins.
+       border: 1px solid #f0f0f0;
+       overflow: hidden;
     }
 .header{
     text-align: center;
     margin-bottom: 2rem;
 }
-.footer{
+.card-footer{
     background-color: #fff27dbf;
     color: black;
     width: 100%;
     text-align: center;
     padding: 15px;
+   position: sticky;
 }
 .footer-text{
 padding-top: 15px;
 padding-bottom: 15px;
+overflow: hidden;   
+}
+.card-body:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+    -ms-transform: scale(1.2);
+    transition: all 0.9s;
+}
+.category-btn{
+    overflow: hidden;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+ 
 }
