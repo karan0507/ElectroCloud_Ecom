@@ -2,7 +2,7 @@
 <div class="products-view" [formGroup]="product_list">
     <div class="products-view__loader"></div>
 
-    <div  class="products-view__content">
+    <div class="products-view__content">
         <div class="products-view__options">
             <div class="view-options" [ngClass]="{
                 'view-options--offcanvas--always': offcanvas === 'always',
@@ -37,12 +37,11 @@
                     </div>
                 </div>
                 <div class="view-options__legend" style="margin-left: 0px;">
-                    
+
                     Showing
 
-                     <!-- {{ this.pageService.from }}–{{ this.pageService.to }} -->
-                     {{ totalItems }}
-                    results
+                    <!-- {{ this.pageService.from }}–{{ this.pageService.to }} -->
+                    {{ totalItems }} results
                 </div>
                 <div class="view-options__divider"></div>
                 <div class="view-options__control">
@@ -80,7 +79,7 @@
         </div>
     </div>
 
-    <div *ngIf="product?.length" class="products-view__empty">
+    <div *ngIf="showNoProductMessage" class="products-view__empty">
         <div class="products-view__empty-title">No matching items</div>
         <div class="products-view__empty-subtitle">Try resetting the filters</div>
         <button type="button" class="btn btn-primary btn-sm" (click)="resetFilters()">Reset filters</button>
