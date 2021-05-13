@@ -73,7 +73,7 @@ export class PageCategoryComponent implements OnDestroy {
          this.categorySlug = categorySlug.categorySlug;
 
             if(categorySlug.categorySlug !== undefined && categorySlug.categorySlug !== null){
-                this.getProducts(categorySlug.categorySlug, this.currentPages);
+                this.getProducts(categorySlug.categorySlug, '');
             }
             else{
                 this.categorySlug
@@ -121,6 +121,7 @@ export class PageCategoryComponent implements OnDestroy {
         console.log(tree)
         tree.queryParams = this.getQueryParams(page);
         console.log(tree.queryParams)
+        // if(tree.queryParams)
         this.location.replaceState(tree.toString());
         if(this.categorySlug !== undefined && this.categorySlug !== null){
             this.getProducts(this.categorySlug, tree.queryParams.page);

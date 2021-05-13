@@ -43,10 +43,10 @@ const routes: Routes = [
     },
     {
         path: 'catalog/:categorySlug',
-        component: PageCategoryComponent,
+        component: PageCategoryComponent
         // data: categoryPageData,
-        resolve: {
-            category:CategoryResolverService}
+        // resolve: {
+        //     category:CategoryResolverService}
     
     },
     {
