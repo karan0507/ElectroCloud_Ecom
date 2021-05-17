@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
 import { PageOrdersListComponent } from './pages/page-orders-list/page-orders-list.component';
@@ -51,10 +50,7 @@ const routes: Routes = [
             }
         ]
     },
-    {
-        path: 'login',
-        component: PageLoginComponent
-    },
+   
     {
         path: 'register',
         component:RegisterComponent,

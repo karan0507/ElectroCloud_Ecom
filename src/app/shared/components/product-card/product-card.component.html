@@ -6,70 +6,81 @@
     'product-card--layout--list':                        layout === 'list',
     'product-card--layout--horizontal':                  layout === 'horizontal'
 }">
-    <button class="product-card__quickview" type="button" appClick (click)="showQuickview()" [ngClass]="{'product-card__quickview--preload': showingQuickview}">
+    <button class="product-card__quickview" type="button" appClick (click)="showQuickview()"
+        [ngClass]="{'product-card__quickview--preload': showingQuickview}">
         <app-icon name="quickview-16" size="16"></app-icon>
         <span class="fake-svg-icon"></span>
     </button>
-<div class="row">
-    <div class="col-md-3  prod_img">
-        <div class="product-card__badges-list">
-            <!-- <div *ngIf="product?.badges.includes('sale')" class="product-card__badge product-card__badge--sale">Sale</div>
+    <div class="row">
+        <div class="col-md-3  prod_img">
+            <div class="product-card__badges-list">
+                <!-- <div *ngIf="product?.badges.includes('sale')" class="product-card__badge product-card__badge--sale">Sale</div>
             <div *ngIf="product?.badges.includes('hot')" class="product-card__badge product-card__badge--hot">Hot</div> -->
-            <div [ngStyle]="{'background-color':product?.ribbon_color_code}" class="product-card__badge product-card__badge--new">{{product?.ribbon_text}}</div>
+                <div [ngStyle]="{'background-color':product?.ribbon_color_code}"
+                    class="product-card__badge product-card__badge--new">{{product?.ribbon_text}}</div>
+            </div>
+            <!-- /////*****Product Image*******///////////    -->
+            <div class="product-card__image product-image" style="margin-left: 0.8rem;">
+                <a appClick [routerLink]="product?.slug" class="product-image__body">
+                    <img class="product-image__img" [src]="product?.featuredImageUrl"
+                        onerror="this.src = '../../../assets/images/categories/custom-built-transformer-250x250.jpg'"
+                        alt="">
+                </a>
+            </div>
+            <!-- /////*****Product Image End*******/////////// -->
         </div>
-    <!-- /////*****Product Image*******///////////    -->
-        <div class="product-card__image product-image" style="margin-left: 0.8rem;">
-            <a appClick [routerLink]="product?.slug" class="product-image__body">
-                <img class="product-image__img" [src]="product?.featuredImageUrl" onerror="this.src = '../../../assets/images/categories/custom-built-transformer-250x250.jpg'" alt="">
-            </a>
-        </div>
-        <!-- /////*****Product Image End*******/////////// -->
-    </div>
-    <div class="col-md-5">
-        <!-- /////*****Product Info*******/////////// -->
-    <div class="product-card__info">
-        <div class="product-card__name">
-            <b class="atr_name"><a appClick [routerLink]="'/shop/product/' + product.slug">{{ product.name }}</a></b>
-        </div>
-        <!-- <div class="product-card__rating">
+        <div class="col-md-5">
+            <!-- /////*****Product Info*******/////////// -->
+            <div class="product-card__info">
+                <div class="product-card__name">
+                    <b class="atr_name"><a appClick [routerLink]="'/shop/product/' + product.slug">{{ product.name
+                            }}
+                            <!-- <p-progressSpinner></p-progressSpinner> -->
+                        </a></b>
+                </div>
+                <!-- <div class="product-card__rating">
             <app-rating [value]="product.rating"></app-rating>
             <div class="product-card__rating-legend">{{ product.name }} Reviews</div>
         </div> -->
-        <ul *ngIf="product.ProductAttributes.length" class=" attributes">
-            <li *ngFor="let attribute of product.ProductAttributes">
-              <b> {{ attribute?.Attribute.attribute_name }}:</b> {{ attribute?.Attribute.attribute_value }}
-                <!-- <ng-container *ngFor="let  of  product.ProductAttributes; let last = last">
+                <ul *ngIf="product.ProductAttributes.length" class=" attributes">
+                    <li *ngFor="let attribute of product.ProductAttributes">
+                        <b> {{ attribute?.Attribute.attribute_name }}:</b> {{ attribute?.Attribute.attribute_value }}
+                        <!-- <ng-container *ngFor="let  of  product.ProductAttributes; let last = last">
                     <ng-container *ngIf="!last">, </ng-container>
                 </ng-container> -->
-            </li>
-        </ul>
-    </div>
-    <!-- /////*****Product Info End*******/////////// -->
-    </div>
-       <!-- /////*****Merchant Section*******/////////// -->
-    <div class="col-md-4">
-      
-    <div class="product-card__actions">
-        <div class=" atr_name">
-         Merchant Name:
-         <!--*ngIf="product.availability === 'in-stock'"-->   <span  class="merchant_name"> {{product?.Merchant.business_name}}</span>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-            <div class="wrapper">
-             <ol class="prop_list">
-            <li class="points pt-3">   <img src="../../../../assets/images/avatars/1whyus.png" class="mer-property" alt=""><span>Verified Merchant</span></li>
-            <li class="points pt-3">   <img src="../../../../assets/images/avatars/1whyus.png" class="mer-property" alt=""><span>Verified Merchant</span></li>
-            <li class="points pt-3">   <img src="../../../../assets/images/avatars/1whyus.png" class="mer-property" alt=""><span>Verified Merchant</span></li>
-            </ol>
-
-            </div>    
-                
-            
+                    </li>
+                </ul>
             </div>
+            <!-- /////*****Product Info End*******/////////// -->
         </div>
-        <!-- <div class="product-card__prices">
+        <!-- /////*****Merchant Section*******/////////// -->
+        <div class="col-md-4">
+
+            <div class="product-card__actions">
+                <div class=" atr_name">
+                    Merchant Name:
+                    <!--*ngIf="product.availability === 'in-stock'"--> <span class="merchant_name">
+                        {{product?.Merchant.business_name}}</span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="wrapper">
+                            <ol class="prop_list">
+                                <li class="points pt-3"> <img src="../../../../assets/images/avatars/1whyus.png"
+                                        class="mer-property" alt=""><span>Verified Merchant</span></li>
+                                <li class="points pt-3"> <img src="../../../../assets/images/avatars/1whyus.png"
+                                        class="mer-property" alt=""><span>Verified Merchant</span></li>
+                                <li class="points pt-3"> <img src="../../../../assets/images/avatars/1whyus.png"
+                                        class="mer-property" alt=""><span>Verified Merchant</span></li>
+                            </ol>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- <div class="product-card__prices">
             <ng-container *ngIf="product.compareAtPrice">
                 <span class="product-card__new-price">{{ product.price|currencyFormat }}</span>{{ ' ' }}
                 <span class="product-card__old-price">{{ product.compareAtPrice|currencyFormat }}</span>
@@ -80,15 +91,26 @@
         </div> -->
 
 
-        <!-- Vertically centered modal -->
+                <!-- Vertically centered modal -->
 
 
- 
 
-        <div class="product-card__buttons">
-        
-            <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button" appClick (click)="addToCart()" [ngClass]="{'btn-loading': addingToCart}">Contact Us</button>
-            <!-- <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist" type="button" appClick (click)="addToWishlist()" [ngClass]="{'btn-loading': addingToWishlist}">
+
+                <div class="product-card__buttons">
+
+
+                    <button (click)="showResponsiveDialog()"
+                        class="btn btn-secondary product-card__addtocart product-card__addtocart--list">Get A
+                        Quote</button>
+                  
+                    
+                    <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list"
+                        type="button" appClick (click)="contactUs()" [ngClass]="{'btn-loading': addingToCart}">Contact
+                        Us</button>
+                  
+                 
+
+                    <!-- <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist" type="button" appClick (click)="addToWishlist()" [ngClass]="{'btn-loading': addingToWishlist}">
                 <app-icon name="wishlist-16" size="16"></app-icon>
                 <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
             </button>
@@ -96,12 +118,19 @@
                 <app-icon name="compare-16" size="16"></app-icon>
                 <span class="fake-svg-icon fake-svg-icon--compare-16"></span>
             </button> -->
+                </div>
+            </div>
+            <!-- /////*****Merchant Section End*******/////////// -->
         </div>
     </div>
-    <!-- /////*****Merchant Section End*******/////////// -->
-    </div>
 </div>
-  
-    
-   
-</div>
+<p-dialog header="" draggable=false [(visible)]="display1"
+[breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '50vw'}">
+<app-get-quote *ngIf="isLogin" [category]="category_type"></app-get-quote>
+<app-login *ngIf="!isLogin"></app-login>
+</p-dialog>
+<p-dialog header="" [(visible)]="display2"
+[breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+<app-merchantcontact  *ngIf="isLogin" [merchantinfo]="merchantInfo"></app-merchantcontact>
+<app-login *ngIf="!isLogin"></app-login>
+</p-dialog>

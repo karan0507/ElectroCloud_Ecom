@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { timeInterval } from 'rxjs/operators';
+// import { timeInterval } from 'rxjs/operators';
 import { AuthService } from 'src/app/modules/shop/services/auth.service';
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-login',

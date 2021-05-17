@@ -9,6 +9,7 @@ import { CurrencyService } from '../../services/currency.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { HomeCommonService } from '../../services/home-common.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-product-card',
@@ -21,7 +22,15 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
 
     @Input() product: any;
     @Input() layout: 'grid-sm'|'grid-nl'|'grid-lg'|'list'|'horizontal'|null = null;
-
+    // loggedIn:any;
+    isLogin:boolean;
+    display1:boolean;
+    display2:boolean;
+    category_type: any;
+    quote: boolean;
+    quote2:boolean;
+    contact:boolean;
+    merchantInfo:any;
     addingToCart = false;
     addingToWishlist = false;
     addingToCompare = false;
@@ -37,18 +46,37 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
         public compare: CompareService,
         public quickview: QuickviewService,
         public currency: CurrencyService,
-        private common: HomeCommonService
+        private common: HomeCommonService,
+        private router:Router,
+     
+
     ) {
-        
+        setTimeout(() => {
+           console.log(this.product); 
+           this.merchantInfo = this.product.Merchant;
+         
+        });
      }
 
  
     ngOnInit(): void {
         this.currency.changes$.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.cd.markForCheck();
+            
         });
         // console.log(this.product);
     }
+    ///////////*****Dialog Section for contact us and custom form**********//////////////
+   
+    
+    showResponsiveDialog() {
+        this.isLogin = JSON.parse(localStorage.getItem("loggedIn"));
+        console.log(this.isLogin); 
+      this.display1 = true;
+    }
+    
+
+    ///////////////////////***************End Section***************////////////
 
     ngOnDestroy(): void {
         this.destroy$.next();
@@ -62,7 +90,10 @@ ngOnChanges(){
     //         this.featuredAttributes = !this.product ? [] : this.product.attributes.filter(x => x.featured);
     //     }
     // }
-addToCart(){
+contactUs(){
+    this.isLogin = JSON.parse(localStorage.getItem("loggedIn"));
+    console.log(this.isLogin); 
+    this.display2 = true;
     
 }
     // addToCart(): void {

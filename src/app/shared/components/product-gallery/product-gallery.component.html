@@ -8,20 +8,38 @@
 [redZoomThumb]="currentItem.image"
 [redZoomLazy]="true" -->
     <div class="product-gallery__featured-inset">
+       
         <button *ngIf="productLayout !== 'quickview'" class="product-gallery__zoom" (click)="openPhotoSwipe(currentItem)">
             <app-icon name="zoom-in-24" size="24"></app-icon>
-        </button>
+        </button> 
+        <a
+        appClick
+        class="product-image__body"
+        target="_blank"
+       >
+    <!--   [href]="item.image"  (click)="onFeaturedImageClick($event, item);" -->
+        <!--
+        The data-width and data-height attributes must contain the size of a larger version
+        of the product image.
+
+        If you do not know the image size, you can remove the data-width and data-height
+        attribute, in which case the width and height will be obtained from the naturalWidth
+        and naturalHeight property of img.product-image__img.
+        -->
+        <img class="product-image__img" src="{{images}}" alt=""  onerror="this.src = '../../../assets/images/categories/custom-built-transformer-250x250.jpg'" #imageElement>
+    </a>
         <owl-carousel-o [options]="carouselOptions" (changed)="featuredCarouselTranslated($event)" appOwlPreventClick #featuredCarousel>
             <!--suppress AngularUndefinedBinding -->
-            <ng-template *ngFor="let item of items" carouselSlide [id]="item.id">
+            <!-- <ng-template >*ngFor="let item of items" carouselSlide [id]="item.id" -->
+            
+                <ng-template>
                 <div class="product-image product-image--location--gallery">
                     <a
                         appClick
                         class="product-image__body"
                         target="_blank"
-                        [href]="item.image"
-                        (click)="onFeaturedImageClick($event, item);"
-                    >
+                       >
+                    <!--   [href]="item.image"  (click)="onFeaturedImageClick($event, item);" -->
                         <!--
                         The data-width and data-height attributes must contain the size of a larger version
                         of the product image.

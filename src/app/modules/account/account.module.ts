@@ -13,7 +13,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 // pages
 import { PageAddressesListComponent } from './pages/page-addresses-list/page-addresses-list.component';
 import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.component';
-import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { PageOrdersListComponent } from './pages/page-orders-list/page-orders-list.component';
 import { PagePasswordComponent } from './pages/page-password/page-password.component';
 import { PageProfileComponent } from './pages/page-profile/page-profile.component';
@@ -29,7 +28,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         // pages
         PageAddressesListComponent,
         PageDashboardComponent,
-        PageLoginComponent,
         PageOrdersListComponent,
         PagePasswordComponent,
         PageProfileComponent,
@@ -47,4 +45,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         FormsModule
     ]
 })
-export class AccountModule { }
+export class AccountModule { 
+
+    
+}

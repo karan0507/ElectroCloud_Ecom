@@ -36,12 +36,18 @@ import { RatingComponent } from './components/rating/rating.component';
 import { SearchComponent } from './components/search/search.component';
 import { ShareButtonsComponent } from './components/share-buttons/share-buttons.component';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
+import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 // pipes
 import { AbsoluteUrlPipe } from './pipes/absolute-url.pipe';
 import { ColorTypePipe } from './pipes/color-type.pipe';
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
 import { ProductGalleryComponent } from './components/product-gallery/product-gallery.component';
+import { MerchantcontactComponent } from './components/merchantcontact/merchantcontact.component';
+import { GetQuoteComponent } from './components/get-quote/get-quote.component';
+import { PageLoginModule } from '../modules/account/pages/page-login/page-login.module';
 
 
 @NgModule({
@@ -72,11 +78,15 @@ import { ProductGalleryComponent } from './components/product-gallery/product-ga
         SearchComponent,
         ShareButtonsComponent,
         SocialLinksComponent,
+    
         // pipes
         AbsoluteUrlPipe,
         ColorTypePipe,
         CurrencyFormatPipe,
         ProductGalleryComponent,
+        MerchantcontactComponent,
+        GetQuoteComponent
+        
     ],
     imports: [
         // modules (angular)
@@ -89,6 +99,10 @@ import { ProductGalleryComponent } from './components/product-gallery/product-ga
         CarouselModule,
         ModalModule.forRoot(),
         RedZoomModule,
+        DialogModule,
+        ButtonModule,
+        ProgressSpinnerModule,
+        PageLoginModule
     ],
     exports: [
         // directives
