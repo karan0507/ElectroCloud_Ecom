@@ -24,12 +24,17 @@ export class PageProductComponent implements OnInit {
         private route: ActivatedRoute,
         private common:HomeCommonService
     ) { 
-        this.route.data.subscribe(products=>{
-            console.log(products.category);
-            this.prod = products.category;
-            console.log(this.prod);
-            this.category_name = this.prod.category[0].category_name;
-        });
+     
+        setTimeout(()=>{
+            this.route.data.subscribe(products=>{
+                console.log(products);
+                this.prod = products.category;
+                console.log(this.prod);
+                this.category_name = '';
+            });
+        })
+
+
         // this.route.params.subscribe(productSlug=>{
         //     console.log(productSlug);
         //  this.slug = productSlug.productSlug;

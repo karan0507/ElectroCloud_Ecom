@@ -22,10 +22,9 @@ export class CategoriesComponent implements OnInit {
     console.log(slug);
 }
   getCategories(){
-    this.common.getCategories().subscribe(productcategories =>{
-      console.log('hello');
+    this.common.getCategory().subscribe(productcategories =>{
       console.log(productcategories);
-      this.categories = productcategories;
+      this.categories = productcategories.categories;
     })
   }
 }

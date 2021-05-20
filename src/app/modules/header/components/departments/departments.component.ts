@@ -155,7 +155,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
        
           console.log(productcategories);
           
-          this.items = productcategories;
+          this.items = productcategories.categories;
           console.log(this.items[0]);
         })
       }

@@ -22,6 +22,7 @@ export class PageDashboardComponent {
     isAddress = false;
     isEdit = true;
   user_adr: any;
+  email: any;
     constructor(private auth:AuthService, private fb:FormBuilder, private common:HomeCommonService) {
       this.editInfo = this.fb.group({
         firstName:['',[Validators.required]],
@@ -40,16 +41,20 @@ export class PageDashboardComponent {
       //    ,
       //  })
       })
+
+       setTimeout(()=>{
         this.getCustInfo();
+       }) 
      }
      editProfile(){
        this.isEdit = false;
+       console.log(this.log_user.User.email);
      }
      save(){
         console.log(this.address.value);
         const id = localStorage.getItem('customer_id');
         console.log(id);
-        this.common.updateCustomerAddress(id,this.address.value).subscribe(addr=>{
+        this.common.addCustomerAddress(this.address.value).subscribe(addr=>{
           console.log("hello");
           console.log(addr);
         })
@@ -65,15 +70,17 @@ export class PageDashboardComponent {
           console.log(user);
           this.log_user = user.customer;
           if(typeof user.customer.CustomerAddresses !== undefined &&  user.customer.CustomerAddresses.length > 0){
+            console.log('Into If Cust address');
             this.user_adr = user.customer.CustomerAddresses[0];
             this.address.patchValue(this.user_adr);
             this.isAddress = true;
+            
           }
           else{
             this.user_adr = null;
           }
           this.editInfo.patchValue(this.log_user);
-         
+         this.editInfo.patchValue({email:this.log_user.User.email});
         })
       }
 }

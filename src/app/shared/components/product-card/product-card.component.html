@@ -33,7 +33,7 @@
             <!-- /////*****Product Info*******/////////// -->
             <div class="product-card__info">
                 <div class="product-card__name">
-                    <b class="atr_name"><a appClick [routerLink]="'/shop/product/' + product.slug">{{ product.name
+                    <b class="atr_name"><a appClick [routerLink]="'/shop/product/' + product.slug">{{ product?.name
                             }}
                             <!-- <p-progressSpinner></p-progressSpinner> -->
                         </a></b>
@@ -42,9 +42,9 @@
             <app-rating [value]="product.rating"></app-rating>
             <div class="product-card__rating-legend">{{ product.name }} Reviews</div>
         </div> -->
-                <ul *ngIf="product.ProductAttributes.length" class=" attributes">
-                    <li *ngFor="let attribute of product.ProductAttributes">
-                        <b> {{ attribute?.Attribute.attribute_name }}:</b> {{ attribute?.Attribute.attribute_value }}
+                <ul *ngIf="product?.Attributes.length" class=" attributes">
+                    <li *ngFor="let attribute of product.Attributes">
+                        <b> {{ attribute?.attribute_name}}:</b> {{ attribute?.attribute_value }}
                         <!-- <ng-container *ngFor="let  of  product.ProductAttributes; let last = last">
                     <ng-container *ngIf="!last">, </ng-container>
                 </ng-container> -->

@@ -78,7 +78,7 @@ export class WidgetFiltersComponent implements OnInit, OnDestroy {
     getCategories(){
         this.common.getCategories().subscribe(categories => {
             console.log(categories);
-            this.categories = categories;
+            this.categories = categories.categories;
             this.filters.push({name:'Categories',categories:this.categories});
            
             console.log(this.filters);

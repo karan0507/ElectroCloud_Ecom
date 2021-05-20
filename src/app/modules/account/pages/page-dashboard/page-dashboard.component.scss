@@ -3,15 +3,16 @@
   font-weight: bold; 
 }
 .iconst{
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     position: absolute;
     right: 20px;
-    top: 10px;
+    top: 18px;
 }
 .wrapper{
   border-bottom: 1px solid #e2e2e2;
   padding: 1rem;
+  background-color: #e2e2e2;
 }
 
 .flex{
@@ -24,4 +25,13 @@
 }
 .save{
   width: 10rem;
+}
+.btn-danger{
+  pad: 2rem;
+}
+.addr{
+padding-left: 1rem;
+}
+h6{
+  font-size: 1.2rem;
 }

@@ -1,15 +1,25 @@
-<div class="container">
+<div *ngIf="select_opt" class="container">
     <div class="row">
         <div class="col-md-6">
+           <a href="" (click)="manually()">
             <div class="card">
                 <div class="card-body form_btn">Get Quote Manually</div>
     
             </div>
+           </a>
         </div>
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-body form_btn">Upload Referal Documents</div>
-            </div>
+            <a href="" (click)="upload()">
+                <div class="card">
+                    <div class="card-body form_btn">Upload Referal Documents</div>
+                </div>
+            </a>
         </div>
     </div>
+</div>
+<div *ngIf="isManually">
+    Please fill the form here
+</div>
+<div *ngIf="isUpload">
+    Upload Files Here
 </div>
