@@ -12,8 +12,8 @@ cooling:Array<string> = ['ONAN','ONAF','OFAF','ANAN(VPI)','ANAF(VPI)','ANAN(CRT)
 @Input() category:any;  
 isCategory:boolean;
 select_opt:boolean = true;
-isUpload:boolean = false;
-isManually:boolean = false;
+isUpload:boolean;
+isManually:boolean;
 constructor() { 
   setTimeout(() => {
     console.log(this.category); 
@@ -29,14 +29,21 @@ constructor() {
 }
 
   ngOnInit(): void {
+    this.select_opt = true;
   }
 manually(){
 this.select_opt = false;
 this.isManually = true;
+this.isUpload = false;
+}
+onDestroy():void{
+this.isManually = false;
+this.isUpload = false;
 }
 upload(){
   this.select_opt = false;
   this.isUpload = true;
+  this.isManually = false;
 }
 
 }

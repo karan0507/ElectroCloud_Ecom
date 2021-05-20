@@ -1,15 +1,15 @@
 <div *ngIf="select_opt" class="container">
     <div class="row">
         <div class="col-md-6">
-           <a href="" (click)="manually()">
-            <div class="card">
-                <div class="card-body form_btn">Get Quote Manually</div>
-    
-            </div>
-           </a>
+            <a (click)="manually()">
+                <div class="card">
+                    <div class="card-body form_btn">Get Quote Manually</div>
+
+                </div>
+            </a>
         </div>
         <div class="col-md-6">
-            <a href="" (click)="upload()">
+            <a (click)="upload()">
                 <div class="card">
                     <div class="card-body form_btn">Upload Referal Documents</div>
                 </div>
@@ -17,9 +17,66 @@
         </div>
     </div>
 </div>
-<div *ngIf="isManually">
-    Please fill the form here
+<div class="container" *ngIf="isManually">
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <h5>Please Fill The Form</h5>
+        </div>
+        <div class="col-md-6 mb-2">
+            Reference Standarad
+            <select class="form-control" name="ref_standard" id="">
+                <option *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-2">
+           Cooling
+            <select class="form-control" name="" id="">
+                <option *ngFor="let cool of cooling" value="{{cool}}">{{cool}}</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-2">
+            Reference Standarad
+    <select  class="form-control" name="" id="">
+        <option  *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
+    </select>
+     </div>
+     <div class="col-md-6 mb-2">
+        Reference Standarad
+<select  class="form-control" name="" id="">
+    <option  *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
+</select>
+ </div>
+ <div class="col-md-6 mb-2">
+    Reference Standarad
+<select  class="form-control" name="" id="">
+<option  *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
+</select>
 </div>
-<div *ngIf="isUpload">
-    Upload Files Here
+<div class="col-md-6 mb-2">
+    Reference Standarad
+<select  class="form-control" name="" id="">
+<option  *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
+</select>
 </div>
+        <div class="col-md-12 mt-3">
+        
+                
+                    <button  style="float: right;" class="btn btn-primary btn-lg">Send</button>
+
+              
+               <button class="btn btn-secondary btn-lg">Cancel</button>
+            </div>
+        
+    </div>
+</div>
+<div class="container" *ngIf="isUpload">
+    You are in Uploading Files
+</div>
+<!-- <p-dialog header="" draggable=false [(visible)]="isManually"
+[breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '50vw'}">
+You are filling form
+</p-dialog>
+<p-dialog header="" draggable=false [(visible)]="isUpload"
+[breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '50vw'}">
+You are in Uploading Files
+</p-dialog> -->
