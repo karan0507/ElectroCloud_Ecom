@@ -1,4 +1,6 @@
-<app-page-header [header]="pageHeader" [breadcrumbs]="breadcrumbs"></app-page-header>
+<app-page-header [header]="categorySlug" [breadcrumbs]="[
+{label: 'Home',       url: '/'},
+{label: categorySlug, url: ''}]"></app-page-header>
 
 <ng-container *ngIf="columns === 3">
     <div class="container">

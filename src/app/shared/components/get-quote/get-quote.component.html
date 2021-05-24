@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <a (click)="upload()">
                 <div class="card">
-                    <div class="card-body form_btn">Upload Referal Documents</div>
+                    <div class="card-body form_btn">Referal Documents</div>
                 </div>
             </a>
         </div>
@@ -29,48 +29,127 @@
             </select>
         </div>
         <div class="col-md-6 mb-2">
-           Cooling
+            Cooling
             <select class="form-control" name="" id="">
                 <option *ngFor="let cool of cooling" value="{{cool}}">{{cool}}</option>
             </select>
         </div>
         <div class="col-md-6 mb-2">
-            Reference Standarad
-    <select  class="form-control" name="" id="">
-        <option  *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
-    </select>
-     </div>
-     <div class="col-md-6 mb-2">
-        Reference Standarad
-<select  class="form-control" name="" id="">
-    <option  *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
-</select>
- </div>
- <div class="col-md-6 mb-2">
-    Reference Standarad
-<select  class="form-control" name="" id="">
-<option  *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
-</select>
-</div>
-<div class="col-md-6 mb-2">
-    Reference Standarad
-<select  class="form-control" name="" id="">
-<option  *ngFor="let opt of options" value="{{opt}}">{{opt}}</option>
-</select>
-</div>
-        <div class="col-md-12 mt-3">
-        
-                
-                    <button  style="float: right;" class="btn btn-primary btn-lg">Send</button>
+            KVA(MAX)
+            <input type="text" class="form-control" placeholder="%">
+        </div>
+        <div class="col-md-6 mb-2">
+            Rating
+            <input class="form-control" type="text">
+        </div>
+        <div class="col-md-6 mb-2">
+            Impedance
+            <input class="form-control" type="text">
+        </div>
+        <div class="col-md-6 mb-2">
+            Phase
+            <select class="form-control" name="phase" id="phase">
+                <option value="single">Single</option>
+                <option value="three">Three</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-2">
+            Vector Group
+            <select class="form-control" name="" id="">
+                <option *ngFor="let vector of vectors" value="{{vector}}">{{vector}}</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-2">
+            Tapping Type
+            <select class="form-control" name="tap_type" id="tt">
+                <option *ngFor="let tt of tappingtype" value="{{tt}}">{{tt}}</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            Step Value
+            <input class="form-control" type="text" name="stepval" id="setval" value="">
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="row">
+                <div class="col-md-6">MIN
+                    <!-- add ngif tt=OCTC :MAX=5 min=-5 set 2.5; or if tt=OLTC :Max=5 MIN=-15 set=1.25; -->
+                    <input type="text" class="form-control" value="">
+                </div>
+                <div class="col-md-6">MAX
+                    <input type="text" class="form-control" value="">
+                </div>
 
-              
-               <button class="btn btn-secondary btn-lg">Cancel</button>
             </div>
-        
+        </div>
+
+        <div class="col-md-6 mb-2">
+            Conductor Material
+            <select name="material" id="conduct_material" class="form-control">
+                <option *ngFor="let material of material_type" value="{{material}}">{{material}}</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="row">
+                <div class="col-md-6">Ambient Temp
+                    <input class="form-control" value="" type="text">
+                </div>
+                <div class="col-md-6">
+                    Oil Temp Rise
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-2">
+            Winding Temp Rise
+            <input class="form-control" value="" type="text">
+        </div>
+        <div class="col-md-6 mb-2">
+            <div class="row">
+                <div class="col-md-6">
+                    No Load Loass
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    Load Loass
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            Flux Density
+            <input type="text" class="form-control"><span class="footer_val">Tesla (MX4)</span>
+        </div>
+        <div class="col-md-6 mb-4">
+            Current Density
+            <input type="text" class="form-control"><span class="footer_val">[Amp /mm * 2](MAX)</span>
+        </div>
+        <div class="col-md-12 mt-4 mb-4 text-center">
+            <a class="upload">Upload Refral Document </a>
+        </div>
+        <div class="col-md-12 mt-4 text-center">
+            <button class="btn btn-primary mr-2">Submit</button>
+            <button (click)="cancel()" class="btn btn-secondary ml-2">Cancel</button>
+        </div>
     </div>
 </div>
 <div class="container" *ngIf="isUpload">
-    You are in Uploading Files
+    <div class="row">
+        <div class="col-md-12 mt-4 mb-4 text-center">
+            <p-fileUpload  name="demo[]" url="./upload.php" multiple="multiple"
+                accept="image/*" maxFileSize="1000000">
+                <!-- <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template> -->
+            </p-fileUpload>
+            <!-- <a class="upload">Upload Refral Document </a> -->
+        </div>
+        <div class="col-md-12 mt-4 text-center">
+            <button class="btn btn-primary mr-2">Submit</button>
+            <button (click)="cancelUp()" class="btn btn-secondary ml-2">Cancel</button>
+        </div>
+    </div>
 </div>
 <!-- <p-dialog header="" draggable=false [(visible)]="isManually"
 [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '50vw'}">

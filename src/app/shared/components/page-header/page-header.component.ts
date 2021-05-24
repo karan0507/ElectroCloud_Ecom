@@ -11,6 +11,6 @@ export class PageHeaderComponent {
     @Input() breadcrumbs: Link[] = [];
 
     constructor() { 
-        console.log(this.header);
+        
     }
 }

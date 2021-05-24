@@ -5,21 +5,29 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.footer_val{
+font-size: 0.8rem;
+}
+.upload{
+    color:#ffd333 ;
+    padding:0.8rem 0.5rem 0.8rem 0.5rem;
+    text-align: center;
+    border: 2px solid #ffd333;
+}
 .form_btn{
     text-align: center;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
-    font-weight: 500;
-    padding: 6rem;
-    white-space: nowrap;
+    font-weight: 300;
+    // padding: 4rem 2rem 4rem 2rem;
+    // white-space: nowrap;
 }
 .card{
     border: 2.6px dashed;
     color: #ffd333;
 }
-.btn-lg{
-    font-size: 1.125rem;
-    height: calc(2.75rem + 2px);
-    padding: 0.8125rem 2rem;
-    line-height: 1;
-    // font-weight: 500;
+
+a{
+ cursor: pointer;   
 }

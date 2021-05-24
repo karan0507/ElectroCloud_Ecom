@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 // import { timeInterval } from 'rxjs/operators';
 import { AuthService } from 'src/app/modules/shop/services/auth.service';
@@ -11,17 +12,17 @@ import { AuthService } from 'src/app/modules/shop/services/auth.service';
     styleUrls: ['./page-login.component.scss']
 })
 export class PageLoginComponent {
-isVerified = false;
+isVerified:boolean;
 loginForm:FormGroup;
 phone_number:any;
 log_user:any;
-isLogin = false;
+isLogin:boolean;
 otp;
 passcode_wrapper: FormGroup;
 
-constructor(private fb:FormBuilder, private auth:AuthService, private toast:ToastrService) { 
+constructor(private root:Router,private fb:FormBuilder, private auth:AuthService, private toast:ToastrService) { 
     this.loginForm = this.fb.group({
-        phone_no:['',[Validators.required,Validators.required, Validators.minLength(10), Validators.maxLength(10),Validators.pattern("[0-9]{0-10}")]],
+      phone_no:['',[Validators.required,Validators.minLength(10), Validators.maxLength(10)]],
         otp:['',[Validators.required]]
     });
     this.passcode_wrapper = this.fb.group({
@@ -40,46 +41,56 @@ numberOnly(event): boolean {
     return true;
 
   }
-  concatinate(){
-      this.otp = JSON.stringify(this.passcode_wrapper.get('one').value) + JSON.stringify(this.passcode_wrapper.get('two').value) + JSON.stringify(this.passcode_wrapper.get('three').value) + JSON.stringify(this.passcode_wrapper.get('four').value);
-    return this.otp;
-    }
+  // concatinate(){
+  //     this.otp = JSON.stringify(this.passcode_wrapper.get('one').value) + JSON.stringify(this.passcode_wrapper.get('two').value) + JSON.stringify(this.passcode_wrapper.get('three').value) + JSON.stringify(this.passcode_wrapper.get('four').value);
+  //   return this.otp;
+  //   }
   clear(){
 
   }
   login(){
-    this.concatinate();
-    this.loginForm.get('otp').patchValue(this.otp);
-    console.log(this.loginForm.value);
+        
+    if(this.loginForm.value.otp !== ""){
 
-      if(this.loginForm.value.otp !== ""){
-
-        console.log(this.loginForm.value.otp);
-        // this.registerForm.get('firstname').value;
-        this.auth.login(this.loginForm.value).subscribe(auth=>{
-        //   console.log(auth);
-        //   console.log(user.user.id)
+      console.log(this.loginForm.value);
+      // this.registerForm.get('firstname').value;
+      this.auth.login(this.loginForm.value).subscribe(auth=>{
+        console.log(auth);
+        console.log(typeof(auth.user));
+       
+       if(typeof(auth.user) === 'undefined'){
+        console.log(typeof(auth.user));
+        if(auth.access_token !== null){
+          console.log(typeof(auth.user));
           localStorage.setItem('customer_id',auth.customer_id);
           localStorage.setItem('user_id',auth.id);      
           localStorage.setItem('token',auth.access_token);
-         if(auth.access_token !== null){
           localStorage.setItem('loggedIn','true');
-
-         }  
-          this.loginForm.reset();  
-          this.toast.success('Login Completed Successfully','Success');
-
           this.isLogin = JSON.parse(localStorage.getItem('loggedIn'));
           this.isVerified = false;
           this.getCustInfo();
-          
-              
-        });
+          this.loginForm.reset();  
+          this.toast.success('Login Completed Successfully','Success');
+          this.root.navigateByUrl('/');
+         }  
+         else{
+           this.toast.error('Login Failed','You Need to Register on Vidyut Cloud');
+           this.root.navigateByUrl('/account/register');
+         }
+       }else{
+        this.toast.error('Login Failed','You Need to Register on Vidyut Cloud');
+       }
+    
+      
+                  
+            
+      });
 
-      }     else{
-        this.toast.error('Invalid Verification Code','Error');
     }
+    else{
+      this.toast.error('Invalid Verification Code','Error');
   }
+}
 
   getCustInfo(){
     console.log('Get Customer Info');
@@ -93,31 +104,50 @@ numberOnly(event): boolean {
     if(this.loginForm.value.phone_no)
     {
         alert('Confirm your Mobile number '+this.loginForm.value.phone_no);
+        this.getOTP();
     }
   }
-getOTP(){
-    console.log(this.loginForm.value);
-    if(this.loginForm.value.phone_no !== ""){
-        console.log('Into GetOTP');
-        // this.isVerified=true;
+// getOTP(){
+//     console.log(this.loginForm.value);
+//     if(this.loginForm.value.phone_no !== ""){
+//         console.log('Into GetOTP');
+//         // this.isVerified=true;
 
-        this.phone_number = this.loginForm.value.phone_no;
-        this.auth.getOTP(this.loginForm.value).subscribe(otp => {
+//         this.phone_number = this.loginForm.value.phone_no;
+//         this.auth.getOTP(this.loginForm.value).subscribe(otp => {
             
-            console.log(otp);
-            if(otp.status){
+//             console.log(otp);
+//             if(otp.status){
               
-                this.isLogin = true;
+//                 this.isLogin = true;
                
-            }
-        });
-    }
-    else{
-        this.toast.error('Mobile Number Invalid','Error');
-    }
+//             }
+//         });
+//     }
+//     else{
+//         this.toast.error('Mobile Number Invalid','Error');
+//     }
    
+// }
+getOTP(){
+  if(this.loginForm.get('phone_no').valid){
+      this.auth.getOTP( this.loginForm.value.phone_no).subscribe(otp => {
+        console.log(otp);
+          if(otp.status){
+            this.toast.success('OTP sent','Success');   
+            this.isLogin = true;
+            this.isVerified = true;
+          }else{
+            this.toast.error('UnSucessful','You have enterd wrong number');
+          }
+      });
+  }
+  else{
+    console.log(this.loginForm.value);
+      this.toast.error('Mobile Number Invalid','Error');
+  }
+ 
 }
-
 // login(){
 //     this.toast.success('Login','Login Page');
     

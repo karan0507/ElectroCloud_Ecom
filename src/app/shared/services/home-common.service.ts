@@ -34,6 +34,9 @@ addCustomerAddress(addr):Observable<any>{
 getProducts(slug?, currentPage? ):Observable<any>{
   return this.http.get(environment.apiUrl + 'customer/products' + '?slug=' + slug  + '&page=' + currentPage);
 }
+getLatestProducts():Observable<any>{
+  return this.http.get(environment.apiUrl + 'customer/products' + '?page=0&latest=true&size=5');
+}
 
 getBrands():Observable<any>{
   return this.http.get(environment.apiUrl + 'customer/brands');

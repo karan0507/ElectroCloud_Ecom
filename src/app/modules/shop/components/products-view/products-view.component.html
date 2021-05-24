@@ -39,10 +39,7 @@
                 </div>
                 <div class="view-options__legend" style="margin-left: 0px;">
 
-                    Showing
-
-                    <!-- {{ this.pageService.from }}–{{ this.pageService.to }} -->
-                    {{ totalItems }} results
+                    Showing  {{ totalItems }} results
                 </div>
                 <div class="view-options__divider"></div>
                 <!-- <div class="view-options__control">
@@ -63,6 +60,7 @@
                             <option value="15">15</option>
                             <option value="20">20</option>
                             <option value="25">25</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -76,15 +74,15 @@
                 </div>
             </div>
         </div>
-
+        <div *ngIf="totalItems == '0'" class="products-view__empty mt-5">
+            <div class="products-view__empty-title">No matching items</div>
+            <div class="products-view__empty-subtitle">Try resetting the filters</div>
+            <button type="button" class="btn btn-primary btn-sm" (click)="resetFilters()">Reset filters</button>
+        </div>
         <div class="products-view__pagination">
             <app-pagination formControlName="page" [siblings]="2" (pageChange)="current($event)" [current]="currentPages" [total]="totalPages"></app-pagination>
         </div>
     </div>
 
-    <div *ngIf="showNoProductMessage" class="products-view__empty">
-        <div class="products-view__empty-title">No matching items</div>
-        <div class="products-view__empty-subtitle">Try resetting the filters</div>
-        <button type="button" class="btn btn-primary btn-sm" (click)="resetFilters()">Reset filters</button>
-    </div>
+  
 </div>

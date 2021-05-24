@@ -52,7 +52,7 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
 
     ) {
         setTimeout(() => {
-           console.log(this.product); 
+        //    console.log(this.product); 
            this.merchantInfo = this.product.Merchant;
          
         });

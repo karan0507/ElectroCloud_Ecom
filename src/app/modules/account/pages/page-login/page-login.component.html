@@ -1,4 +1,4 @@
-<!-- <app-page-header [header]="'My Account'" [breadcrumbs]="[
+ <!-- <app-page-header [header]="'My Account'" [breadcrumbs]="[
     {label: 'Home',       url: '/'},
     {label: 'My Account', url: ''}
 ]"></app-page-header> -->
@@ -6,17 +6,17 @@
 <div class="block">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 d-flex-inline">
-                <div class="card flex-grow-1 mt-mb-md-0">
+            <div class="col-md-6 d-flex">
+                <div class="card flex-grow-1 mb-md-0">
                     <div class="card-body">
                         <h3 class="card-title">Login</h3>
                         <div [formGroup]="loginForm">
-                            
+                            <!-- ///////////*****Is Login Form False*******//////////////// -->
                             <div *ngIf="!isVerified" class="form-group">
                                 <label>Mobile Number</label>
                                 <!-- <input class="form-control" formControlName="phone_no" placeholder="Mobile Nuber"> -->
                                 <input (keypress)="numberOnly($event)" minlength=10 maxlength=10 formControlName="phone_no" class="form-control" placeholder="Mobile Number">
-                                <button class="btn btn-primary" (click)="getOTP()" style="float: right; margin-top: -37px;">Verify</button>
+                                <!-- <button class="btn btn-primary" (click)="getOTP()" style="float: right; margin-top: -37px;">Verify</button> -->
                                 
                                 <div *ngIf="loginForm.get('phone_no').invalid && (loginForm.get('phone_no').dirty || loginForm.get('phone_no').touched)"
                                 class="alert alert-danger">
@@ -35,99 +35,38 @@
                             
 
                             </div>
-                            <div *ngIf="isLogin" class="form-group verify">
-                                <label>Verification Code</label>
-                                <div id="divOuter" class="verify">
-                                    <div id="divInner" class="verify">
-                                        <!-- <input id="header-signin-password" type="password" formControlName="otp" class="form-control" placeholder="Verification Code">
-                <button (click)="resend()" class="account-menu__form-forgot-link txt-blu">Resend</button> -->
-                                        <div [formGroup]="passcode_wrapper" class="passcode-wrapper">
-                                            <input id="codeBox1" formControlName="one" type="number" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)">
-                                            <input id="codeBox2" formControlName="two" type="number" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)">
-                                            <input type="number" formControlName="three" maxlength="1" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)">
-                                            <input type="number" formControlName="four" maxlength="1" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)">
-                                        </div>
-                                  
-                                        <!-- <input id="partitioned" type="text" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  onKeyPress="if(this.value.length==4) return false;"/> -->
-                                    </div>
-                                  </div>
-                                <!-- <input type="password" class="form-control" placeholder="Password"> -->
-                                <!-- <small class="form-text text-muted">
-                                    <a href="">Forgotten Password</a>
-                                </small> -->
+                            <!-- //////////////////********isLogin True : Verification Code section***********//////////// -->
+                            <div class="form-group" *ngIf = "isLogin">
+                                <label for="header-signin-password" class="sr-only">Verification Code</label>
+                                <div class="account-menu__form-forgot">
+                                    <input id="header-signin-password" type="password" formControlName="otp" class="form-control form-control-sm" placeholder="Verification Code">
+                                    <button (click)="resend()" class="account-menu__form-forgot-link txt-blu">Resend</button>
+                                    <!-- <a class="account-menu__form-forgot-link txt-blu">Resend?</a> -->
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <!-- <div class="form-check">
-                                    <span class="form-check-input input-check">
-                                        <span class="input-check__body">
-                                            <input class="input-check__input" type="checkbox" id="login-remember">
-                                            <span class="input-check__box"></span>
-                                            <app-icon class="input-check__icon" name="check-9x7" size="9x7"></app-icon>
-                                        </span>
-                                    </span>
-
-                                    <label class="form-check-label" for="login-remember">Remember Me</label>
-                                </div> -->
-                                <div style="text-align: center;"> <span>Didn't Receive Code?</span><br>
-                                    <a href="#">Resend Verification Code</a></div><br>
-                                <!-- <div class="row">
-                                    <div class="col-md-6, mx-auto">
-                                        <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="text-center"><img
-                                                src="https://img.icons8.com/fluent/30/000000/google-logo.png" />
-                                            </div>
-
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="text">OR</div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="text-center"><img
-                                                src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                </div> -->
-                                <!-- <div class="google-login"><img src="https://img.icons8.com/fluent/30/000000/google-logo.png"/>
-                                </div>
-                                <div class="float-right"> <img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></div> -->
-                            </div>
-
+                         
                             <!-- MAKE THE BUTTON IN CENTER -->
-                            <div class="text-center">
-                            <button class="btn login btn-primary mx-auto mt-2 mt-md-3 mt-lg-4" (click)="login()">Login</button><br><br>
-                            <span>New To Vidyut Cloud?
-                            <a href="#" routerLink="/account/register" style="text-align: center;"><strong>Sign Up Now!!!</strong> </a> </span>
-                            </div>
+                              <div class="row text-center">
+                                  <div class="col-md-12">
+                                    <button *ngIf="isVerified" (click)="login()" class="btn login btn-primary mx-auto mt-2 mt-md-3 mt-lg-4">Login</button>
+                                    <button *ngIf="!isVerified" (click)="getOTP()"  class="btn login btn-primary mx-auto mt-2 mt-md-3 mt-lg-4">Verify</button>
+                                  </div>
+                                  <div class="col-md-12 mt-4">
+                                    <span>New To Vidyut Cloud?
+                                        <a href="#" routerLink="/account/register" style="text-align: center;"><strong>Sign Up Now!!!</strong> </a> </span>
+                                  </div>
+                              </div>
+                            <!-- <button class="btn login btn-primary mx-auto mt-2 mt-md-3 mt-lg-4" (click)="getOTP()">Verify</button>
+                            <button class="btn login btn-primary mx-auto mt-2 mt-md-3 mt-lg-4" (click)="login()">Login</button><br><br> -->
+                            
+                          
                           
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-6 d-flex mt-4 mt-md-0">
-                <div class="card flex-grow-1 mb-0">
-                    <div class="card-body">
-                        <h3 class="card-title">Register</h3>
-                        <form>
-                            <div class="form-group">
-                                <label>Email address</label>
-                                <input type="email" class="form-control" placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label>Repeat Password</label>
-                                <input type="password" class="form-control" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Register</button>
-                        </form>
-                    </div>
-                </div>
-            </div> -->
+          
         </div>
     </div>
 </div>
+

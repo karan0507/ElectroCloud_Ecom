@@ -48,15 +48,15 @@ export class PageDashboardComponent {
      }
      editProfile(){
        this.isEdit = false;
-       console.log(this.log_user.User.email);
+      //  console.log(this.log_user.User.email);
      }
      save(){
         console.log(this.address.value);
         const id = localStorage.getItem('customer_id');
-        console.log(id);
+        // console.log(id);
         this.common.addCustomerAddress(this.address.value).subscribe(addr=>{
-          console.log("hello");
-          console.log(addr);
+          // console.log("hello");
+          // console.log(addr);
         })
       this.getCustInfo();
       this.close();
@@ -65,12 +65,12 @@ export class PageDashboardComponent {
       this.isEdit = true;
      }
      getCustInfo(){
-        console.log('Get Customer Info');
+        // console.log('Get Customer Info');
         this.auth.getCustInfo().subscribe(user=>{
-          console.log(user);
+          // console.log(user);
           this.log_user = user.customer;
           if(typeof user.customer.CustomerAddresses !== undefined &&  user.customer.CustomerAddresses.length > 0){
-            console.log('Into If Cust address');
+            // console.log('Into If Cust address');
             this.user_adr = user.customer.CustomerAddresses[0];
             this.address.patchValue(this.user_adr);
             this.isAddress = true;

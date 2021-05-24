@@ -153,10 +153,10 @@ export class DepartmentsComponent implements OnInit, OnDestroy, AfterViewInit, A
     getItems(){
         this.common.getCategories().subscribe(productcategories =>{
        
-          console.log(productcategories);
+        //   console.log(productcategories);
           
           this.items = productcategories.categories;
-          console.log(this.items[0]);
+        //   console.log(this.items[0]);
         })
       }
     getAreaBottom(): number {
