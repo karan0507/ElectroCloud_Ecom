@@ -34,6 +34,7 @@
         "bootstrap": "^4.5.3",
         "express": "^4.15.2",
         "font-awesome": "^4.7.0",
+        "localstorage-polyfill": "^1.0.1",
         "ng-lazyload-image": "^9.1.0",
         "ngx-bootstrap": "^6.2.0",
         "ngx-owl-carousel-o": "^4.0.0",
