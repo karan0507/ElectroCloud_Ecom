@@ -27,7 +27,8 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
     @Output() pageChange: EventEmitter<number> = new EventEmitter();
     destroy$: Subject<void> = new Subject<void>();
     prod:any;
-    showNoProductMessage = false;
+    showNoProductMessage:boolean;
+    // isZeroproduct:boolean = false;
     listOptionsForm: FormGroup;
     filtersCount = 0;
     // totalItems: any;
@@ -47,7 +48,18 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
         limit:['10'],
         page:this.totalPages
     })
+//    setTimeout(()=>{
+//     console.log(this.totalItems);
+//     if(this.totalItems){
+     
+//         this.isZeroproduct = true;
+//         console.log('You got products',this.isZeroproduct);
+//     }else{
         
+//         console.log('You got Zero Products',this.isZeroproduct);
+//     }
+//    })
+  
 }
     current(event){
         console.log(event);
@@ -57,7 +69,7 @@ export class ProductsViewComponent implements OnInit, OnDestroy {
     }
     ngOnInit(): void {
         this.setLayout('list');
-        // console.log(this.product);
+     
     }
 
     // getProducts(){

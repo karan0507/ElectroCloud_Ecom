@@ -66,6 +66,7 @@ export class AccountMenuComponent {
                 this.getCustInfo();
                 this.account_login.reset();  
                 this.toast.success('Login Completed Successfully','Success');
+                this.root.navigateByUrl('/');
                }  
                else{
                  this.toast.error('Login Failed','You Need to Register on Vidyut Cloud');
@@ -94,11 +95,11 @@ export class AccountMenuComponent {
     
       }
       getCustInfo(){
-        console.log(localStorage.getItem('token'));
+        // console.log(localStorage.getItem('token'));
         if(localStorage.getItem('token') !== 'undefined' && localStorage.getItem('token') !== 'null' && localStorage.getItem('token') !== null && localStorage.getItem('token') !== '')
         {
           this.auth.getCustInfo().subscribe(user=>{
-            console.log(user);
+            // console.log(user);
             this.log_user = user.customer;
             // this.isLogin = false;
           })  

@@ -8,7 +8,7 @@ import { /*LOCALE_ID, */NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
+    import { LazyLoadImageModule } from 'ng-lazyload-image';
 // modules (third-party)
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ToastrModule } from 'ngx-toastr';

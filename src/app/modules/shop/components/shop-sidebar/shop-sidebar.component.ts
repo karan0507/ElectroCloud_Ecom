@@ -29,7 +29,11 @@ export class ShopSidebarComponent implements OnInit, OnDestroy {
         public sidebar: ShopSidebarService,
         @Inject(PLATFORM_ID)
         private platformId: any
-    ) { }
+    ) { 
+        setTimeout(()=>{
+                console.log('You got products in Shop sidebar', this.prod);
+        })
+    }
 
     ngOnInit(): void {
         this.bestsellers$ = this.shop.getBestsellers().pipe(map(x => x.slice(0, 5)));

@@ -37,6 +37,7 @@ export class PageCategoryComponent implements OnDestroy {
     @Output() pageChange: EventEmitter<number> = new EventEmitter();
     paginate: string;
     data: any;
+    showNoProductMessage:boolean;
 
 
     constructor(
@@ -65,10 +66,7 @@ export class PageCategoryComponent implements OnDestroy {
         // });
 
 
-        this.route.data.subscribe((response=>{
-            this.paginate = response.category;
-            console.log(this.paginate);
-        }))
+      
         this.route.params.subscribe(categorySlug=>{
             console.log(categorySlug);
          this.categorySlug = categorySlug.categorySlug;
@@ -81,7 +79,10 @@ export class PageCategoryComponent implements OnDestroy {
                 this.getProducts('','');
             }
         });
-
+        this.route.data.subscribe((response=>{
+            this.paginate = response.category;
+            // console.log(this.paginate);
+        }));
     }
     current(event) {
         console.log(event);
@@ -146,12 +147,12 @@ export class PageCategoryComponent implements OnDestroy {
 
     getProducts(categorySlug?, currentPage?){
         // pageChange = JSON.stringify(pageChange);
-        console.log(categorySlug);  
+        // console.log(categorySlug);  
         this.common.getProducts(categorySlug, currentPage).subscribe(products=>{
             if(products.totalItems > 0 ){
 
                 this.prod = products.products;
-                console.log(products.totalItems);
+                console.log(this.prod);
                 this.totalItems = products.totalItems;
                 this.totalPages = products.totalPages;
 
@@ -160,8 +161,10 @@ export class PageCategoryComponent implements OnDestroy {
             }
             else
             {
+                this.totalItems = products.totalItems;
+                this.totalPages = products.totalPages;
                 this.prod=[];
-                console.log('Wrong Parameter');
+               
             }
 
         })

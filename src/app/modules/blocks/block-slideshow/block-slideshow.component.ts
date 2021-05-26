@@ -55,7 +55,7 @@ export class BlockSlideshowComponent {
     }
     getbanner(){
         this.common.getBanner().subscribe(banner => {
-            console.log(banner);
+            // console.log(banner);
             this.slides = banner;
         })
     }

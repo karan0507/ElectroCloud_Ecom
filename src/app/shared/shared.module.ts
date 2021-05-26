@@ -39,6 +39,8 @@ import { SocialLinksComponent } from './components/social-links/social-links.com
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {FileUploadModule} from 'primeng/fileupload';
+
 
 // pipes
 import { AbsoluteUrlPipe } from './pipes/absolute-url.pipe';
@@ -102,6 +104,7 @@ import { PageLoginModule } from '../modules/account/pages/page-login/page-login.
         DialogModule,
         ButtonModule,
         ProgressSpinnerModule,
+        FileUploadModule,
         PageLoginModule
     ],
     exports: [

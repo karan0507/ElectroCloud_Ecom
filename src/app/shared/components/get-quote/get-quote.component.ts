@@ -9,6 +9,9 @@ export class GetQuoteComponent implements OnInit {
 
 options:Array<string> = ['IS','IEC','ANSI','CBIP','SANS','EU ECO','GOST','WAPDA'];
 cooling:Array<string> = ['ONAN','ONAF','OFAF','ANAN(VPI)','ANAF(VPI)','ANAN(CRT)','ANAF(CRT)','KNAN'];
+vectors:Array<string> = ['Dd0','Dd10','Dy11','Dyn1','Dyn5','YNd1','YNd11','YNyn0','YNyn6','Y40','Any Other'];
+tappingtype:Array<string> = ['NA','OCTC','OLTC'];
+material_type:Array<string>=['Copper','Aluminium'];
 @Input() category:any;  
 isCategory:boolean;
 select_opt:boolean = true;
@@ -45,5 +48,12 @@ upload(){
   this.isUpload = true;
   this.isManually = false;
 }
-
+cancel(){
+  this.select_opt = true;
+ this.isManually = false;
+}
+cancelUp(){
+  this.select_opt = true;
+ this.isUpload = false;
+}
 }

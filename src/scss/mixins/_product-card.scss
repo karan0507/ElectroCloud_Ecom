@@ -66,9 +66,7 @@
             #{$margin-inline-start}: 0;
         }
     }
-    .product-card__addtocart ~ * {
-        margin-top: 8px;
-    }
+   
     .product-card__addtocart,
     .product-card__wishlist,
     .product-card__compare {

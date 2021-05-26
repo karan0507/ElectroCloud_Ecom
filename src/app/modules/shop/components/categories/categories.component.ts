@@ -19,11 +19,11 @@ export class CategoriesComponent implements OnInit {
   goToCategory(slug): void {
     // console.log('Hello Friends');
     this.router.navigateByUrl('shop/catalog/' + slug);
-    console.log(slug);
+    // console.log(slug);
 }
   getCategories(){
     this.common.getCategory().subscribe(productcategories =>{
-      console.log(productcategories);
+      // console.log(productcategories);
       this.categories = productcategories.categories;
     })
   }
