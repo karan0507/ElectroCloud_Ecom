@@ -20,9 +20,9 @@ export class ProductTabsComponent {
     constructor() {
         
         setTimeout(() => {
-            console.log('Product is here on time:',this.product);  // You will get the @Input value
-            this.attribute = this.product.ProductAttributes;
-            console.log(this.attribute);
+            console.log('Here is your Product on time:',this.product);  // You will get the @Input value
+            this.attribute = this.product.Attributes;
+            console.log('This is Attributes',this.attribute);
            
         });
     }

@@ -3,7 +3,9 @@
     <div class="container mb-5 mt-5" >
         <div class="row">
          <div class="col-md-12">
-         <img class="subbanner" src="{{dashbanner?.image_url}}" alt="whynot">
+            <img class="subbanner" [defaultImage]="" [lazyLoad]="dashbanner?.image_url" />
+
+         <!-- <img class="subbanner" src="{{dashbanner?.image_url}}" alt="whynot"> -->
          </div>
         </div>
     </div>

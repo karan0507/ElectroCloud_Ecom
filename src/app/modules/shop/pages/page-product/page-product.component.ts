@@ -29,8 +29,9 @@ export class PageProductComponent implements OnInit {
             this.route.data.subscribe(products=>{
                 console.log(products);
                 this.prod = products.category;
-                console.log(this.prod);
-                this.category_name = '';
+                console.log('Test For Single product Header',this.prod);
+                this.category_name = this.prod.category[0].category_name;
+                console.log(this.category_name);
             });
         })
 
