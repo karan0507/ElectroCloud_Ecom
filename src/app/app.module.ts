@@ -21,6 +21,8 @@ import { HeaderModule } from './modules/header/header.module';
 import { MobileModule } from './modules/mobile/mobile.module';
 import { SharedModule } from './shared/shared.module';
 import { WidgetsModule } from './modules/widgets/widgets.module';
+import * as Sentry from "@sentry/angular";
+import { Integrations } from "@sentry/tracing";
 
 // components
 import { AppComponent } from './app.component';
@@ -36,7 +38,25 @@ import { CategoriesComponent } from './modules/shop/components/categories/catego
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AuthInterceptor } from './auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { APP_INITIALIZER } from '@angular/core';
+import { ErrorHandler } from '@angular/core';
 
+
+Sentry.init({
+    dsn: "https://adefe6aeef4e449c856af59432bf45b6@o392066.ingest.sentry.io/5779798",
+    integrations: [
+      new Integrations.BrowserTracing({
+        tracingOrigins: ["localhost", "https://api.vidyutcloud.com/"],
+        routingInstrumentation: Sentry.routingInstrumentation,
+      }),
+    ],
+  
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+  });
 
 @NgModule({
     declarations: [
@@ -71,13 +91,32 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
         MatExpansionModule,
         LazyLoadImageModule
     ],
+    exports:[
+      LazyLoadImageModule
+    ],
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
-        }
+        },
+        {
+            provide: ErrorHandler,
+            useValue: Sentry.createErrorHandler({
+              showDialog: true,
+            }),
+          },
+          {
+            provide: Sentry.TraceService,
+            deps: [Router],
+          },
+          {
+            provide: APP_INITIALIZER,
+            useFactory: () => () => {},
+            deps: [Sentry.TraceService],
+            multi: true,
+          }
     ],
     bootstrap: [AppComponent]
 })

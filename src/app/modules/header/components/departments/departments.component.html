@@ -31,9 +31,10 @@
                     </div>
                 </ng-container>
             </div>
-            <ul class="departments__links">
+            <ul class="departments__links"  >
                 <li
-                    *ngFor="let item of items"
+                   
+                *ngFor="let item of items"
                     class="departments__item"
                     [ngClass]="{
                         'departments__item--menu': item.menu && item.menu.type == 'menu',
@@ -42,14 +43,14 @@
                     (mouseenter)="onItemMouseEnter(item)"
                     #itemElement
                 >
+                   
 
-                    <ng-template #link>
-                        {{ item.category_name }}
-                        <app-icon *ngIf="item.menu" class="departments__item-arrow" name="arrow-rounded-right-6x9" size="6x9"></app-icon>
-                    </ng-template>
-
-                    <a class="departments__item-link" [routerLink]="item.url" [target]="item.target" (click)="onItemClick(item.slug)" (appTouchClick)="onTouchClick($event, item)">
-                        <ng-container [ngTemplateOutlet]="link"></ng-container>
+                    <a class="departments__item-link" *ngIf="item.isActive !== true && item.isActive !==null" [routerLink]="item.url" [target]="item.target" (click)="onItemClick(item.slug)" (appTouchClick)="onTouchClick($event, item)">
+                        <ng-template #link>
+                            <span> {{ item.category_name }}</span>  
+                              <app-icon *ngIf="item.menu" class="departments__item-arrow" name="arrow-rounded-right-6x9" size="6x9"></app-icon>
+                          </ng-template>
+                        <ng-container  [ngTemplateOutlet]="link"></ng-container>
                     </a>
                     <!-- <a *ngIf="item.external" class="departments__item-link" [target]="item.target" (click)="onItemClick('slug')" (appTouchClick)="onTouchClick($event, item)">
                         <ng-container [ngTemplateOutlet]="link"></ng-container>

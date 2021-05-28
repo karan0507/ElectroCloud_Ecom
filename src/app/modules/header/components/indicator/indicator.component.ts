@@ -50,6 +50,7 @@ export class IndicatorComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild('dropdownElement') dropdownElementRef: ElementRef;
 
     isOpen = false;
+    isLoggedIn:boolean;
 
     private destroy$: Subject<any> = new Subject();
 
@@ -66,7 +67,16 @@ export class IndicatorComponent implements OnInit, OnDestroy, AfterViewInit {
         private elementRef: ElementRef,
         private zone: NgZone,
         private header: HeaderService,
-    ) { }
+    ) {
+       const check_login = localStorage.getItem('loggedIn');
+       if(check_login == 'true'){
+           this.isLoggedIn = true;
+            console.log('Get Customer Name here',this.isLoggedIn);
+       }
+       else{
+           console.log('something went wrong',this.isLoggedIn);
+       }
+     }
 
     ngOnInit(): void {
         if (isPlatformBrowser(this.platformId)) {

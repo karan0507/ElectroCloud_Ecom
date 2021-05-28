@@ -20,6 +20,7 @@ import { ShopService } from '../../api/shop.service';
 import { Category } from '../../interfaces/category';
 import { DOCUMENT } from '@angular/common';
 import { CartService } from '../../services/cart.service';
+import { HomeCommonService } from '../../services/home-common.service';
 
 export type SearchLocation = 'header' | 'indicator' | 'mobile-header';
 
@@ -34,13 +35,13 @@ export type CategoryWithDepth = Category & {depth: number};
 export class SearchComponent implements OnChanges, OnInit, OnDestroy {
     private destroy$: Subject<void> = new Subject<void>();
 
-    form: FormGroup;
+    search_category: FormGroup;
 
     hasSuggestions = false;
 
     categories: CategoryWithDepth[] = [];
 
-    suggestedProducts: Product[] = [];
+    suggestedProducts:any;
 
     addedToCartProducts: Product[] = [];
 
@@ -63,7 +64,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
     @HostBinding('class.search--suggestions-open') classSearchSuggestionsOpen = false;
 
     @ViewChild('input') inputElementRef: ElementRef;
-
+    items:any;
     get element(): HTMLElement { return this.elementRef.nativeElement; }
 
     get inputElement(): HTMLElement { return this.inputElementRef.nativeElement; }
@@ -76,7 +77,11 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
         private shop: ShopService,
         private cart: CartService,
         public root: RootService,
-    ) { }
+        private common:HomeCommonService
+    ) { 
+        this.getItems();
+       
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.location && this.location === 'header') {
@@ -85,19 +90,28 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
             ).subscribe(categories => this.categories = this.getCategoriesWithDepth(categories));
         }
     }
-
+getProducts(event){
+    this.common.getSearchProducts(event.target.value).subscribe(products=>{
+       console.log(products);
+       this.suggestedProducts = products.products;
+       this.openSuggestion();
+    });
+    
+}
     ngOnInit(): void {
-        this.form = this.fb.group({
+        this.search_category = this.fb.group({
             category: ['all'],
             query: [''],
         });
 
-        this.form.get('query').valueChanges.pipe(
-            throttleTime(250, asyncScheduler, {leading: true, trailing: true}),
+        this.search_category.get('query').valueChanges.pipe(
+            
+            throttleTime(1200, asyncScheduler, {leading: true, trailing: true}),
             map(query => query.trim()),
             switchMap(query => {
+                console.log(query);
                 if (query) {
-                    const categorySlug = this.form.value.category !== 'all' ? this.form.value.category : null;
+                    const categorySlug = this.search_category.value.category !== 'all' ? this.search_category.value.category : null;
 
                     return this.shop.getSuggestions(query, 5, categorySlug);
                 }
@@ -183,4 +197,17 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
             ...this.getCategoriesWithDepth(category.children || [], depth + 1),
         ], []);
     }
+
+
+
+    ////////////*****************Search  Section Starts here*************////////////////////////
+getItems(){
+        this.common.getCategories().subscribe(productcategories =>{
+       
+        //   console.log(productcategories);
+          
+        return  this.items = productcategories.categories;
+          console.log(this.items);
+        })
+      }
 }

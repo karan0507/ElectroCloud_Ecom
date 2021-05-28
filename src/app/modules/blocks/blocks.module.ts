@@ -25,6 +25,7 @@ import { BlockSlideshowComponent } from './block-slideshow/block-slideshow.compo
 
 // components
 import { BlockHeaderComponent } from './components/block-header/block-header.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { BlockHeaderComponent } from './components/block-header/block-header.com
         // modules (third-party)
         CarouselModule,
         // modules
-        SharedModule
+        SharedModule,
+        LazyLoadImageModule
     ],
     exports: [
         // blocks

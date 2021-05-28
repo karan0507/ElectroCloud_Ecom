@@ -10,8 +10,10 @@ import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 export class CategoriesComponent implements OnInit {
   categories: any;
 
+
   constructor(private common:HomeCommonService, private router:Router) {
     this.getCategories();
+
    }
 
   ngOnInit(): void {
@@ -25,6 +27,7 @@ export class CategoriesComponent implements OnInit {
     this.common.getCategory().subscribe(productcategories =>{
       // console.log(productcategories);
       this.categories = productcategories.categories;
+      
     })
   }
 }
