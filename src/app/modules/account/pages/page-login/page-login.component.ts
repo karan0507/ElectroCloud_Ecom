@@ -81,6 +81,7 @@ export class PageLoginComponent {
           }
         } else {
           this.toast.error('Login Failed', 'You Need to Register on Vidyut Cloud');
+          this.root.navigateByUrl('/account/register');
         }
 
 
