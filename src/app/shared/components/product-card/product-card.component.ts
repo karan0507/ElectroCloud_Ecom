@@ -21,22 +21,22 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
     private destroy$: Subject<void> = new Subject();
 
     @Input() product: any;
-    @Input() layout: 'grid-sm'|'grid-nl'|'grid-lg'|'list'|'horizontal'|null = null;
+    @Input() layout: 'grid-sm' | 'grid-nl' | 'grid-lg' | 'list' | 'horizontal' | null = null;
     // loggedIn:any;
-    isLogin:boolean;
-    display1:boolean;
-    display2:boolean;
+    isLogin: boolean;
+    display1: boolean;
+    display2: boolean;
     category_type: any;
     quote: boolean;
-    quote2:boolean;
-    contact:boolean;
-    merchantInfo:any;
+    quote2: boolean;
+    contact: boolean;
+    merchantInfo: any;
     addingToCart = false;
     addingToWishlist = false;
     addingToCompare = false;
     showingQuickview = false;
     // featuredAttributes: ProductAttribute[] = [];
-    prod:any;
+    prod: any;
 
     constructor(
         private cd: ChangeDetectorRef,
@@ -47,55 +47,57 @@ export class ProductCardComponent implements OnInit, OnDestroy, OnChanges {
         public quickview: QuickviewService,
         public currency: CurrencyService,
         private common: HomeCommonService,
-        private router:Router,
-     
+        private router: Router,
+
 
     ) {
         setTimeout(() => {
-        //    console.log(this.product); 
-           this.merchantInfo = this.product.Merchant;
-         
-        });
-     }
+            //    console.log(this.product); 
+            this.merchantInfo = this.product.Merchant;
 
- 
+        });
+    }
+
+
     ngOnInit(): void {
         this.currency.changes$.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.cd.markForCheck();
-            
+
         });
         // console.log(this.product);
     }
-    ///////////*****Dialog Section for contact us and custom form**********//////////////
-   
-    
-    showResponsiveDialog() {
-        this.isLogin = JSON.parse(localStorage.getItem("loggedIn"));
-        console.log(this.isLogin); 
-      this.display1 = true;
-    }
-    
+    // ***** Dialog Section for contact us and custom form**********//////////////
 
-    ///////////////////////***************End Section***************////////////
+
+    showResponsiveDialog() {
+        this.cd.detectChanges();
+        this.cd.markForCheck();
+        this.isLogin = JSON.parse(localStorage.getItem("loggedIn"));
+        console.log(this.isLogin);
+        this.display1 = true;
+    }
+
+
+    // ***************End Section*************** //
 
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
     }
-ngOnChanges(){
+    ngOnChanges() {
     
-}
+    }
     // ngOnChanges(changes: SimpleChanges): void {
     //     if ('product' in changes) {
     //         this.featuredAttributes = !this.product ? [] : this.product.attributes.filter(x => x.featured);
     //     }
     // }
-contactUs(){
-    this.isLogin = JSON.parse(localStorage.getItem("loggedIn"));
-    console.log(this.isLogin); 
-    this.display2 = true;
-    
-}
+    contactUs() {
+        this.isLogin = JSON.parse(localStorage.getItem("loggedIn"));
+        console.log(this.isLogin);
+        this.display2 = true;
+
+    }
     // addToCart(): void {
     //     if (this.addingToCart) {
     //         return;
