@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, Input, NgZone, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Input, NgZone, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { CartService } from '../../../../shared/services/cart.service';
 import { WishlistService } from '../../../../shared/services/wishlist.service';
 import { RootService } from '../../../../shared/services/root.service';
@@ -50,6 +50,7 @@ export class NavComponent implements OnInit, OnDestroy, AfterViewInit {
         public wishlist: WishlistService,
         public zone: NgZone,
         public header: HeaderService,
+        private changeDetect:ChangeDetectorRef
     ) { }
 
     ngOnInit() {
@@ -58,6 +59,14 @@ export class NavComponent implements OnInit, OnDestroy, AfterViewInit {
         });
     }
 
+
+    login_event(event) {
+        console.log('Into login event', event);
+        this.changeDetect.detectChanges();
+        
+    }
+
+
     ngOnDestroy(): void {
         this.destroy$.next();
         this.destroy$.complete();
@@ -65,7 +74,7 @@ export class NavComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngAfterViewInit(): void {
         if (this.stickyMode && isPlatformBrowser(this.platformId)) {
-            this.media = fromMatchMedia('(min-width: 992px)', false).pipe(shareReplay({bufferSize: 1, refCount: true}));
+            this.media = fromMatchMedia('(min-width: 992px)', false).pipe(shareReplay({ bufferSize: 1, refCount: true }));
             this.media.pipe(takeUntil(this.destroy$)).subscribe(media => this.onMediaChange(media));
         }
     }
@@ -124,7 +133,7 @@ export class NavComponent implements OnInit, OnDestroy, AfterViewInit {
             ).subscribe(() => setTimeout(() => this.calcBreakpoints(), 0));
 
             this.zone.runOutsideAngular(() => {
-                fromEvent(window, 'scroll', {passive: true}).pipe(
+                fromEvent(window, 'scroll', { passive: true }).pipe(
                     takeUntil(takeUntil$)
                 ).subscribe(() => this.onScroll());
             });
