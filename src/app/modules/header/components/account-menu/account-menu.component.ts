@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -12,14 +12,15 @@ import { AuthService } from 'src/app/modules/shop/services/auth.service';
 export class AccountMenuComponent {
   log_user: any;
   @Output() closeMenu: EventEmitter<void> = new EventEmitter<void>();
+  @Output() loginevent: EventEmitter<void> = new EventEmitter<void>();
   isLogin = JSON.parse(localStorage.getItem('loggedIn'));
   isVerified = false;
   user;
-  // isVerify = false;
+  isEdit: boolean;
   account_login: FormGroup;
 
 
-  constructor(private root: Router, private fb: FormBuilder, private auth: AuthService, private toast: ToastrService) {
+  constructor(private root: Router, private fb: FormBuilder, private auth: AuthService, private toast: ToastrService, private changeDetect: ChangeDetectorRef) {
     this.account_login = this.fb.group({
       phone_no: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       otp: ['', [Validators.required]]
@@ -30,6 +31,35 @@ export class AccountMenuComponent {
   emit() {
     this.toast.success('Success', 'Register Page');
   }
+
+
+  edit_phone_no() {
+    this.isEdit = true;
+    console.log('Edit works perfect');
+  }
+
+
+  confirm_phone_no() {
+    if (this.account_login.get('phone_no').valid) {
+      this.auth.getOTP(this.account_login.value.phone_no).subscribe(otp => {
+        console.log(otp);
+        if (otp.status) {
+          this.toast.success('OTP sent', 'Success');
+          this.isVerified = true;
+        } else {
+          this.toast.error('UnSucessful', 'You have enterd wrong number');
+          this.root.navigateByUrl('/account/register');
+        }
+      });
+    }
+    else {
+      console.log(this.account_login.value);
+      this.toast.error('Mobile Number Invalid', 'Error');
+      this.root.navigateByUrl('/account/register');
+    }
+
+  }
+
 
   clear() {
     // console.log('Cleared Value');
@@ -67,6 +97,8 @@ export class AccountMenuComponent {
             this.account_login.reset();
             this.toast.success('Login Completed Successfully', 'Success');
             this.root.navigateByUrl('/');
+            this.changeDetect.detectChanges();
+            this.loginevent.emit();
           }
           else {
             this.toast.error('Login Failed', 'You Need to Register on Vidyut Cloud');
@@ -86,6 +118,7 @@ export class AccountMenuComponent {
     else {
       this.toast.error('Invalid Verification Code', 'Error');
     }
+
   }
   logout() {
     this.isLogin = false;
@@ -93,6 +126,7 @@ export class AccountMenuComponent {
     localStorage.setItem('loggedIn', 'false');
     localStorage.removeItem('customer_id');
     localStorage.removeItem('user_id');
+    this.changeDetect.detectChanges();
 
   }
   getCustInfo() {
@@ -133,5 +167,6 @@ export class AccountMenuComponent {
     }
 
   }
+
 }
 

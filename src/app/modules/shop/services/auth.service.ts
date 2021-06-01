@@ -28,4 +28,7 @@ return this.http.post(environment.apiUrl + 'customer/register',user);
      return this.http.get(environment.apiUrl + 'customer/info');
 
    }
+   sendContactUsClick(notification):Observable<any>{
+    return this.http.post(environment.apiUrl + 'customer/info/merchant' , {merchantId:notification.merchant_id, productId:notification.product_id});
+    }
 }

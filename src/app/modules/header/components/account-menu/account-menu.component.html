@@ -25,14 +25,30 @@
     </div>
         
         </div>
+        
         <div class="form-group" *ngIf = "isVerified">
             <label for="header-signin-password" class="sr-only">Verification Code</label>
             <div class="account-menu__form-forgot">
-                <input id="header-signin-password" type="password" formControlName="otp" class="form-control form-control-sm" placeholder="Verification Code">
-                <button (click)="resend()" class="account-menu__form-forgot-link txt-blu">Resend</button>
-                <!-- <a class="account-menu__form-forgot-link txt-blu">Resend?</a> -->
+                <div class="row">
+                    <div *ngIf="!isEdit" class="col-md-12">
+                        <label  class="sr-only">Otp Sent On:</label>
+                        <input formControlName="phone_no" class="form-control form-control-sm edit" disabled>
+                        <button (click)="edit_phone_no()" class="account-menu__form-forgot-link btn-white">Edit</button>
+                    </div>
+                    <div  *ngIf="isEdit" class="col-md-12">
+                        <input formControlName="phone_no" class="form-control form-control-sm">
+                        <button (click)="confirm_phone_no()" class="account-menu__form-forgot-link txt-blu">Confirm</button>
+                    </div>
+                        <div class="col-md-12 mt-4">
+                            <input id="header-signin-password" type="password" formControlName="otp" class="form-control form-control-sm" placeholder="Verification Code">
+                            <button (click)="resend()" class="account-menu__form-forgot-link txt-blu">Resend</button>
+                        </div>
+                </div>
+
+              
             </div>
         </div>
+
         <div class="form-group account-menu__form-button  pt-3">
             <button *ngIf="isVerified" (click)="login()" class="btn btn-primary btn-sm">Login</button>
             <button *ngIf="!isVerified" (click)="getOTP()"  class="btn btn-primary btn-sm ">Verify</button>
