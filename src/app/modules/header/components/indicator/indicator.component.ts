@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -67,6 +68,7 @@ export class IndicatorComponent implements OnInit, OnDestroy, AfterViewInit {
         private elementRef: ElementRef,
         private zone: NgZone,
         private header: HeaderService,
+        private changeDetect:ChangeDetectorRef
     ) {
        const check_login = localStorage.getItem('loggedIn');
        if(check_login == 'true'){
@@ -97,6 +99,8 @@ export class IndicatorComponent implements OnInit, OnDestroy, AfterViewInit {
         ).pipe(
             takeUntil(this.destroy$)
         ).subscribe(() => this.close(true));
+
+        this.changeDetect.detectChanges();
     }
 
     ngOnDestroy(): void {

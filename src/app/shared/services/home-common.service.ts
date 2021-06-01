@@ -48,4 +48,5 @@ getBrands():Observable<any>{
 getSingleProduct(slug):Observable<any>{
   return this.http.get(environment.apiUrl + 'customer/product/' + slug);
 }
+
 }
