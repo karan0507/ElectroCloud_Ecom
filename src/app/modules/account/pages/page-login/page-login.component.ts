@@ -19,6 +19,7 @@ export class PageLoginComponent {
   isLogin: boolean;
   otp;
   passcode_wrapper: FormGroup;
+  isEdit:boolean;
 
   constructor(private root: Router,private changeDetect: ChangeDetectorRef,
               private fb: FormBuilder, private auth: AuthService, private toast: ToastrService) {
@@ -26,12 +27,7 @@ export class PageLoginComponent {
       phone_no: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       otp: ['', [Validators.required]]
     });
-    this.passcode_wrapper = this.fb.group({
-      one: ['', [Validators.required]],
-      two: ['', [Validators.required]],
-      three: ['', [Validators.required]],
-      four: ['', [Validators.required]]
-    });
+   
   }
 
   numberOnly(event): boolean {
@@ -48,7 +44,36 @@ export class PageLoginComponent {
   //   }
   clear() {
 
+  } edit_phone_no() {
+    this.isEdit = true;
+    console.log('Edit works perfect');
   }
+
+
+  confirm_phone_no() {
+    if (this.loginForm.get('phone_no').valid) {
+      this.auth.getOTP(this.loginForm.value.phone_no).subscribe(otp => {
+        console.log(otp);
+        if (otp.status) {
+          this.toast.success('OTP sent', 'Success');
+          this.isVerified = true;
+        } else {
+          this.toast.error('UnSucessful', 'You have enterd wrong number');
+          this.root.navigateByUrl('/account/register');
+        }
+      });
+    }
+    else {
+      console.log(this.loginForm.value);
+      this.toast.error('Mobile Number Invalid', 'Error');
+      this.root.navigateByUrl('/account/register');
+    }
+
+  }
+
+
+
+
   login() {
 
     if (this.loginForm.value.otp !== "") {
