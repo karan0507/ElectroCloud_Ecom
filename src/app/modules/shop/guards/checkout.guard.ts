@@ -19,7 +19,7 @@ export class CheckoutGuard implements CanActivate  {
                 return true;
             }
 
-            this.router.navigateByUrl('/cart').then();
+            this.router.navigateByUrl('/login').then();
 
             return false;
         }));

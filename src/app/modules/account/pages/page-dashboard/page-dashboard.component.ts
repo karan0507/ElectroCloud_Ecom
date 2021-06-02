@@ -31,7 +31,7 @@ export class PageDashboardComponent {
         console.log('You have been logged in to electrocloud');
         this.getCustInfo();
       }
-      else{
+      else if(JSON.parse(localStorage.getItem(''))){
         console.log('You have not logged in');
         this.route.navigateByUrl('/account/login');
       
