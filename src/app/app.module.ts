@@ -21,8 +21,8 @@ import { HeaderModule } from './modules/header/header.module';
 import { MobileModule } from './modules/mobile/mobile.module';
 import { SharedModule } from './shared/shared.module';
 import { WidgetsModule } from './modules/widgets/widgets.module';
-import * as Sentry from "@sentry/angular";
-import { Integrations } from "@sentry/tracing";
+import * as Sentry from '@sentry/angular';
+import { Integrations } from '@sentry/tracing';
 
 // components
 import { AppComponent } from './app.component';
