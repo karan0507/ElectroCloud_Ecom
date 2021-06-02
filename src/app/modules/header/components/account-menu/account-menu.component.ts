@@ -126,6 +126,7 @@ export class AccountMenuComponent {
     localStorage.setItem('loggedIn', 'false');
     localStorage.removeItem('customer_id');
     localStorage.removeItem('user_id');
+    localStorage.removeItem('customer_name');
     this.changeDetect.detectChanges();
 
   }

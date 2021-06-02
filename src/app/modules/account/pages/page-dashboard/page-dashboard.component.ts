@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/modules/shop/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HomeCommonService } from 'src/app/shared/services/home-common.service';
 import { getLocaleWeekEndRange } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-page-dashboard',
@@ -17,14 +18,24 @@ export class PageDashboardComponent {
     log_user:any;
     editInfo:FormGroup;
     address: FormGroup;
- 
     orders: Partial<Order>[] = orders.slice(0, 3);
     isAddress = false;
     isEdit = true;
   user_adr: any;
   email: any;
-    constructor(private auth:AuthService, private fb:FormBuilder, private common:HomeCommonService, private changeDetect:ChangeDetectorRef) {
+    constructor(private auth:AuthService, private fb:FormBuilder, private common:HomeCommonService, private changeDetect:ChangeDetectorRef, private route: Router) {
 
+
+
+      if(JSON.parse(localStorage.getItem('loggedIn'))){
+        console.log('You have been logged in to electrocloud');
+        this.getCustInfo();
+      }
+      else{
+        console.log('You have not logged in');
+        this.route.navigateByUrl('/account/login');
+      
+      }
       this.editInfo = this.fb.group({
         firstName:['',[Validators.required]],
         lastName:['',[Validators.required]],
@@ -43,9 +54,7 @@ export class PageDashboardComponent {
       //  })
       })
 
-       setTimeout(()=>{
-        this.getCustInfo();
-       }) 
+    
      }
      editProfile(){
        this.isEdit = false;
