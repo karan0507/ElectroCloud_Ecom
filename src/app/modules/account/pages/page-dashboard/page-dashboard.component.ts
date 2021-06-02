@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Order } from '../../../../shared/interfaces/order';
 import { orders } from '../../../../../data/account-orders';
 import { Address } from '../../../../shared/interfaces/address';
@@ -23,7 +23,8 @@ export class PageDashboardComponent {
     isEdit = true;
   user_adr: any;
   email: any;
-    constructor(private auth:AuthService, private fb:FormBuilder, private common:HomeCommonService) {
+    constructor(private auth:AuthService, private fb:FormBuilder, private common:HomeCommonService, private changeDetect:ChangeDetectorRef) {
+
       this.editInfo = this.fb.group({
         firstName:['',[Validators.required]],
         lastName:['',[Validators.required]],
@@ -63,6 +64,9 @@ export class PageDashboardComponent {
      }
      close(){
       this.isEdit = true;
+     }
+     ngOnInIt(){
+      this.changeDetect.detectChanges();
      }
      getCustInfo(){
         // console.log('Get Customer Info');

@@ -97,6 +97,7 @@ export class PageLoginComponent {
             this.getCustInfo();
             this.loginForm.reset();
             this.toast.success('Login Completed Successfully', 'Success');
+            this.changeDetect.detectChanges();
             this.root.navigateByUrl('/');
            
           }
