@@ -44,8 +44,9 @@ export const mobileMenu: MobileMenuItem[] = [
     //     {type: 'link', label: 'Compare',     url: '/shop/compare'},
     //     {type: 'link', label: 'Track Order', url: '/shop/track-order'}
     // ]},
+{type: 'link', label:'Category', url:'/shop/catalog'},
 
-    {type: 'link', label: 'Account', url: '/account', children: [
+    {type: 'link', label: 'Account', url: '/account', login:true, children: [
        
         {type: 'link', label: 'Dashboard',       url: '/account/dashboard'},
         // {type: 'link', label: 'Edit Profile',    url: '/account/profile'},
@@ -64,17 +65,18 @@ export const mobileMenu: MobileMenuItem[] = [
     //     {type: 'link', label: 'Post Page',            url: '/blog/post-classic'},
     //     {type: 'link', label: 'Post Without Sidebar', url: '/blog/post-full'}
     // ]},
-
-    {type: 'link', label: 'Pages', url: '/site', children: [
-        {type: 'link', label: 'About Us',             url: '/site/about-us'},
+    {type: 'link', label: 'About Us',             url: '/site/about-us'},
         {type: 'link', label: 'Contact Us',           url: '/site/contact-us'},
-        {type: 'link', label: 'Contact Us Alt',       url: '/site/contact-us-alt'},
-        {type: 'link', label: '404',                  url: '/site/not-found'},
-        {type: 'link', label: 'Terms And Conditions', url: '/site/terms'},
-        {type: 'link', label: 'FAQ',                  url: '/site/faq'},
-        {type: 'link', label: 'Components',           url: '/site/components'},
-        {type: 'link', label: 'Typography',           url: '/site/typography'}
-    ]},
+    // {type: 'link', label: 'Pages', url: '/site', children: [
+    //     {type: 'link', label: 'About Us',             url: '/site/about-us'},
+    //     {type: 'link', label: 'Contact Us',           url: '/site/contact-us'},
+    //     {type: 'link', label: 'Contact Us Alt',       url: '/site/contact-us-alt'},
+    //     {type: 'link', label: '404',                  url: '/site/not-found'},
+    //     {type: 'link', label: 'Terms And Conditions', url: '/site/terms'},
+    //     {type: 'link', label: 'FAQ',                  url: '/site/faq'},
+    //     {type: 'link', label: 'Components',           url: '/site/components'},
+    //     {type: 'link', label: 'Typography',           url: '/site/typography'}
+    // ]},
 
     // {type: 'button', label: 'Currency', children: [
     //     {type: 'button', label: '€ Euro',           data: {currency: 'EUR'}},
@@ -83,11 +85,11 @@ export const mobileMenu: MobileMenuItem[] = [
     //     {type: 'button', label: '₽ Russian Ruble',  data: {currency: 'RUB'}}
     // ]},
 
-    {type: 'button', label: 'Language', children: [
-        {type: 'button', label: 'English', data: {language: 'EN'}},
-        {type: 'button', label: 'French',  data: {language: 'FR'}},
-        {type: 'button', label: 'German',  data: {language: 'DE'}},
-        {type: 'button', label: 'Russian', data: {language: 'RU'}},
-        {type: 'button', label: 'Italian', data: {language: 'IT'}}
-    ]}
+    // {type: 'button', label: 'Language', children: [
+    //     {type: 'button', label: 'English', data: {language: 'EN'}},
+    //     {type: 'button', label: 'French',  data: {language: 'FR'}},
+    //     {type: 'button', label: 'German',  data: {language: 'DE'}},
+    //     {type: 'button', label: 'Russian', data: {language: 'RU'}},
+    //     {type: 'button', label: 'Italian', data: {language: 'IT'}}
+    // ]}
 ];

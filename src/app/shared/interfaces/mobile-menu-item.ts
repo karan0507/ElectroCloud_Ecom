@@ -1,6 +1,7 @@
 export interface MobileMenuItemBase {
     label: string;
     data?: any;
+    login?:boolean;
     children?: MobileMenuItem[];
 }
 

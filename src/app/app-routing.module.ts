@@ -5,7 +5,8 @@ import { PageHomeOneComponent } from './pages/page-home-one/page-home-one.compon
 import { PageHomeTwoComponent } from './pages/page-home-two/page-home-two.component';
 import { RootComponent } from './components/root/root.component';
 import { PageOffcanvasCartComponent } from './pages/page-offcanvas-cart/page-offcanvas-cart.component';
-import { CheckoutGuard } from './modules/shop/guards/checkout.guard';
+import { LoginGuard } from './login.guard';
+// import { CheckoutGuard } from './modules/shop/guards/checkout.guard';
 
 
 const routes: Routes = [
@@ -65,7 +66,7 @@ const routes: Routes = [
             {
                 path: 'account',
                 loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule),
-                
+                canActivate:[LoginGuard]
             },
             {
                 path: 'site',

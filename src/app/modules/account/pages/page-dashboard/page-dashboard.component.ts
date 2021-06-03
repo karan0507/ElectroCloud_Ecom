@@ -27,15 +27,15 @@ export class PageDashboardComponent {
 
 
 
-      if(JSON.parse(localStorage.getItem('loggedIn'))){
-        console.log('You have been logged in to electrocloud');
-        this.getCustInfo();
-      }
-      else if(JSON.parse(localStorage.getItem(''))){
-        console.log('You have not logged in');
-        this.route.navigateByUrl('/account/login');
+      // if(JSON.parse(localStorage.getItem('loggedIn'))){
+      //   console.log('You have been logged in to electrocloud');
+      //   this.getCustInfo();
+      // }
+      // else if(JSON.parse(localStorage.getItem(''))){
+      //   console.log('You have not logged in');
+      //   this.route.navigateByUrl('/account/login');
       
-      }
+      // }
       this.editInfo = this.fb.group({
         firstName:['',[Validators.required]],
         lastName:['',[Validators.required]],

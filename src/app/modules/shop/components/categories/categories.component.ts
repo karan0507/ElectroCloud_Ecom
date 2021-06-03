@@ -8,7 +8,7 @@ import { HomeCommonService } from 'src/app/shared/services/home-common.service';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  categories: any;
+  categories:[]=[];
 
 
   constructor(private common:HomeCommonService, private router:Router) {
@@ -25,9 +25,8 @@ export class CategoriesComponent implements OnInit {
 }
   getCategories(){
     this.common.getCategory().subscribe(productcategories =>{
-      // console.log(productcategories);
-      this.categories = productcategories.categories;
-      
+this.categories = productcategories.categories;      
+ 
     })
   }
 }
