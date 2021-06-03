@@ -4,22 +4,23 @@
             <h5 class="text-center">Categories</h5>
         </div>
     </div>
+    <div class="row">
 
-    <div *ngFor="let category of categories">
+        <ng-container *ngFor="let category of categories">
 
-        <div class="col-md-3" *ngIf="category.isActive">
-            <div class="card mb-3" (click)="goToCategory(category.slug)">
-                <!-- <div class="card-header"></div> -->
-                <div class="card-body">
-                    <img [defaultImage]="category.image_url" [lazyLoad]="category.image_url" class="category_img" />
-                </div>
-                <div id="footer" class="card-footer">
+            <div class="col-md-3" *ngIf="category.isActive">
+                <div class="card mb-3" (click)="goToCategory(category.slug)">
+                    <!-- <div class="card-header"></div> -->
+                    <div class="card-body">
+                        <img [defaultImage]="category.image_url" [lazyLoad]="category.image_url" class="category_img" />
+                    </div>
+                    <div id="footer" class="card-footer">
 
-                    <span class="footer-text">{{category.category_name}}</span>
+                        <span class="footer-text">{{category.category_name}}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        </ng-container>
 
 
 
