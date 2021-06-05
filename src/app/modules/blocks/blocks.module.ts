@@ -26,7 +26,7 @@ import { BlockSlideshowComponent } from './block-slideshow/block-slideshow.compo
 // components
 import { BlockHeaderComponent } from './components/block-header/block-header.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-
+import {JpImagePreloadModule } from '@jaspero/ng-image-preload';
 @NgModule({
     declarations: [
         // blocks
@@ -49,6 +49,8 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
         CommonModule,
         RouterModule,
         // modules (third-party)
+        JpImagePreloadModule.forRoot(),
+
         CarouselModule,
         // modules
         SharedModule,

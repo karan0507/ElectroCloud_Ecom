@@ -1,6 +1,5 @@
 <!-- .block-slideshow -->
-<div class="block-slideshow block"
-    [ngClass]="{'block-slideshow--layout--full': !withDepartments, 'block-slideshow--layout--with-departments': withDepartments}">
+<div class="block-slideshow block" [ngClass]="{'block-slideshow--layout--full': !withDepartments, 'block-slideshow--layout--with-departments': withDepartments}">
     <div class="container">
         <div class="row">
             <div *ngIf="withDepartments" class="col-3 d-lg-block d-none" appDepartmentsArea></div>
@@ -10,19 +9,17 @@
                         <ng-template *ngFor="let slide of slides" carouselSlide>
                             <a class="block-slideshow__slide" href="" appClick>
                                 <!-- [ngStyle]="{'background-image': 'url('+(withDepartments ? slide.image_url : slide.image_url)+')'}" -->
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop"> 
-                                    <img [defaultImage]="slide.image_url" [lazyLoad]="slide.image_url" />
+                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop">
+                                    <img width="100%" src="../../../../assets/images/banners/banner-1.jpg" jpPreload="{{slide.image_url}}" />
                                 </div>
 
                                 <!-- [ngStyle]="{'background-image': 'url('+(withDepartments ? slide.image_url_mobile : slide.image_url_mobile)+')'}" -->
                                 <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile">
-                                    <img [defaultImage]="slide.image_url_mobile" [lazyLoad]="slide.image_url_mobile" />
+                                    <img width="100%" src="../../../../assets/images/banners/banner-1-mobile.jpg" jpPreload="{{slide.image_url_mobile}}" />
                                 </div>
                                 <div class="block-slideshow__slide-content">
-                                    <div class="block-slideshow__slide-title"
-                                        [innerHTML]="sanitizer.bypassSecurityTrustHtml(slide.head_text)"></div>
-                                    <div class="block-slideshow__slide-text"
-                                        [innerHTML]="sanitizer.bypassSecurityTrustHtml(slide.description)"></div>
+                                    <div class="block-slideshow__slide-title" [innerHTML]="sanitizer.bypassSecurityTrustHtml(slide.head_text)"></div>
+                                    <div class="block-slideshow__slide-text" [innerHTML]="sanitizer.bypassSecurityTrustHtml(slide.description)"></div>
                                     <div class="block-slideshow__slide-button">
                                         <span class="btn btn-primary btn-lg">Shop Now</span>
                                     </div>
