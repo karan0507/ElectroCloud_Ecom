@@ -66,7 +66,7 @@ const routes: Routes = [
             {
                 path: 'account',
                 loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule),
-                canActivate:[LoginGuard]
+                // canActivate:[LoginGuard]
             },
             {
                 path: 'site',

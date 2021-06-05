@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/modules/shop/services/auth.service';
   templateUrl: './page-login.component.html',
   styleUrls: ['./page-login.component.scss']
 })
-export class PageLoginComponent {
+export class PageLoginComponent implements OnInit{
   isVerified: boolean;
   loginForm: FormGroup;
   phone_number: any;
@@ -28,6 +28,9 @@ export class PageLoginComponent {
       otp: ['', [Validators.required]]
     });
    
+  }
+  ngOnInit(): void {
+    // throw new Error('Method not implemented.');
   }
 
   numberOnly(event): boolean {
@@ -97,6 +100,8 @@ export class PageLoginComponent {
             this.getCustInfo();
             this.loginForm.reset();
             this.toast.success('Login Completed Successfully', 'Success');
+            this.ngOnInit();     
+            //******** Remove ngOnIt for refreshing page on login button for showing value on accountMenu (Dashboard) (4 June 2021)
             this.changeDetect.detectChanges();
             this.root.navigateByUrl('/');
            

@@ -24,7 +24,8 @@
                                 <li *ngFor="let item of filter.categories" class="filter-categories__item ">
                                     <!-- <app-icon *ngIf="item.type == 'parent'" class="filter-categories__arrow"  name="arrow-rounded-left-6x9" size="6x9"></app-icon> -->
                                     <a routerLinkActive="active-link" [routerLink]="'/shop/catalog/' + item.slug">
-                                        <div *ngIf="filter.name === 'Categories'">{{ item?.category_name }} </div>
+                                        <!-- && item.isActive === true && item.isActive !== null     * * * * * Please Add when solved * * * * *-->
+                                        <div *ngIf="filter.name === 'Categories' ">{{ item?.category_name }} </div>
                                     </a> <!--{{ filter?.categories[0].category_name }}        [routerLink]="this.root.category(item.category)"-->
                                         
                                     <!-- <div class="filter-categories__counter" *ngIf="item.type === 'child'">{{ item.count }}</div> -->

@@ -2,27 +2,34 @@ import { MobileMenuItem } from '../app/shared/interfaces/mobile-menu-item';
 
 export const mobileMenu: MobileMenuItem[] = [
     
-    {type: 'link', label: 'Home', url: '/', children:[
-        {type: 'link', label: 'Login', url: '/account/login'},
-        {type: 'link', label: 'Register', url: '/account/register'},
-    ] },
+    {type: 'link', label: 'Home', url: '/'},
 
-    // {type: 'link', label: 'Categories', url: '/shop/catalog', children: [
-    //     {type: 'link', label: 'Power Tools', url: '/shop/catalog', children: [
-    //         {type: 'link', label: 'Engravers',           url: '/shop/catalog'},
-    //         {type: 'link', label: 'Wrenches',            url: '/shop/catalog'},
-    //         {type: 'link', label: 'Wall Chaser',         url: '/shop/catalog'},
-    //         {type: 'link', label: 'Pneumatic Tools',     url: '/shop/catalog'}
-    //     ]},
-    //     {type: 'link', label: 'Machine Tools', url: '/shop/catalog', children: [
-    //         {type: 'link', label: 'Thread Cutting',      url: '/shop/catalog'},
-    //         {type: 'link', label: 'Chip Blowers',        url: '/shop/catalog'},
-    //         {type: 'link', label: 'Sharpening Machines', url: '/shop/catalog'},
-    //         {type: 'link', label: 'Pipe Cutters',        url: '/shop/catalog'},
-    //         {type: 'link', label: 'Slotting machines',   url: '/shop/catalog'},
-    //         {type: 'link', label: 'Lathes',              url: '/shop/catalog'}
-    //     ]}
-    // ]},
+    // children:[
+    //     // {type: 'link', label: 'Login', url: '/account/login'},
+    //     {type: 'link', label: 'Register', url: '/account/register'},
+    // ] 
+
+    {type: 'link', label: 'Categories', url: '/shop/catalog', children: [
+       
+         
+        //     {type: 'link', label: 'Engravers',           url: '/shop/catalog'},
+        //     {type: 'link', label: 'Wrenches',            url: '/shop/catalog'},
+        //     {type: 'link', label: 'Wall Chaser',         url: '/shop/catalog'},
+        //     {type: 'link', label: 'Pneumatic Tools',     url: '/shop/catalog',children:[
+        //         {type:'link', label: 'Custom tools',     url: '/shop/catalog'}
+        //     ]}
+        // ]},
+        // {type: 'link', label: 'Machine Tools', url: '/shop/catalog', children: [
+        //     {type: 'link', label: 'Thread Cutting',      url: '/shop/catalog'},
+        //     {type: 'link', label: 'Chip Blowers',        url: '/shop/catalog'},
+        //     {type: 'link', label: 'Sharpening Machines', url: '/shop/catalog'},
+        //     {type: 'link', label: 'Pipe Cutters',        url: '/shop/catalog'},
+        //     {type: 'link', label: 'Slotting machines',   url: '/shop/catalog'},
+        //     {type: 'link', label: 'Lathes',              url: '/shop/catalog'}
+        // ]
+
+
+    ]},
 
     // {type: 'link', label: 'Shop', url: '/shop/catalog/power-tools', children: [
     //     {type: 'link', label: 'Shop Grid', url: '/shop/catalog/power-tools', children: [
@@ -44,7 +51,7 @@ export const mobileMenu: MobileMenuItem[] = [
     //     {type: 'link', label: 'Compare',     url: '/shop/compare'},
     //     {type: 'link', label: 'Track Order', url: '/shop/track-order'}
     // ]},
-{type: 'link', label:'Category', url:'/shop/catalog'},
+// {type: 'link', label:'Category', url:'/shop/catalog',children:[]},
 
     {type: 'link', label: 'Account', url: '/account', login:true, children: [
        
@@ -67,6 +74,7 @@ export const mobileMenu: MobileMenuItem[] = [
     // ]},
     {type: 'link', label: 'About Us',             url: '/site/about-us'},
         {type: 'link', label: 'Contact Us',           url: '/site/contact-us'},
+        {type:'link', label:'Logout', url:'/'}
     // {type: 'link', label: 'Pages', url: '/site', children: [
     //     {type: 'link', label: 'About Us',             url: '/site/about-us'},
     //     {type: 'link', label: 'Contact Us',           url: '/site/contact-us'},

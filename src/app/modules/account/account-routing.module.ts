@@ -9,6 +9,7 @@ import { PagePasswordComponent } from './pages/page-password/page-password.compo
 import { PageOrderDetailsComponent } from './pages/page-order-details/page-order-details.component';
 import { PageEditAddressComponent } from './pages/page-edit-address/page-edit-address.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { LoginGuard } from 'src/app/login.guard';
 
 const routes: Routes = [
     {
@@ -22,38 +23,46 @@ const routes: Routes = [
             },
             {
                 path: 'dashboard',
-                component: PageDashboardComponent
+                component: PageDashboardComponent,
+                canActivate: [LoginGuard]
             },
             {
                 path: 'profile',
-                component: PageProfileComponent
+                component: PageProfileComponent,
+                canActivate: [LoginGuard]
+            
             },
             {
                 path: 'addresses',
-                component: PageAddressesListComponent
+                component: PageAddressesListComponent,
+                canActivate: [LoginGuard]
             },
             {
                 path: 'addresses/:addressId',
-                component: PageEditAddressComponent
+                component: PageEditAddressComponent,
+                canActivate: [LoginGuard]
             },
             {
                 path: 'orders',
-                component: PageOrdersListComponent
+                component: PageOrdersListComponent,
+                canActivate: [LoginGuard]
             },
             {
                 path: 'orders/:orderId',
-                component: PageOrderDetailsComponent
+                component: PageOrderDetailsComponent,
+                canActivate: [LoginGuard]
             },
             {
                 path: 'password',
-                component: PagePasswordComponent
+                component: PagePasswordComponent,
+                canActivate: [LoginGuard]
             }
         ]
     },
    
     {
         path: 'register',
-        component:RegisterComponent,
+        component:RegisterComponent
     },
 ];
 

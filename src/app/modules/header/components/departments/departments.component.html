@@ -36,7 +36,7 @@
                 >
                    
 
-                    <a class="departments__item-link" *ngIf="item.isActive !== true && item.isActive !==null" [routerLink]="item.url" [target]="item.target" (click)="onItemClick(item.slug)" (appTouchClick)="onTouchClick($event, item)">
+                    <a class="departments__item-link" *ngIf="item.isActive === true && item.isActive !== null" [routerLink]="item.url" [target]="item.target" (click)="onItemClick(item.slug)" (appTouchClick)="onTouchClick($event, item)">
                         <ng-template #link>
                             <span> {{ item.category_name }}</span>  
                               <app-icon *ngIf="item.menu" class="departments__item-arrow" name="arrow-rounded-right-6x9" size="6x9"></app-icon>

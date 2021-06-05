@@ -163,7 +163,7 @@ export class CartService {
     }
 
     private save(): void {
-        localStorage.setItem('cartItems', JSON.stringify(this.data.items));
+        // localStorage.setItem('cartItems', JSON.stringify(this.data.items));
     }
 
     private load(): void {
