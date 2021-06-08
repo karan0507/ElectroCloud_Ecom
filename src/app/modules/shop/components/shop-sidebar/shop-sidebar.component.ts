@@ -31,7 +31,7 @@ export class ShopSidebarComponent implements OnInit, OnDestroy {
         private platformId: any
     ) { 
         setTimeout(()=>{
-                console.log('You got products in Shop sidebar', this.prod);
+                // console.log('You got products in Shop sidebar', this.prod);
         })
     }
 

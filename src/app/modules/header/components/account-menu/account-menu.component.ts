@@ -13,8 +13,9 @@ export class AccountMenuComponent {
   log_user: any;
   @Output() closeMenu: EventEmitter<void> = new EventEmitter<void>();
   @Output() loginevent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() indicator: boolean;
   isLogin = JSON.parse(localStorage.getItem('loggedIn'));
-  isVerified = false;
+  isVerified :boolean;
   user;
   isEdit: boolean;
   account_login: FormGroup;
@@ -92,6 +93,7 @@ export class AccountMenuComponent {
             localStorage.setItem('token', auth.access_token);
             localStorage.setItem('loggedIn', 'true');
             this.isLogin = JSON.parse(localStorage.getItem('loggedIn'));
+            this.indicator = this.isLogin;
             this.isVerified = false;
             this.getCustInfo();
             this.account_login.reset();
@@ -127,6 +129,7 @@ export class AccountMenuComponent {
     localStorage.removeItem('customer_id');
     localStorage.removeItem('user_id');
     localStorage.removeItem('customer_name');
+    this.indicator = this.isLogin = false;
     this.changeDetect.detectChanges();
 
   }

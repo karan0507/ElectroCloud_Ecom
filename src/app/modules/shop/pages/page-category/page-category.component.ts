@@ -68,7 +68,7 @@ export class PageCategoryComponent implements OnDestroy {
 
       
         this.route.params.subscribe(categorySlug=>{
-            console.log(categorySlug);
+            // console.log(categorySlug);
          this.categorySlug = categorySlug.categorySlug;
 
             if(categorySlug.categorySlug !== undefined && categorySlug.categorySlug !== null){
@@ -104,7 +104,7 @@ export class PageCategoryComponent implements OnDestroy {
 
     ngOnInit(): void {
         this.route.data.subscribe(products_details => {
-            console.log(products_details);
+            // console.log(products_details);
         });
         //     this.layout = data.layout || this.layout;
         //     this.sidebarPosition = data.sidebarPosition || this.sidebarPosition;

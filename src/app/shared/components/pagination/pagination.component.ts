@@ -28,7 +28,7 @@ pages:number[] = [];
 
     ngOnInit(): void {
         this.calc();
-        console.log(this.pages);
+        // console.log(this.pages);
      
     }
 
